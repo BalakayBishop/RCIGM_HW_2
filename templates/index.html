@@ -14,23 +14,40 @@
 
 		<div class="container">
 			<div class="content">
-				<form method="POST" action="{{ url_for('api') }}">
-					<div class="form-floating mb-3">
-					  <input type="text" name="firstName" class="form-control" id="floatingInput"
-					         placeholder="name@example.com">
-					  <label for="floatingInput">First Name</label>
-					</div>
+				<form method="POST" action="{{ url_for('api') }}" class="needs-validation">
+					<div>
+					    <label for="validationCustom03" class="form-label">First Name</label>
+					    <input type="text" name="firstName" class="form-control" id="validationCustom03" required>
+						<div class="valid-feedback">
+							Looks good!
+					    </div>
+						<div class="invalid-feedback">
+							Please enter your first name.
+				        </div>
+				    </div>
 
-					<div class="form-floating mb-3">
-					  <input type="text" name="lastName" class="form-control" id="floatingPassword" placeholder="Password">
-					  <label for="floatingPassword">Last Name</label>
-					</div>
+					<div>
+					    <label for="validationCustom03" class="form-label">Last Name</label>
+					    <input type="text" name="lastName" class="form-control" id="validationCustom03" required>
+						<div class="valid-feedback">
+							Looks good!
+					    </div>
+						<div class="invalid-feedback">
+							Please enter your last name.
+				        </div>
+				    </div>
 
-					<div class="form-floating mb-3">
-					  <input type="text" name="userName" class="form-control" id="floatingPassword" placeholder="Password">
-					  <label for="floatingPassword">Username</label>
-					</div>
-
+					<div>
+					    <label for="validationCustom03" class="form-label">Username</label>
+					    <input type="text" name="userName" class="form-control" id="validationCustom03" required>
+						<div class="valid-feedback">
+							Looks good!
+					    </div>
+						<div class="invalid-feedback">
+							Please enter your username.
+				        </div>
+				    </div>
+					<br>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form> <!--End of Form-->
 
