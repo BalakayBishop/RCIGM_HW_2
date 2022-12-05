@@ -14,25 +14,25 @@
 
 		<div class="container">
 			<div class="content">
-
-				<form method="post" action="#">
+				<form method="POST" action="{{ url_for('api') }}">
 					<div class="form-floating mb-3">
-					  <input type="email" name="firstName" class="form-control" id="floatingInput" placeholder="name@example.com">
+					  <input type="text" name="firstName" class="form-control" id="floatingInput"
+					         placeholder="name@example.com">
 					  <label for="floatingInput">First Name</label>
 					</div>
 
 					<div class="form-floating mb-3">
-					  <input type="password" name="lastName" class="form-control" id="floatingPassword" placeholder="Password">
+					  <input type="text" name="lastName" class="form-control" id="floatingPassword" placeholder="Password">
 					  <label for="floatingPassword">Last Name</label>
 					</div>
 
 					<div class="form-floating mb-3">
-					  <input type="password" name="userName" class="form-control" id="floatingPassword" placeholder="Password">
+					  <input type="text" name="userName" class="form-control" id="floatingPassword" placeholder="Password">
 					  <label for="floatingPassword">Username</label>
 					</div>
 
-					<button type="button" class="btn btn-primary">Submit</button>
-				</form>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form> <!--End of Form-->
 
 				<br>
 
@@ -44,7 +44,7 @@
 						</li>
 					{% endfor %}
 				</ul>
-			</div>
-		</div>
+			</div> <!--End of Div Content-->
+		</div> <!--End of Div Container-->
 	</body>
 </html>
