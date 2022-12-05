@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: added Bootstrap validation (custom is currently broken, but it's there for the future).">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: changed the form inputs back to floating labels from Bootstrap">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
@@ -80,7 +80,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670271031140</updated>
-      <workItem from="1670271042820" duration="7660000" />
+      <workItem from="1670271042820" duration="8201000" />
     </task>
     <task id="LOCAL-00001" summary="Local: changes made to index.html and styles.css for layout of the form and the style of the form">
       <created>1670272216057</created>
@@ -103,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670277887960</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Local: changed the form inputs back to floating labels from Bootstrap">
+      <created>1670278767873</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670278767873</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,7 +131,8 @@
     <MESSAGE value="Local: changes made to index.html and styles.css for layout of the form and the style of the form" />
     <MESSAGE value="Local: added .env variables, connected database, and created User model class" />
     <MESSAGE value="Local: added Bootstrap validation (custom is currently broken, but it's there for the future)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: added Bootstrap validation (custom is currently broken, but it's there for the future)." />
+    <MESSAGE value="Local: changed the form inputs back to floating labels from Bootstrap" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: changed the form inputs back to floating labels from Bootstrap" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670278515106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
