@@ -7,13 +7,21 @@ $(document).ready(function() {
 			let list = document.querySelector('#userList')
 			for(let i = 0; i < response.length; i++) {
 				let li = document.createElement('li')
-				li.innerText =
+				let title = document.createElement('p')
+				title.innerText =
 					"ID: " + response[i]['id']
 					+ ", Username: " + response[i]['userName']
 					+ ", First Name: " + response[i]['firstName']
 					+ ", Last Name: " + response[i]['lastName']
+				li.appendChild(title)
 				
+				let icons = document.createElement('p')
+				icons.innerHTML = '<i class="fa fa-pencil-square-o"></i> <i class="fa fa-times"></i>'
+				li.appendChild(icons)
+				
+				icons.classList.add('icons')
 				li.classList.add('list-group-item')
+				
 				list.appendChild(li)
 			}
 		},
@@ -107,7 +115,7 @@ $(document).ready(function() {
 					taken.style.display = 'none'
 					
 					setTimeout(function() {
-						$('#successAlert').fadeOut('fast')
+						$('#successAlert').fadeOut(125)
 					}, 2000);
 				}
 				else if (response['process'] === 'fail') {
@@ -121,7 +129,7 @@ $(document).ready(function() {
 					taken.style.display = 'none'
 					
 					setTimeout(function() {
-						$('#failAlert').fadeOut('fast')
+						$('#failAlert').fadeOut(125)
 					}, 2000);
 					
 				}

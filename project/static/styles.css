@@ -160,6 +160,31 @@ form {
     cursor: pointer;
 }
 
+.fa-pencil-square-o:hover {
+    cursor: pointer;
+}
+
+#userList > li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons {
+    display: inline-block;
+}
+
+.fa-pencil-square-o {
+    color: #0f5132;
+}
+
+.fa-times {
+    color: #842029;
+}
+
 .fail-list {
     color: #842029;
     background-color: #f8d7da;
