@@ -189,3 +189,42 @@ form {
     color: #842029;
     background-color: #f8d7da;
 }
+
+.popup-overlay {
+    background-color: rgba(0, 0, 0, .8);
+    border: solid 2px #666;
+    position: absolute;
+    padding: 2rem;
+    margin: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+
+.popup-content {
+    background-color: white;
+    border: solid 2px #666;
+    border-radius: 8px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
+    padding: 4rem;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    visibility: hidden;
+}
+
+.popup-overlay.active, .popup-content.active {
+    visibility: visible;
+}
+
+
+
+
+
+
+
+
+
+

@@ -143,7 +143,7 @@ $(document).ready(function() {
 		
 		successAlert.style.display = 'none'
 		failAlert.style.display = 'none'
-	})
+	});
 	
 	$('#failClose').on('click', function() {
 		let successAlert = document.getElementById('successAlert')
@@ -151,6 +151,28 @@ $(document).ready(function() {
 		
 		successAlert.style.display = 'none'
 		failAlert.style.display = 'none'
-	})
-})
+	});
+	
+	$('ul').on('click', function(e) {
+		if(e.target.classList[1] === 'fa-pencil-square-o') {
+			$('.popup-overlay, .popup-content').addClass('active')
+	
+			$('.close').on('click', function() {
+				$('.popup-overlay, .popup-content').removeClass('active')
+			});
+		}
+	});
+	
+	$('.fa-times').on('click', function() {
+	
+	});
+});
 
+/*
+
+$('.popup-overlay, .popup-content').addClass('active')
+		
+		$('.close, .popup-content').on('click', function() {
+			$('.popup-overlay, .popup-content').removeClass('active')
+		});
+ */
