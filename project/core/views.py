@@ -1,21 +1,15 @@
 # project/core/views.py
 from flask import render_template, Blueprint, request, jsonify
 from project.models.models import User
+from methods import is_valid, get_user, convert
 from project import db
 
 core = Blueprint('core', __name__)
+	
 
 @core.route('/')
 def index():
 	return render_template('index.html')
-
-
-def is_valid(username_check):
-	usernameExist = User.query.filter_by(username=username_check).one_or_none()
-	if usernameExist is None:
-		return True
-	elif usernameExist is not None:
-		return False
 	
 
 @core.route('/username_validation', methods=['GET', 'POST'])
@@ -38,23 +32,6 @@ def username_validation():
 				return jsonify({
 					'class': 'none'
 				})
-
-
-def convert(obj):
-	lst = []
-	if type(obj) == list:
-		for i in range(0, len(obj)):
-			lst.append(obj[i].as_dict())
-	else:
-		lst.append(obj.as_dict())
-	return lst
-
-def get_user(userName):
-	user = User.query.filter_by(username=userName).one_or_none()
-	if user is not None:
-		return convert(user)
-	else:
-		return None
 
 
 @core.route('/api', methods=['GET', 'POST'])
