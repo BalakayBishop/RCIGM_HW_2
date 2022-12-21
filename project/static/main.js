@@ -4,10 +4,26 @@ $(document).ready(function() {
 		url: '/users',
 		type:'GET',
 		success: function(response) {
-			console.log(response)
+			let list = document.querySelector('#userList')
+			for(let i = 0; i < response.length; i++) {
+				let li = document.createElement('li')
+				li.innerText =
+					"ID: " + response[i]['id']
+					+ ", Username: " + response[i]['userName']
+					+ ", First Name: " + response[i]['firstName']
+					+ ", Last Name: " + response[i]['lastName']
+				
+				li.classList.add('list-group-item')
+				list.appendChild(li)
+			}
 		},
-		error: function(error) {
-			console.log(error)
+		error: function() {
+			let list = document.querySelector('#userList')
+			let li = document.createElement('li')
+			li.classList.add('list-group-item', 'fail-list')
+			li.innerText = 'Error loading list of users'
+			
+			list.appendChild(li)
 		}
 	});
 	
@@ -54,9 +70,11 @@ $(document).ready(function() {
 		event.preventDefault()
 		let successAlert = document.getElementById('successAlert')
 		let failAlert = document.getElementById('failAlert')
-		let firstName = document.querySelector('#firstName')
-		let lastName = document.querySelector('#lastName')
-		let userName = document.querySelector('#userName')
+		let form = document.querySelector('form')
+		let usernameInput = document.querySelector('.username')
+		let taken = document.querySelector('#taken')
+		let available = document.querySelector('#available')
+		
 		$.ajax({
 			url: '/api',
 			type: 'POST',
@@ -68,24 +86,53 @@ $(document).ready(function() {
 			}),
 			success: function(response) {
 				if (response['process'] === 'success') {
+					
+					let list = document.querySelector('#userList')
+					let li = document.createElement('li')
+					
+					li.innerText = "ID: " + response['id']
+					+ ", Username: " + response['userName']
+					+ ", First Name: " + response['firstName']
+					+ ", Last Name: " + response['lastName']
+					
+					li.classList.add('list-group-item')
+					list.appendChild(li)
+					
 					successAlert.style.display = 'flex'
 					failAlert.style.display = 'none'
-					firstName.textContent = ''
-					lastName.textContent = ''
-					userName.textContent = ''
+					
+					form.reset()
+					usernameInput.classList.remove('success')
+					available.style.display = 'none'
+					taken.style.display = 'none'
 				}
 				else if (response['process'] === 'fail') {
 					successAlert.style.display = 'none'
 					failAlert.style.display = 'flex'
-					firstName.textContent = ''
-					lastName.textContent = ''
-					userName.textContent = ''
+					
+					form.reset()
+					usernameInput.classList.remove('fail')
+					available.style.display = 'none'
+					taken.style.display = 'none'
 				}
 			}
 		})
 	});
+	
+	$('#successClose').on('click', function() {
+		let successAlert = document.getElementById('successAlert')
+		let failAlert = document.getElementById('failAlert')
+		
+		successAlert.style.display = 'none'
+		failAlert.style.display = 'none'
+	})
+	
+	$('#failClose').on('click', function() {
+		let successAlert = document.getElementById('successAlert')
+		let failAlert = document.getElementById('failAlert')
+		
+		successAlert.style.display = 'none'
+		failAlert.style.display = 'none'
+	})
 })
 
-// <li class="list-group-item">
-//
-// </li>
