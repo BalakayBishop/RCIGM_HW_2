@@ -6,7 +6,7 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	first_name = db.Column(db.String(50))
 	last_name = db.Column(db.String(50))
-	username = db.Column(db.String(50))
+	username = db.Column(db.String(50), unique=True)
 	
 	def __init__(self, first_name, last_name, username):
 		self.first_name = first_name
