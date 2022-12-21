@@ -13,9 +13,6 @@ class User(db.Model):
 		self.last_name = last_name
 		self.username = username
 	
-	def __repr__(self):
-		return f"{self.id},{self.first_name},{self.last_name},{self.username}"
-	
 	def as_dict(self):
 		user = {
 			'id': self.id,
