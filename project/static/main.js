@@ -105,8 +105,13 @@ $(document).ready(function() {
 					usernameInput.classList.remove('success')
 					available.style.display = 'none'
 					taken.style.display = 'none'
+					
+					setTimeout(function() {
+						$('#successAlert').fadeOut('fast')
+					}, 2000);
 				}
 				else if (response['process'] === 'fail') {
+					
 					successAlert.style.display = 'none'
 					failAlert.style.display = 'flex'
 					
@@ -114,6 +119,11 @@ $(document).ready(function() {
 					usernameInput.classList.remove('fail')
 					available.style.display = 'none'
 					taken.style.display = 'none'
+					
+					setTimeout(function() {
+						$('#failAlert').fadeOut('fast')
+					}, 2000);
+					
 				}
 			}
 		})
