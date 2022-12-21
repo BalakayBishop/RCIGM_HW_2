@@ -11,6 +11,10 @@
 		        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 		<!-- jQuery JS -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+		<!-- Font Awesome Icons -->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='font-awesome.css') }}">
+
 		<!-- Personal CSS -->
 	    <link href="{{ url_for('static',filename='styles.css') }}" rel="stylesheet">
 		<script src="{{ url_for('static',filename='main.js') }}"></script>
@@ -19,37 +23,45 @@
 
 		<div class="container">
 			<div class="content">
-				<form method="POST" action="{{ url_for('core.api') }}" class="needs-validation">
+				<form id="form" method="POST" class="needs-validation">
 					<div class="form-floating mb-3">
-					  <input type="text" name="firstName" class="form-control" id="floatingInput" placeholder="John"
+					  <input type="text" name="firstName" class="form-control" id="firstName" placeholder="John"
 					         required>
-					  <label for="floatingInput">First Name</label>
+					  <label for="firstName">First Name</label>
 					</div>
 
 					<div class="form-floating mb-3">
-					  <input type="text" name="lastName" class="form-control" id="floatingInput" placeholder="Doe"
+					  <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Doe"
 					         required>
-					  <label for="floatingInput">Last Name</label>
+					  <label for="lastName">Last Name</label>
 					</div>
 
 					<div class="form-floating mb-3">
-					  <input type="text" name="userName" class="form-control username" id="floatingInput"
+					  <input type="text" name="userName" class="form-control username" id="userName"
 					         placeholder="john_doe" required>
-					  <label for="floatingInput">Username</label>
+					  <label for="userName">Username</label>
 					</div>
+					<p id="taken">Username is already taken!</p>
+					<p id="available">Username is available!</p>
 
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" id="submitButton" class="btn btn-primary mb-3"
+					        data-bs-toggle="button">Submit</button>
 				</form> <!--End of Form-->
+
+				<div id="successAlert" class="" role="alert">
+					<p>Success!</p>
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</div>
+				<div id="failAlert" class="" role="alert">
+					<p>An error occurred!</p>
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</div>
 
 				<br>
 
-				<h2>List of all Users</h2>
+				<h2>List of All Users</h2>
 				<ul class="list-group list-group-flush">
-					{% for item in user%}
-						<li class="list-group-item">
-							{{ item }}
-						</li>
-					{% endfor %}
+
 				</ul>
 			</div> <!--End of Div Content-->
 		</div> <!--End of Div Container-->

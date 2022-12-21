@@ -17,3 +17,124 @@
 form {
     margin-top: 24px;
 }
+
+.form-control:focus {
+    box-shadow: none;
+    border: 1px solid #ced4da;
+}
+
+.success {
+    border: solid 2px #badbcc;
+    background-color: #D1E7DD;
+    color: #0f5132;
+}
+
+.success:focus {
+    border: solid 2px #badbcc;
+    background-color: #D1E7DD;
+    color: #0f5132;
+}
+
+.fail {
+    border: solid 2px #f5c2c7;
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.fail:focus {
+    border: solid 2px #f5c2c7;
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.success:-webkit-autofill,
+.success:-webkit-autofill:focus {
+  -webkit-text-fill-color: #0f5132;
+  -webkit-box-shadow: 0 0 0 1000px #D1E7DD inset;
+}
+
+.fail:-webkit-autofill,
+.fail:-webkit-autofill:focus {
+  -webkit-text-fill-color: #842029;
+  -webkit-box-shadow: 0 0 0 1000px #f8d7da inset;
+}
+
+#taken {
+    margin: 0 0 8px;
+    color: #842029;
+    display: none;
+    position: relative;
+    bottom: 16px;
+    left: 14px;
+}
+
+#available {
+    margin: 0 0 8px;
+    color: #0f5132;
+    display: none;
+    position: relative;
+    bottom: 16px;
+    left: 14px;
+}
+
+#successAlert {
+    display: none;
+    background-color: #D1E7DD;
+    border: solid 1px #badbcc;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 8px;
+    position: relative;
+    bottom: 12px;
+    width: 200px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#successAlert > p {
+    margin: 0;
+    padding: 0;
+    color: #0f5132;
+    display: inline-block;
+}
+
+#successAlert > i {
+    color: #0f5132;
+}
+
+#failAlert {
+    display: none;
+    background-color: #f8d7da;
+    border: solid 1px #f5c2c7;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 8px;
+    position: relative;
+    bottom: 12px;
+    width: 200px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#failAlert > p {
+    margin: 0;
+    padding: 0;
+    color: #842029;
+    display: inline-block;
+}
+
+#failAlert > i {
+    color: #842029;
+}
+
+.fa-times {
+
+}
+
+.fa-times:hover {
+    cursor: pointer;
+}
