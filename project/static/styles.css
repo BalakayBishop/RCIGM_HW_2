@@ -1,8 +1,11 @@
+/* ---------------------------CSS RESET------------------------------------------- */
 * {
     margin: 0;
     padding: 0;
     color: #333333;
 }
+
+/* ---------------------------CONTAINER DIV------------------------------------------- */
 
 .container {
     display: flex;
@@ -10,9 +13,13 @@
     align-items: center;
 }
 
+/* ---------------------------CONTENT DIV------------------------------------------- */
+
 .content {
     width: 100%;
 }
+
+/* ---------------------------FORM------------------------------------------- */
 
 form {
     margin-top: 24px;
@@ -59,6 +66,8 @@ form {
   -webkit-box-shadow: 0 0 0 1000px #f8d7da inset;
 }
 
+/* ---------------------------USERNAME VALIDATION CLASSES------------------------------------------- */
+
 #taken {
     margin: 0 0 8px;
     color: #842029;
@@ -77,26 +86,14 @@ form {
     left: 14px;
 }
 
-.btn-primary {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: #0d6efd;
-    --bs-btn-border-color: #0d6efd;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #0b5ed7;
-    --bs-btn-hover-border-color: #0a58ca;
-    --bs-btn-focus-shadow-rgb: 49,132,253;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #0d6efd;
-    --bs-btn-active-border-color: #0d6efd;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: #0d6efd;
-    --bs-btn-disabled-border-color: #0d6efd;
+#submitButton:visited,
+#submitButton:active,
+#submitButton:focus {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
 
-#submitButton:visited {
-    background-color: #0d6efd;
-}
+/* ---------------------------FORM SUBMIT SUCCESS ALERT------------------------------------------- */
 
 #successAlert {
     display: none;
@@ -124,6 +121,8 @@ form {
 #successAlert > i {
     color: #0f5132;
 }
+
+/* ---------------------------FORM SUBMIT FAIL ALERT------------------------------------------- */
 
 #failAlert {
     display: none;
@@ -164,6 +163,8 @@ form {
     cursor: pointer;
 }
 
+/* ---------------------------USER LIST------------------------------------------- */
+
 #userList > li {
     display: flex;
     flex-direction: row;
@@ -190,9 +191,11 @@ form {
     background-color: #f8d7da;
 }
 
-.popup-overlay {
-    background-color: rgba(0, 0, 0, .8);
-    border: solid 2px #666;
+/* ---------------------------EDIT MODAL------------------------------------------- */
+
+.popup-overlay-edit {
+    background-color: rgba(126, 126, 126, 0.8);
+    border: solid 2px #CBCBCB;
     position: absolute;
     padding: 2rem;
     margin: 0;
@@ -202,29 +205,115 @@ form {
     visibility: hidden;
 }
 
-.popup-content {
+.popup-content-edit {
     background-color: white;
-    border: solid 2px #666;
+    border: solid 2px #CBCBCB;
     border-radius: 8px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
-    padding: 4rem;
+    padding: 1rem 2rem;
     width: 50%;
     position: absolute;
     left: 25%;
-    top: 25%;
+    top: 10%;
     visibility: hidden;
 }
 
-.popup-overlay.active, .popup-content.active {
+.popup-overlay-edit.active, .popup-content-edit.active {
     visibility: visible;
 }
 
+/* ---------------------------DELETE MODAL------------------------------------------- */
 
+.popup-overlay-delete {
+    background-color: rgba(126, 126, 126, 0.8);
+    border: solid 2px #CBCBCB;
+    position: absolute;
+    padding: 1rem 2rem;
+    margin: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
 
+.popup-content-delete {
+    background-color: white;
+    border: solid 2px #CBCBCB;
+    border-radius: 8px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
+    padding: 2rem;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    visibility: hidden;
+}
 
+.popup-overlay-delete.active, .popup-content-delete.active {
+    visibility: visible;
+}
 
+/* ---------------------------MODAL FORM------------------------------------------- */
 
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
 
+.form-buttons > button.close {
+    margin-right: 4px;
+}
 
+.form-buttons > button.submit {
+    margin-left: 4px;
+}
 
+.popup-content-edit > p {
+    color: #333333;
+}
 
+/* ---------------------------MODAL HEADER AND X------------------------------------------- */
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header > h2, p {
+    margin: 0;
+    color: #333333;
+}
+
+.modal-header > p {
+    display: inline-block;
+}
+
+.fa-xmark:hover {
+    cursor: pointer;
+}
+
+/* ---------------------------MODAL FORM USERNAME VALIDATION------------------------------------------- */
+
+#modal-available {
+    margin: 0 0 8px;
+    color: #0f5132;
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: 44px;
+}
+
+#modal-taken {
+    margin: 0 0 8px;
+    color: #842029;
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: 44px;
+}

@@ -14,6 +14,7 @@
 
 		<!-- Font Awesome Icons -->
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='font-awesome.css') }}">
+		<script src="https://kit.fontawesome.com/b27bb80b77.js" crossorigin="anonymous"></script>
 
 		<!-- Personal CSS -->
 	    <link href="{{ url_for('static',filename='styles.css') }}" rel="stylesheet">
@@ -66,13 +67,53 @@
 
 			</div> <!--End of Div Content-->
 
-			<div class="popup-overlay">
-				<div class="popup-content">
-					<h2>Pop up</h2>
-					<button type="button" class="btn btn-secondary mb-3 close"
+			<div class="popup-overlay-edit">
+				<div class="popup-content-edit">
+					<div class="modal-header">
+						<h2>Edit User</h2>
+						<p><i class="fa-solid fa-xmark"></i></p>
+					</div>
+
+					<form id="modal-form" method="POST" class="needs-validation">
+						<div class="form-floating mb-3">
+						  <input type="text" name="firstName" class="form-control" id="modal-firstName"
+						         placeholder="John"
+						         required>
+						  <label for="modal-firstName">First Name</label>
+						</div>
+
+						<div class="form-floating mb-3">
+						  <input type="text" name="lastName" class="form-control" id="modal-lastName" placeholder="Doe"
+						         required>
+						  <label for="modal-lastName">Last Name</label>
+						</div>
+
+						<div class="form-floating mb-3">
+						  <input type="text" name="userName" class="form-control modal-username" id="modal-userName"
+						         placeholder="john_doe" required>
+						  <label for="modal-userName">Username</label>
+						</div>
+						<p id="modal-taken">Username is already taken!</p>
+						<p id="modal-available">Username is available!</p>
+
+						<div class="form-buttons">
+							<button type="button" class="btn btn-secondary close-edit"
+					        data-bs-toggle="button">Cancel</button>
+							<button type="submit" id="modal-submitButton" class="btn btn-primary submit"
+					        data-bs-toggle="button">Submit</button>
+						</div>
+
+					</form>
+				</div>
+			</div> <!-- End of Edit Modal -->
+
+			<div class="popup-overlay-delete">
+				<div class="popup-content-delete">
+					<h2>Delete User</h2>
+					<button type="button" class="btn btn-secondary mb-3 close-delete"
 				        data-bs-toggle="button">Close</button>
 				</div>
-			</div> <!-- Modal -->
+			</div> <!-- End of Delete Modal -->
 
 		</div> <!--End of Div Container-->
 	</body>

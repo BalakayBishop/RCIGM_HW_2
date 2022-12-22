@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+	// ------------------------------------- LIST OF USERS ON PAGE LOAD -------------------------------------
 	$.ajax({
 		url: '/users',
 		type:'GET',
@@ -13,6 +13,7 @@ $(document).ready(function() {
 					+ ", Username: " + response[i]['userName']
 					+ ", First Name: " + response[i]['firstName']
 					+ ", Last Name: " + response[i]['lastName']
+				title.classList.add('title')
 				li.appendChild(title)
 				
 				let icons = document.createElement('p')
@@ -35,6 +36,7 @@ $(document).ready(function() {
 		}
 	});
 	
+	// ------------------------------------- USERNAME VALIDATION -------------------------------------
 	$('.username').on('input', function() {
 		let username = $(this).val()
 		$.ajax({
@@ -74,6 +76,7 @@ $(document).ready(function() {
 		})
 	});
 	
+	// ------------------------------------- FORM SUBMISSION -------------------------------------
 	$('#submitButton').on('click', function(event) {
 		event.preventDefault()
 		let successAlert = document.getElementById('successAlert')
@@ -94,29 +97,38 @@ $(document).ready(function() {
 			}),
 			success: function(response) {
 				if (response['process'] === 'success') {
-					
 					let list = document.querySelector('#userList')
 					let li = document.createElement('li')
+					let title = document.createElement('p')
+					let form = document.querySelector('#form')
+					title.innerText =
+						"ID: " + response['id']
+						+ ", Username: " + response['userName']
+						+ ", First Name: " + response['firstName']
+						+ ", Last Name: " + response['lastName']
+					title.classList.add('title')
+					li.appendChild(title)
 					
-					li.innerText = "ID: " + response['id']
-					+ ", Username: " + response['userName']
-					+ ", First Name: " + response['firstName']
-					+ ", Last Name: " + response['lastName']
+					let icons = document.createElement('p')
+					icons.innerHTML = '<i class="fa fa-pencil-square-o"></i> <i class="fa fa-times"></i>'
+					li.appendChild(icons)
 					
+					icons.classList.add('icons')
 					li.classList.add('list-group-item')
+					
 					list.appendChild(li)
 					
 					successAlert.style.display = 'flex'
 					failAlert.style.display = 'none'
 					
-					form.reset()
-					usernameInput.classList.remove('success')
-					available.style.display = 'none'
-					taken.style.display = 'none'
-					
 					setTimeout(function() {
 						$('#successAlert').fadeOut(125)
 					}, 2000);
+					
+					form.reset()
+					usernameInput.classList.remove('fail', 'success')
+					taken.style.display = 'none'
+					available.style.display = 'none'
 				}
 				else if (response['process'] === 'fail') {
 					
@@ -132,11 +144,16 @@ $(document).ready(function() {
 						$('#failAlert').fadeOut(125)
 					}, 2000);
 					
+					form.reset()
+					usernameInput.classList.remove('fail', 'success')
+					taken.style.display = 'none'
+					available.style.display = 'none'
 				}
 			}
 		})
 	});
 	
+	// ------------------------------------- SUBMISSION SUCCESS -------------------------------------
 	$('#successClose').on('click', function() {
 		let successAlert = document.getElementById('successAlert')
 		let failAlert = document.getElementById('failAlert')
@@ -145,6 +162,7 @@ $(document).ready(function() {
 		failAlert.style.display = 'none'
 	});
 	
+	//------------------------------------- SUBMISSION FAIL -------------------------------------
 	$('#failClose').on('click', function() {
 		let successAlert = document.getElementById('successAlert')
 		let failAlert = document.getElementById('failAlert')
@@ -153,26 +171,96 @@ $(document).ready(function() {
 		failAlert.style.display = 'none'
 	});
 	
+	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
 	$('ul').on('click', function(e) {
+		
+		let form = document.querySelector('#modal-form')
+		let usernameInput = document.querySelector('.modal-username')
+		let taken = document.querySelector('#modal-taken')
+		let available = document.querySelector('#modal-available')
+		
 		if(e.target.classList[1] === 'fa-pencil-square-o') {
-			$('.popup-overlay, .popup-content').addClass('active')
+			// MODAL OPEN
+			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
+			let str = e.target.parentNode.previousSibling.textContent
+			console.log(e.target.parentNode.previousSibling.textContent)
+			let userName = ''
+			let firstName = ''
+			let lastName = ''
+			
+			let substrings = str.split(", ")
+			for (let substring of substrings) {
+				if(substring.startsWith('Username: ')) {
+					userName = substring.replace('Username: ', '')
+				}
+				else if(substring.startsWith('First Name: ')) {
+					firstName = substring.replace('First Name: ', '')
+				}
+				else if(substring.startsWith('Last Name: ')) {
+					lastName = substring.replace('Last Name: ', '')
+				}
+			}
+			
+			$('#modal-firstName').val(firstName)
+			$('#modal-lastName').val(lastName)
+			$('#modal-userName').val(userName)
+		}
+		else if(e.target.classList[1] === 'fa-times') {
+			$('.popup-overlay-edit, .popup-content-delete').addClass('active')
 	
 			$('.close').on('click', function() {
-				$('.popup-overlay, .popup-content').removeClass('active')
+				$('.popup-overlay-edit, .popup-content-delete').removeClass('active')
 			});
 		}
+		
+		// MODAL CLOSED
+		$('.close-edit').on('click', function() {
+			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+			form.reset()
+			taken.style.display = 'none'
+			available.style.display = 'none'
+			usernameInput.classList.remove('fail', 'success')
+			$('#modal-submitButton').prop('disabled', false)
+		});
 	});
 	
-	$('.fa-times').on('click', function() {
-	
+	// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------
+	$('.modal-username').on('input', function() {
+		let username = $(this).val()
+		$.ajax({
+			url: '/username_validation',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				input: username
+			}),
+			success: function(response) {
+				let usernameInput = document.querySelector('.modal-username')
+				let taken = document.querySelector('#modal-taken')
+				let available = document.querySelector('#modal-available')
+				
+				if (response['class'] === 'success') {
+					usernameInput.classList.remove('fail')
+					usernameInput.classList.add('success')
+					$('#modal-submitButton').prop('disabled', false)
+					available.style.display = 'block'
+					taken.style.display = 'none'
+				}
+				else if (response['class'] === 'fail') {
+					usernameInput.classList.remove('success')
+					usernameInput.classList.add('fail')
+					$('#modal-submitButton').prop('disabled', true)
+					available.style.display = 'none'
+					taken.style.display = 'block'
+				}
+				else if (response['class'] === 'none') {
+					usernameInput.classList.remove('success')
+					usernameInput.classList.remove('fail')
+					$('#modal-submitButton').prop('disabled', false)
+					available.style.display = 'none'
+					taken.style.display = 'none'
+				}
+			}
+		})
 	});
 });
-
-/*
-
-$('.popup-overlay, .popup-content').addClass('active')
-		
-		$('.close, .popup-content').on('click', function() {
-			$('.popup-overlay, .popup-content').removeClass('active')
-		});
- */
