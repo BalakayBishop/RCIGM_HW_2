@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: removed __repr__()">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: updated form submission, li appending to ul after successful user creation, edit user li button, and many jQuery methods.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
@@ -21,9 +21,9 @@
       <list>
         <option value="Flask Main" />
         <option value="HTML File" />
-        <option value="Python Script" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -155,7 +155,8 @@
       <workItem from="1671146862789" duration="1397000" />
       <workItem from="1671148469782" duration="27561000" />
       <workItem from="1671400736491" duration="6000" />
-      <workItem from="1671569045493" duration="20905000" />
+      <workItem from="1671569045493" duration="21592000" />
+      <workItem from="1671641232738" duration="31111000" />
     </task>
     <task id="LOCAL-00001" summary="Local: changes made to index.html and styles.css for layout of the form and the style of the form">
       <created>1670272216057</created>
@@ -241,7 +242,84 @@
       <option name="project" value="LOCAL" />
       <updated>1671599816805</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Local: small changes to class names">
+      <created>1671603540517</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1671603540517</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Local: add new event listeners through jQuery for appending user list on page load and form submission, add listener for popup menu close button">
+      <created>1671603614818</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1671603614818</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Local: added some new classes to be used for classList.add()">
+      <created>1671603637825</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1671603637825</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Local: added new views and routes for loading user list, refactored /api endpoint to return the user dictionary object after form submission.">
+      <created>1671603688271</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1671603688271</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Local: committing workspace">
+      <created>1671603704501</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1671603704501</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Local: reformatted file for views to contain only routes and created methods.py file to contain data validations and other methods used in the routes">
+      <created>1671641489199</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1671641489200</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Local: fixed the import for methods.py to views.py">
+      <created>1671642109681</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1671642109681</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Local: added fade out for success and fail popup using JS">
+      <created>1671642399175</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1671642399175</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Local: added and styled edit and delete buttons for each user li">
+      <created>1671645119228</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1671645119228</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Local: added basic modal that I will improve upon for both edit and delete options for the user li">
+      <created>1671648803136</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1671648803136</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Local: updated form submission, li appending to ul after successful user creation, edit user li button, and many jQuery methods.">
+      <created>1671668551742</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1671668551742</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,11 +350,22 @@
     <MESSAGE value="Local: added new ajax for username validation and form submission to endpoints in views.py" />
     <MESSAGE value="Local: added as_dict() function to return a Python dictionary for a User class object to better represent the queried data" />
     <MESSAGE value="Local: removed __repr__()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: removed __repr__()" />
+    <MESSAGE value="Local: small changes to class names" />
+    <MESSAGE value="Local: add new event listeners through jQuery for appending user list on page load and form submission, add listener for popup menu close button" />
+    <MESSAGE value="Local: added some new classes to be used for classList.add()" />
+    <MESSAGE value="Local: added new views and routes for loading user list, refactored /api endpoint to return the user dictionary object after form submission." />
+    <MESSAGE value="Local: committing workspace" />
+    <MESSAGE value="Local: reformatted file for views to contain only routes and created methods.py file to contain data validations and other methods used in the routes" />
+    <MESSAGE value="Local: fixed the import for methods.py to views.py" />
+    <MESSAGE value="Local: added fade out for success and fail popup using JS" />
+    <MESSAGE value="Local: added and styled edit and delete buttons for each user li" />
+    <MESSAGE value="Local: added basic modal that I will improve upon for both edit and delete options for the user li" />
+    <MESSAGE value="Local: updated form submission, li appending to ul after successful user creation, edit user li button, and many jQuery methods." />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: updated form submission, li appending to ul after successful user creation, edit user li button, and many jQuery methods." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1671603221522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1671760865617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

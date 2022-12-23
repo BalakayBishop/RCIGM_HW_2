@@ -17,7 +17,9 @@ $(document).ready(function() {
 				li.appendChild(title)
 				
 				let icons = document.createElement('p')
-				icons.innerHTML = '<i class="fa fa-pencil-square-o"></i> <i class="fa fa-times"></i>'
+				icons.innerHTML = '<i class="fa fa-pencil-square-o"></i> <i' +
+					' class="fa fa-times"></i>'
+				
 				li.appendChild(icons)
 				
 				icons.classList.add('icons')
@@ -26,7 +28,7 @@ $(document).ready(function() {
 				list.appendChild(li)
 			}
 		},
-		error: function() {
+		fail: function() {
 			let list = document.querySelector('#userList')
 			let li = document.createElement('li')
 			li.classList.add('list-group-item', 'fail-list')
@@ -87,7 +89,7 @@ $(document).ready(function() {
 		let available = document.querySelector('#available')
 		
 		$.ajax({
-			url: '/api',
+			url: '/new_user',
 			type: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({
@@ -183,7 +185,7 @@ $(document).ready(function() {
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
 			let str = e.target.parentNode.previousSibling.textContent
-			console.log(e.target.parentNode.previousSibling.textContent)
+			let newStr = e.target.parentNode.previousSibling
 			let userName = ''
 			let firstName = ''
 			let lastName = ''
@@ -204,17 +206,59 @@ $(document).ready(function() {
 			$('#modal-firstName').val(firstName)
 			$('#modal-lastName').val(lastName)
 			$('#modal-userName').val(userName)
+			let currentUsername = userName
+			
+			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
+			
+			$('#modal-submitButton').on('click', function() {
+				$.ajax({
+					url: '/update_user',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({
+						firstName: $('#modal-firstName').val(),
+						lastName: $('#modal-lastName').val(),
+						userName: $('#modal-userName').val(),
+						currentUsername: currentUsername
+					}),
+					success: function(response) {
+						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+						form.reset()
+						taken.style.display = 'none'
+						available.style.display = 'none'
+						usernameInput.classList.remove('fail', 'success')
+						$('#modal-submitButton').prop('disabled', false)
+						newStr.textContent =
+							'ID: ' + response['id']
+							+ ', Username: ' + response['userName']
+							+ ', First Name: ' + response['firstName']
+							+ ', Last Name: ' + response['lastName']
+					},
+					fail: function(response) {
+						console.log(response)
+					}
+				})
+			});
 		}
 		else if(e.target.classList[1] === 'fa-times') {
-			$('.popup-overlay-edit, .popup-content-delete').addClass('active')
+			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
 	
 			$('.close').on('click', function() {
-				$('.popup-overlay-edit, .popup-content-delete').removeClass('active')
+				$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
 			});
 		}
 		
 		// MODAL CLOSED
 		$('.close-edit').on('click', function() {
+			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+			form.reset()
+			taken.style.display = 'none'
+			available.style.display = 'none'
+			usernameInput.classList.remove('fail', 'success')
+			$('#modal-submitButton').prop('disabled', false)
+		});
+		
+		$('.modal-xmark').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 			form.reset()
 			taken.style.display = 'none'
@@ -263,4 +307,5 @@ $(document).ready(function() {
 			}
 		})
 	});
+	
 });

@@ -317,3 +317,14 @@ form {
     bottom: 60px;
     left: 44px;
 }
+
+
+/* ---------------------------SUCCESSFUL USER EDIT------------------------------------------- */
+
+.success-edit {
+    display: inline-block;
+    background-color: #D1E7DD;
+    margin-right: 8px;
+    padding: 4px;
+    border-radius: 4px;
+}

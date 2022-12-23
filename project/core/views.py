@@ -6,12 +6,12 @@ from project import db
 
 core = Blueprint('core', __name__)
 	
-
+# -------------------- ROUTE: INDEX --------------------
 @core.route('/')
 def index():
 	return render_template('index.html')
 	
-
+# -------------------- ROUTE: USERNAME VALIDATION --------------------
 @core.route('/username_validation', methods=['GET', 'POST'])
 def username_validation():
 	data = request.get_json()
@@ -33,9 +33,9 @@ def username_validation():
 					'class': 'none'
 				})
 
-
-@core.route('/api', methods=['GET', 'POST'])
-def api():
+# -------------------- ROUTE: NEW USER --------------------
+@core.route('/new_user', methods=['POST'])
+def new_user():
 	form_data = request.get_json()
 	first_name = form_data['firstName'],
 	last_name = form_data['lastName'],
@@ -63,9 +63,44 @@ def api():
 	return jsonify({ 'process': 'failed' })
 
 
+# -------------------- ROUTE: NEW USER --------------------
+@core.route('/update_user', methods=['POST'])
+def update_user():
+	form_data = request.get_json()
+	first_name = form_data['firstName'],
+	last_name = form_data['lastName'],
+	username = form_data['userName']
+	currentUsername = form_data['currentUsername']
+	
+	if len(first_name) != 0 and len(last_name) != 0 and len(username) != 0:
+		user = User.query.filter_by(username=currentUsername).one_or_none()
+		if user is not None:
+			user.first_name = first_name
+			user.last_name = last_name
+			user.username = username
+			
+			db.session.commit()
+		
+			getUser = get_user(username)
+			
+			if getUser is not None:
+				return jsonify({
+					'status': 'success',
+					'id': getUser[0]['id'],
+					'userName': getUser[0]['userName'],
+					'firstName': getUser[0]['firstName'],
+					'lastName': getUser[0]['lastName']
+				})
+	
+	return jsonify({'status': 'failure'}), 400
+
+
+# -------------------- ROUTE: GET ALL USERS IN DICT --------------------
 @core.route('/users', methods=['GET'])
 def users():
 	query = User.query.all()
 	if len(query) != 0:
 		result = convert(query)
 		return jsonify(result)
+	else:
+		return jsonify({"status": "failure"}), 400
