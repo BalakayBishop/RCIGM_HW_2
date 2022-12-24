@@ -24,6 +24,7 @@
 
 		<div class="container">
 			<div class="content">
+
 				<form id="form" method="POST" class="needs-validation">
 					<div class="form-floating mb-3">
 					  <input type="text" name="firstName" class="form-control" id="firstName" placeholder="John"
@@ -49,17 +50,27 @@
 					        data-bs-toggle="button">Submit</button>
 				</form> <!--End of Form-->
 
+				<!--New User Success & Fail Alert-->
 				<div id="successAlert" class="" role="alert">
-					<p>Success!</p>
-					<i id="successClose" class="fa fa-times" aria-hidden="true"></i>
+					<p>User successfully created!</p>
+					<i id="" class="fa fa-times successClose" aria-hidden="true"></i>
 				</div>
 				<div id="failAlert" class="" role="alert">
 					<p>An error occurred!</p>
 					<i id="failClose" class="fa fa-times" aria-hidden="true"></i>
 				</div>
 
-				<br>
+				<!--User Update Success & Fail Alert-->
+				<div id="edit-success" class="success-edit" role="alert">
+					<p>User successfully updated!</p>
+					<i id="editSuccessClose" class="fa fa-times" aria-hidden="true"></i>
+				</div>
+				<div id="edit-fail" class="fail-edit" role="alert">
+					<p>User update failed!</p>
+					<i id="editFailClose" class="fa fa-times" aria-hidden="true"></i>
+				</div>
 
+				<!--List of All Users-->
 				<h2>List of All Users</h2>
 				<ul id="userList" class="list-group list-group-flush">
 

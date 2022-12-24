@@ -181,6 +181,7 @@ $(document).ready(function() {
 		let taken = document.querySelector('#modal-taken')
 		let available = document.querySelector('#modal-available')
 		
+		// ------------------------------- CLICK EDIT ICON --------------------------------
 		if(e.target.classList[1] === 'fa-pencil-square-o') {
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
@@ -233,6 +234,10 @@ $(document).ready(function() {
 							+ ', Username: ' + response['userName']
 							+ ', First Name: ' + response['firstName']
 							+ ', Last Name: ' + response['lastName']
+						$('#edit-success').style.display = 'flex'
+						setTimeout(function() {
+							$('#edit-success').fadeOut(125)
+						}, 2000);
 					},
 					fail: function(response) {
 						console.log(response)
@@ -240,6 +245,7 @@ $(document).ready(function() {
 				})
 			});
 		}
+		// ------------------------------- CLICK DELETE ICON --------------------------------
 		else if(e.target.classList[1] === 'fa-times') {
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
 	
@@ -306,6 +312,24 @@ $(document).ready(function() {
 				}
 			}
 		})
+	});
+	
+	
+	// ------------------------------------- USER UPDATE X BUTTON CLICK -------------------------------------
+	$('#editSuccessClose').on('click', function() {
+		let successAlert = document.getElementById('edit-success')
+		let failAlert = document.getElementById('edit-fail')
+		
+		successAlert.style.display = 'none'
+		failAlert.style.display = 'none'
+	});
+	
+	$('#editFailClose').on('click', function() {
+		let successAlert = document.getElementById('edit-success')
+		let failAlert = document.getElementById('edit-fail')
+		
+		successAlert.style.display = 'none'
+		failAlert.style.display = 'none'
 	});
 	
 });

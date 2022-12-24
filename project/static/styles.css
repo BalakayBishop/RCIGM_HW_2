@@ -3,6 +3,8 @@
     margin: 0;
     padding: 0;
     color: #333333;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 /* ---------------------------CONTAINER DIV------------------------------------------- */
@@ -104,7 +106,7 @@ form {
     border-radius: 8px;
     position: relative;
     bottom: 12px;
-    width: 200px;
+    width: 250px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -133,7 +135,7 @@ form {
     border-radius: 8px;
     position: relative;
     bottom: 12px;
-    width: 200px;
+    width: 250px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -322,9 +324,46 @@ form {
 /* ---------------------------SUCCESSFUL USER EDIT------------------------------------------- */
 
 .success-edit {
-    display: inline-block;
+    display: none;
     background-color: #D1E7DD;
-    margin-right: 8px;
-    padding: 4px;
-    border-radius: 4px;
+    border: solid 1px #badbcc;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 8px;
+    width: 250px;
+}
+
+.success-edit > p {
+    color: #0f5132;
+}
+
+.success-edit > i {
+    color: #0f5132;
+}
+
+/* ---------------------------FAIL USER EDIT------------------------------------------- */
+.fail-edit {
+    display: none;
+    background-color: #f8d7da;
+    border: solid 1px #f5c2c7;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 8px;
+    width: 250px;
+}
+
+.fail-edit > p {
+    color: #842029;
+}
+
+.fail-edit > i {
+    color: #842029;
 }
