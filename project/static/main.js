@@ -181,28 +181,29 @@ $(document).ready(function() {
 		let taken = document.querySelector('#modal-taken')
 		let available = document.querySelector('#modal-available')
 		
+		let str = e.target.parentNode.previousSibling.textContent
+		let newStr = e.target.parentNode.previousSibling
+		let userName = ''
+		let firstName = ''
+		let lastName = ''
+		
+		let substrings = str.split(", ")
+		for (let substring of substrings) {
+			if(substring.startsWith('Username: ')) {
+				userName = substring.replace('Username: ', '')
+			}
+			else if(substring.startsWith('First Name: ')) {
+				firstName = substring.replace('First Name: ', '')
+			}
+			else if(substring.startsWith('Last Name: ')) {
+				lastName = substring.replace('Last Name: ', '')
+			}
+		}
+		
 		// ------------------------------- CLICK EDIT ICON --------------------------------
 		if(e.target.classList[1] === 'fa-pencil-square-o') {
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
-			let str = e.target.parentNode.previousSibling.textContent
-			let newStr = e.target.parentNode.previousSibling
-			let userName = ''
-			let firstName = ''
-			let lastName = ''
-			
-			let substrings = str.split(", ")
-			for (let substring of substrings) {
-				if(substring.startsWith('Username: ')) {
-					userName = substring.replace('Username: ', '')
-				}
-				else if(substring.startsWith('First Name: ')) {
-					firstName = substring.replace('First Name: ', '')
-				}
-				else if(substring.startsWith('Last Name: ')) {
-					lastName = substring.replace('Last Name: ', '')
-				}
-			}
 			
 			$('#modal-firstName').val(firstName)
 			$('#modal-lastName').val(lastName)
@@ -258,14 +259,30 @@ $(document).ready(function() {
 		}
 		// ------------------------------- CLICK DELETE ICON --------------------------------
 		else if(e.target.classList[1] === 'fa-times') {
+			// DELETE MODAL OPEN
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
-	
-			$('.close-delete').on('click', function() {
-				$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-			});
+			let list = document.querySelector('#infoList')
+			
+			let listFn = document.createElement('li')
+			listFn.classList.add('list-group-item')
+			listFn.innerText = 'First Name: ' + firstName
+			
+			let listLn = document.createElement('li')
+			listLn.classList.add('list-group-item')
+			listLn.innerText = 'Last Name: ' + lastName
+			
+			let listUn = document.createElement('li')
+			listUn.classList.add('list-group-item')
+			listUn.innerText = 'Username: ' + userName
+			
+			list.appendChild(listFn)
+			list.appendChild(listLn)
+			list.appendChild(listUn)
+			
+			
 		}
 		
-		// MODAL CLOSED
+		// EDIT MODAL CLOSED
 		$('.close-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 			form.reset()
@@ -275,6 +292,12 @@ $(document).ready(function() {
 			$('#modal-submitButton').prop('disabled', false)
 		});
 		
+		// DELETE MODAL CLOSE
+		$('.close-delete').on('click', function() {
+			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+		});
+		
+		// EDIT & DELETE MODAL CLOSE X ICON
 		$('.modal-xmark-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 			form.reset()

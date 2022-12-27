@@ -270,6 +270,15 @@ form {
     flex-wrap: nowrap;
 }
 
+.userInfo {
+
+}
+
+.userInfo > p {
+    margin: 8px 0 0 0;
+    font-size: 24px;
+}
+
 /* ---------------------------MODAL BUTTONS------------------------------------------- */
 
 .popup-content-edit .form-buttons > button {
