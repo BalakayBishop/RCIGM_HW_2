@@ -197,7 +197,6 @@ form {
 
 .popup-overlay-edit {
     background-color: rgba(126, 126, 126, 0.8);
-    border: solid 2px #CBCBCB;
     position: absolute;
     padding: 2rem;
     margin: 0;
@@ -209,7 +208,6 @@ form {
 
 .popup-content-edit {
     background-color: white;
-    border: solid 2px #CBCBCB;
     border-radius: 8px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
     padding: 1rem 2rem;
@@ -228,7 +226,6 @@ form {
 
 .popup-overlay-delete {
     background-color: rgba(126, 126, 126, 0.8);
-    border: solid 2px #CBCBCB;
     position: absolute;
     padding: 1rem 2rem;
     margin: 0;
@@ -240,7 +237,6 @@ form {
 
 .popup-content-delete {
     background-color: white;
-    border: solid 2px #CBCBCB;
     border-radius: 8px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
     padding: 2rem;
@@ -250,6 +246,41 @@ form {
     top: 10%;
     visibility: hidden;
 }
+
+.popup-content-delete > .form-buttons {
+    margin-top: 16px;
+}
+
+.warning-message {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    border: solid 1px #f5c2c7;
+    background-color: #f8d7da;
+}
+
+.warning-message > p:nth-child(1) {
+    font-size: 24px;
+    color: #842029;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+/* ---------------------------MODAL BUTTONS------------------------------------------- */
+
+.popup-content-edit .form-buttons > button {
+    width: 50%;
+}
+
+.popup-content-delete .form-buttons > button {
+    width: 50%;
+}
+
+/* ---------------------------MODAL VISIBILITY------------------------------------------- */
 
 .popup-overlay-delete.active, .popup-content-delete.active {
     visibility: visible;
@@ -273,24 +304,28 @@ form {
 
 /* ---------------------------MODAL HEADER AND X------------------------------------------- */
 
-.modal-header {
+.modalHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.modal-header > h2, p {
+.modalHeader > h2, p {
     margin: 0;
     color: #333333;
 }
 
-.modal-header > p {
+.modalHeader > p {
     display: inline-block;
 }
 
 .fa-xmark:hover {
     cursor: pointer;
+}
+
+.modal-xmark-edit, .modal-xmark-delete {
+    font-size: 24px;
 }
 
 /* ---------------------------MODAL FORM USERNAME VALIDATION------------------------------------------- */
@@ -358,5 +393,10 @@ form {
 }
 
 .fail-edit > i {
+    color: #842029;
+}
+
+.bi-exclamation-triangle {
+    font-size: 24px;
     color: #842029;
 }
