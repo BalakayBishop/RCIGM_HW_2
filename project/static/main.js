@@ -259,6 +259,9 @@ $(document).ready(function() {
 		}
 		// ------------------------------- CLICK DELETE ICON --------------------------------
 		else if(e.target.classList[1] === 'fa-times') {
+			console.log(e)
+			console.log(e.target.parentNode.parentNode) // this gives me the li grandparent to the icon clicked
+			let li = e.target.parentNode.parentNode
 			// DELETE MODAL OPEN
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
 			let list = document.querySelector('#infoList')
@@ -289,7 +292,9 @@ $(document).ready(function() {
 					data: JSON.stringify({
 						userName: userName
 					}),
-					success: function(response) {
+					success: function() {
+						
+						li.parentNode.removeChild(li)
 						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
 						let ul = document.querySelector('#infoList')
 						ul.innerHTML = ''
@@ -300,9 +305,8 @@ $(document).ready(function() {
 						setTimeout(function() {
 							$('#delete-success').fadeOut(125)
 						}, 2000);
-						
 					},
-					fail: function(response) {
+					fail: function() {
 						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
 						let ul = document.querySelector('#infoList')
 						ul.innerHTML = ''
