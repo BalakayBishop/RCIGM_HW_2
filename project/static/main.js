@@ -11,25 +11,33 @@ $(document).ready(function() {
 				let fname = document.createElement('p')
 				let lname = document.createElement('p')
 				
+				let pDiv = document.createElement('div')
+				
 				fname.innerText = "First Name: " + response[i]['firstName']
 				lname.innerText = "Last Name: " + response[i]['lastName']
 				uname.innerText = "Username: " + response[i]['userName']
-				// title.innerText =
-				// 	"First Name: " + response[i]['firstName']
-				// 	+ ", Last Name: " + response[i]['lastName']
-				// 	+ ", Username: " + response[i]['userName']
-				// title.classList.add('title')
-				// li.appendChild(title)
 				
-				li.appendChild(fname).appendChild(lname).appendChild(uname)
+				pDiv.appendChild(fname)
+				pDiv.appendChild(lname)
+				pDiv.appendChild(uname)
 				
-				let icons = document.createElement('p')
-				icons.innerHTML = '<i class="fa fa-pencil-square-o"></i> <i' +
-					' class="fa fa-times"></i>'
+				li.appendChild(pDiv)
 				
-				li.appendChild(icons)
+				let div = document.createElement('div')
+				div.classList.add('buttons-div')
 				
-				icons.classList.add('icons')
+				let editButton = document.createElement('button')
+				editButton.classList.add('btn', 'btn-success', 'list-buttons-edit')
+				editButton.innerText = 'Edit'
+				
+				let deleteButton = document.createElement('button')
+				deleteButton.classList.add('btn', 'btn-danger', 'list-buttons-delete')
+				deleteButton.innerText = 'Delete'
+				
+				div.appendChild(editButton)
+				div.appendChild(deleteButton)
+				li.appendChild(div)
+				
 				li.classList.add('list-group-item')
 				
 				list.appendChild(li)
@@ -109,15 +117,7 @@ $(document).ready(function() {
 					let list = document.querySelector('#userList')
 					let form = document.querySelector('#form')
 					let li = document.createElement('li')
-					
-					// let title = document.createElement('p')
-					// title.innerText =
-					// 	"First Name: " + response['firstName']
-					// 	+ ", Last Name: " + response['lastName']
-					// 	+ ", Username: " + response['userName']
-					// title.classList.add('title')
-					// li.appendChild(title)
-					
+					let pDiv = document.createElement('div')
 					let uname = document.createElement('p')
 					let fname = document.createElement('p')
 					let lname = document.createElement('p')
@@ -126,14 +126,26 @@ $(document).ready(function() {
 					lname.innerText = "Last Name: " + response['lastName']
 					uname.innerText = "Username: " + response['userName']
 					
-					li.appendChild(fname).appendChild(lname).appendChild(uname)
+					pDiv.appendChild(fname)
+					pDiv.appendChild(lname)
+					pDiv.appendChild(uname)
 					
-					let icons = document.createElement('p')
-					icons.innerHTML = '<i class="fa fa-pencil-square-o"></i> <i class="fa fa-times"></i>'
-					li.appendChild(icons)
+					li.appendChild(pDiv)
 					
-					icons.classList.add('icons')
-					li.classList.add('list-group-item')
+					let div = document.createElement('div')
+					div.classList.add('buttons-div')
+					
+					let editButton = document.createElement('button')
+					editButton.classList.add('btn', 'btn-success', 'list-buttons-edit')
+					editButton.innerText = 'Edit'
+					
+					let deleteButton = document.createElement('button')
+					deleteButton.classList.add('btn', 'btn-danger', 'list-buttons-delete')
+					deleteButton.innerText = 'Delete'
+					
+					div.appendChild(editButton)
+					div.appendChild(deleteButton)
+					li.appendChild(div)
 					
 					list.appendChild(li)
 					
@@ -192,33 +204,23 @@ $(document).ready(function() {
 	
 	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
 	$('ul').on('click', function(e) {
-		
 		let form = document.querySelector('#modal-form')
 		let usernameInput = document.querySelector('.modal-username')
 		let taken = document.querySelector('#modal-taken')
 		let available = document.querySelector('#modal-available')
 		
-		let str = e.target.parentNode.previousSibling.textContent
-		let newStr = e.target.parentNode.previousSibling
-		let userName = ''
-		let firstName = ''
-		let lastName = ''
+		let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
+		console.log(firstName)
+		firstName = firstName.replace('First Name: ', '')
 		
-		let substrings = str.split(", ")
-		for (let substring of substrings) {
-			if(substring.startsWith('Username: ')) {
-				userName = substring.replace('Username: ', '')
-			}
-			else if(substring.startsWith('First Name: ')) {
-				firstName = substring.replace('First Name: ', '')
-			}
-			else if(substring.startsWith('Last Name: ')) {
-				lastName = substring.replace('Last Name: ', '')
-			}
-		}
+		let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
+		lastName = lastName.replace('Last Name: ', '')
+		
+		let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
+		userName = userName.replace('Username: ', '')
 		
 		// ------------------------------- CLICK EDIT ICON --------------------------------
-		if(e.target.classList[1] === 'fa-pencil-square-o') {
+		if(e.target.classList[2] === 'list-buttons-edit') {
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
 			
@@ -275,7 +277,7 @@ $(document).ready(function() {
 			});
 		}
 		// ------------------------------- CLICK DELETE ICON --------------------------------
-		else if(e.target.classList[1] === 'fa-times') {
+		else if(e.target.classList[2] === 'list-buttons-delete') {
 			console.log(e)
 			console.log(e.target.parentNode.parentNode) // this gives me the li grandparent to the icon clicked
 			let li = e.target.parentNode.parentNode

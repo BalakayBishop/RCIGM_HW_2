@@ -153,18 +153,6 @@ form {
     color: #842029;
 }
 
-.fa-times {
-
-}
-
-.fa-times:hover {
-    cursor: pointer;
-}
-
-.fa-pencil-square-o:hover {
-    cursor: pointer;
-}
-
 /* ---------------------------USER LIST------------------------------------------- */
 
 #userList > li {
@@ -173,24 +161,26 @@ form {
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
 }
 
-.icons {
-    display: inline-block;
-}
-
-.fa-pencil-square-o {
-    color: #0f5132;
-}
-
-.fa-times {
-    color: #842029;
+#userList > li > p {
+    display: block;
 }
 
 .fail-list {
     color: #842029;
     background-color: #f8d7da;
+}
+
+.buttons-div {
+    display: flex;
+    gap: 8px;
+}
+
+.list-buttons-edit, .list-buttons-delete {
+    width: 72px;
+    height: 40px;
 }
 
 /* ---------------------------EDIT MODAL------------------------------------------- */

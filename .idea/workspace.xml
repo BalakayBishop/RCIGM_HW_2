@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: uncommented my the session.delete and session.commit from the route so now the delete modal has full functionality">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: changed the style of the user list from single line of all info to p tags for each piece of info">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
@@ -156,7 +156,7 @@
       <workItem from="1671569045493" duration="21592000" />
       <workItem from="1671641232738" duration="31184000" />
       <workItem from="1671816939825" duration="5339000" />
-      <workItem from="1672161819295" duration="12181000" />
+      <workItem from="1672161819295" duration="14873000" />
     </task>
     <task id="LOCAL-00001" summary="Local: changes made to index.html and styles.css for layout of the form and the style of the form">
       <created>1670272216057</created>
@@ -396,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672179857703</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Local: changed the style of the user list from single line of all info to p tags for each piece of info">
+      <created>1672180925097</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1672180925097</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,7 +422,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: added new ajax for username validation and form submission to endpoints in views.py" />
     <MESSAGE value="Local: added as_dict() function to return a Python dictionary for a User class object to better represent the queried data" />
     <MESSAGE value="Local: removed __repr__()" />
     <MESSAGE value="Local: small changes to class names" />
@@ -440,11 +446,12 @@
     <MESSAGE value="Local: added styles and other alerts for when the confirm user deletion button is clicked" />
     <MESSAGE value="Local: added ability for the specific li to be removed from the ul after user deletion confirmation" />
     <MESSAGE value="Local: uncommented my the session.delete and session.commit from the route so now the delete modal has full functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: uncommented my the session.delete and session.commit from the route so now the delete modal has full functionality" />
+    <MESSAGE value="Local: changed the style of the user list from single line of all info to p tags for each piece of info" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: changed the style of the user list from single line of all info to p tags for each piece of info" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1672180572992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1672183354523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
