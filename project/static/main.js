@@ -223,6 +223,9 @@ $(document).ready(function() {
 						currentUsername: currentUsername
 					}),
 					success: function(response) {
+						let successAlert = document.querySelector('#edit-success')
+						let failAlert = document.querySelector('#edit-fail')
+						
 						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 						form.reset()
 						taken.style.display = 'none'
@@ -234,10 +237,18 @@ $(document).ready(function() {
 							+ ', Username: ' + response['userName']
 							+ ', First Name: ' + response['firstName']
 							+ ', Last Name: ' + response['lastName']
-						$('#edit-success').style.display = 'flex'
+						
+						successAlert.style.display = 'flex'
+						failAlert.style.display = 'none'
+						
 						setTimeout(function() {
 							$('#edit-success').fadeOut(125)
 						}, 2000);
+						
+						form.reset()
+						usernameInput.classList.remove('fail', 'success')
+						taken.style.display = 'none'
+						available.style.display = 'none'
 					},
 					fail: function(response) {
 						console.log(response)
@@ -249,7 +260,7 @@ $(document).ready(function() {
 		else if(e.target.classList[1] === 'fa-times') {
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
 	
-			$('.close').on('click', function() {
+			$('.close-delete').on('click', function() {
 				$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
 			});
 		}
@@ -264,8 +275,17 @@ $(document).ready(function() {
 			$('#modal-submitButton').prop('disabled', false)
 		});
 		
-		$('.modal-xmark').on('click', function() {
+		$('.modal-xmark-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+			form.reset()
+			taken.style.display = 'none'
+			available.style.display = 'none'
+			usernameInput.classList.remove('fail', 'success')
+			$('#modal-submitButton').prop('disabled', false)
+		});
+		
+		$('.modal-xmark-delete').on('click', function() {
+			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
 			form.reset()
 			taken.style.display = 'none'
 			available.style.display = 'none'
