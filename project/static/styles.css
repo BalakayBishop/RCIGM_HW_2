@@ -264,14 +264,7 @@ form {
     align-items: center;
     justify-content: flex-end;
     margin-top: 40px;
-}
-
-.form-buttons > button.close {
-    margin-right: 4px;
-}
-
-.form-buttons > button.submit {
-    margin-left: 4px;
+    gap: 8px;
 }
 
 .popup-content-edit > p {
