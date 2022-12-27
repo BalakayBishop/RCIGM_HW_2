@@ -279,7 +279,58 @@ $(document).ready(function() {
 			list.appendChild(listLn)
 			list.appendChild(listUn)
 			
+			$('.delete-submit').on('click', function() {
+				let successAlert = document.querySelector('#delete-success')
+				let failAlert = document.querySelector('#delete-fail')
+				$.ajax({
+					url: '/delete_user',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({
+						userName: userName
+					}),
+					success: function(response) {
+						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+						let ul = document.querySelector('#infoList')
+						ul.innerHTML = ''
+						
+						successAlert.style.display = 'flex'
+						failAlert.style.display = 'none'
+						
+						setTimeout(function() {
+							$('#delete-success').fadeOut(125)
+						}, 2000);
+						
+					},
+					fail: function(response) {
+						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+						let ul = document.querySelector('#infoList')
+						ul.innerHTML = ''
+						
+						successAlert.style.display = 'none'
+						failAlert.style.display = 'flex'
+						
+						setTimeout(function() {
+							$('#delete-success').fadeOut(125)
+						}, 2000);
+						
+					}
+				})
+			});
 			
+			$('#deleteSuccessClose').on('click', function() {
+				let successAlert = document.querySelector('#delete-success')
+				let failAlert = document.querySelector('#delete-fail')
+				successAlert.style.display = 'none'
+				failAlert.style.display = 'none'
+			});
+			
+			$('#deleteFailClose').on('click', function() {
+				let successAlert = document.querySelector('#delete-success')
+				let failAlert = document.querySelector('#delete-fail')
+				successAlert.style.display = 'none'
+				failAlert.style.display = 'none'
+			});
 		}
 		
 		// EDIT MODAL CLOSED
@@ -292,11 +343,6 @@ $(document).ready(function() {
 			$('#modal-submitButton').prop('disabled', false)
 		});
 		
-		// DELETE MODAL CLOSE
-		$('.close-delete').on('click', function() {
-			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-		});
-		
 		// EDIT & DELETE MODAL CLOSE X ICON
 		$('.modal-xmark-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
@@ -307,13 +353,17 @@ $(document).ready(function() {
 			$('#modal-submitButton').prop('disabled', false)
 		});
 		
+		// DELETE MODAL CLOSE
+		$('.close-delete').on('click', function() {
+			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+			let ul = document.querySelector('#infoList')
+			ul.innerHTML = ''
+		});
+		
 		$('.modal-xmark-delete').on('click', function() {
 			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-			form.reset()
-			taken.style.display = 'none'
-			available.style.display = 'none'
-			usernameInput.classList.remove('fail', 'success')
-			$('#modal-submitButton').prop('disabled', false)
+			let ul = document.querySelector('#infoList')
+			ul.innerHTML = ''
 		});
 	});
 	

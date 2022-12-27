@@ -409,3 +409,55 @@ form {
     font-size: 24px;
     color: #842029;
 }
+
+/* ---------------------------SUCCESSFUL USER DELETE------------------------------------------- */
+
+.success-delete {
+    display: none;
+    background-color: #D1E7DD;
+    border: solid 1px #badbcc;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 8px;
+    width: 250px;
+}
+
+.success-delete > p {
+    color: #0f5132;
+}
+
+.success-delete > i {
+    color: #0f5132;
+}
+
+/* ---------------------------FAIL USER DELETE------------------------------------------- */
+.fail-delete {
+    display: none;
+    background-color: #f8d7da;
+    border: solid 1px #f5c2c7;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 8px;
+    width: 250px;
+}
+
+.fail-delete > p {
+    color: #842029;
+}
+
+.fail-delete > i {
+    color: #842029;
+}
+
+.bi-exclamation-triangle {
+    font-size: 24px;
+    color: #842029;
+}
