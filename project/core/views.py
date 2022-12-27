@@ -95,6 +95,22 @@ def update_user():
 	return jsonify({'status': 'failure'}), 400
 
 
+# -------------------- ROUTE: DELETE USER --------------------
+@core.route('/delete_user', methods=['POST'])
+def delete_user():
+	data = request.get_json()
+	username = data['userName']
+	
+	if len(username) != 0:
+		user = User.query.filter_by(username=username).one_or_none()
+		if user is not None:
+			# db.session.delete(user)
+			# db.session.commit()
+			return jsonify({'status': 'success'})
+		
+	return jsonify({'status': 'failure'}), 400
+
+
 # -------------------- ROUTE: GET ALL USERS IN DICT --------------------
 @core.route('/users', methods=['GET'])
 def users():
