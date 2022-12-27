@@ -252,11 +252,11 @@ $(document).ready(function() {
 						available.style.display = 'none'
 						usernameInput.classList.remove('fail', 'success')
 						$('#modal-submitButton').prop('disabled', false)
-						newStr.textContent =
-							'ID: ' + response['id']
-							+ ', Username: ' + response['userName']
-							+ ', First Name: ' + response['firstName']
-							+ ', Last Name: ' + response['lastName']
+						
+						// new way to update li info after submission
+						firstName = response['firstName']
+						lastName = response['lastName']
+						userName = response['userName']
 						
 						successAlert.style.display = 'flex'
 						failAlert.style.display = 'none'
@@ -276,7 +276,7 @@ $(document).ready(function() {
 				})
 			});
 		}
-		// ------------------------------- CLICK DELETE ICON --------------------------------
+		// ------------------------------- CLICK DELETE BUTTON --------------------------------
 		else if(e.target.classList[2] === 'list-buttons-delete') {
 			console.log(e)
 			console.log(e.target.parentNode.parentNode) // this gives me the li grandparent to the icon clicked
