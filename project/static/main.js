@@ -7,14 +7,21 @@ $(document).ready(function() {
 			let list = document.querySelector('#userList')
 			for(let i = 0; i < response.length; i++) {
 				let li = document.createElement('li')
-				let title = document.createElement('p')
-				title.innerText =
-					"ID: " + response[i]['id']
-					+ ", Username: " + response[i]['userName']
-					+ ", First Name: " + response[i]['firstName']
-					+ ", Last Name: " + response[i]['lastName']
-				title.classList.add('title')
-				li.appendChild(title)
+				let uname = document.createElement('p')
+				let fname = document.createElement('p')
+				let lname = document.createElement('p')
+				
+				fname.innerText = "First Name: " + response[i]['firstName']
+				lname.innerText = "Last Name: " + response[i]['lastName']
+				uname.innerText = "Username: " + response[i]['userName']
+				// title.innerText =
+				// 	"First Name: " + response[i]['firstName']
+				// 	+ ", Last Name: " + response[i]['lastName']
+				// 	+ ", Username: " + response[i]['userName']
+				// title.classList.add('title')
+				// li.appendChild(title)
+				
+				li.appendChild(fname).appendChild(lname).appendChild(uname)
 				
 				let icons = document.createElement('p')
 				icons.innerHTML = '<i class="fa fa-pencil-square-o"></i> <i' +
@@ -100,16 +107,26 @@ $(document).ready(function() {
 			success: function(response) {
 				if (response['process'] === 'success') {
 					let list = document.querySelector('#userList')
-					let li = document.createElement('li')
-					let title = document.createElement('p')
 					let form = document.querySelector('#form')
-					title.innerText =
-						"ID: " + response['id']
-						+ ", Username: " + response['userName']
-						+ ", First Name: " + response['firstName']
-						+ ", Last Name: " + response['lastName']
-					title.classList.add('title')
-					li.appendChild(title)
+					let li = document.createElement('li')
+					
+					// let title = document.createElement('p')
+					// title.innerText =
+					// 	"First Name: " + response['firstName']
+					// 	+ ", Last Name: " + response['lastName']
+					// 	+ ", Username: " + response['userName']
+					// title.classList.add('title')
+					// li.appendChild(title)
+					
+					let uname = document.createElement('p')
+					let fname = document.createElement('p')
+					let lname = document.createElement('p')
+					
+					fname.innerText = "First Name: " + response['firstName']
+					lname.innerText = "Last Name: " + response['lastName']
+					uname.innerText = "Username: " + response['userName']
+					
+					li.appendChild(fname).appendChild(lname).appendChild(uname)
 					
 					let icons = document.createElement('p')
 					icons.innerHTML = '<i class="fa fa-pencil-square-o"></i> <i class="fa fa-times"></i>'
