@@ -102,6 +102,7 @@ $(document).ready(function() {
 		let available = document.querySelector('#available')
 		let successAlert = document.querySelector('#successAlert')
 		let failAlert = document.querySelector('#failAlert')
+		
 		$.ajax({
 			url: '/new_user',
 			type: 'POST',
@@ -173,30 +174,8 @@ $(document).ready(function() {
 					$('#failAlert').fadeOut(125)
 				}, 2000);
 				
-				form.reset()
-				usernameInput.classList.remove('fail', 'success')
-				taken.style.display = 'none'
-				available.style.display = 'none'
 			}
 		})
-	});
-	
-	// ------------------------------------- SUBMISSION SUCCESS -------------------------------------
-	$('#successClose').on('click', function() {
-		let successAlert = document.getElementById('successAlert')
-		let failAlert = document.getElementById('failAlert')
-		
-		successAlert.style.display = 'none'
-		failAlert.style.display = 'none'
-	});
-	
-	//------------------------------------- SUBMISSION FAIL -------------------------------------
-	$('#failClose').on('click', function() {
-		let successAlert = document.getElementById('successAlert')
-		let failAlert = document.getElementById('failAlert')
-		
-		successAlert.style.display = 'none'
-		failAlert.style.display = 'none'
 	});
 	
 	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
@@ -214,8 +193,6 @@ $(document).ready(function() {
 		
 		let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
 		userName = userName.replace('Username: ', '')
-		
-		console.log(e)
 		
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
 		if(e.target.classList[2] === 'list-buttons-edit') {
@@ -280,8 +257,6 @@ $(document).ready(function() {
 		}
 		// ------------------------------- CLICK DELETE BUTTON --------------------------------
 		else if(e.target.classList[2] === 'list-buttons-delete') {
-			console.log(e)
-			console.log(e.target.parentNode.parentNode) // this gives me the li grandparent to the icon clicked
 			let li = e.target.parentNode.parentNode
 			// DELETE MODAL OPEN
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
@@ -343,19 +318,6 @@ $(document).ready(function() {
 				})
 			});
 			
-			$('#deleteSuccessClose').on('click', function() {
-				let successAlert = document.querySelector('#delete-success')
-				let failAlert = document.querySelector('#delete-fail')
-				successAlert.style.display = 'none'
-				failAlert.style.display = 'none'
-			});
-			
-			$('#deleteFailClose').on('click', function() {
-				let successAlert = document.querySelector('#delete-success')
-				let failAlert = document.querySelector('#delete-fail')
-				successAlert.style.display = 'none'
-				failAlert.style.display = 'none'
-			});
 		}
 		
 		// EDIT MODAL CLOSED
@@ -432,9 +394,29 @@ $(document).ready(function() {
 		})
 	});
 	
+	// ------------------------------------- SUBMISSION ALERTS -------------------------------------
 	
-	// ------------------------------------- USER UPDATE ALERT X BUTTON CLICK -------------------------------------
-	$('#editSuccessClose').on('click', function() {
+	// ------------------------------------- NEW USER SUCCESS -------------------------------------
+	$('#createdSuccessX').on('click', function() {
+		let successAlert = document.getElementById('successAlert')
+		let failAlert = document.getElementById('failAlert')
+		
+		successAlert.style.display = 'none'
+		failAlert.style.display = 'none'
+	});
+	
+	//------------------------------------- NEW USER FAIL -------------------------------------
+	$('#userCreatedFail').on('click', function() {
+		let successAlert = document.getElementById('successAlert')
+		let failAlert = document.getElementById('failAlert')
+		
+		successAlert.style.display = 'none'
+		failAlert.style.display = 'none'
+	});
+	
+	
+	// ------------------------------------- USER UPDATE SUCCESS -------------------------------------
+	$('#updateSuccessX').on('click', function() {
 		let successAlert = document.getElementById('edit-success')
 		let failAlert = document.getElementById('edit-fail')
 		
@@ -442,7 +424,8 @@ $(document).ready(function() {
 		failAlert.style.display = 'none'
 	});
 	
-	$('#editFailClose').on('click', function() {
+	// ------------------------------------- USER UPDATE FAIL -------------------------------------
+	$('#updateFailX').on('click', function() {
 		let successAlert = document.getElementById('edit-success')
 		let failAlert = document.getElementById('edit-fail')
 		
@@ -450,4 +433,21 @@ $(document).ready(function() {
 		failAlert.style.display = 'none'
 	});
 	
+	// ------------------------------------- USER DELETE SUCCESS -------------------------------------
+	$('#deleteSuccessX').on('click', function() {
+		let successAlert = document.querySelector('#delete-success')
+		let failAlert = document.querySelector('#delete-fail')
+		successAlert.style.display = 'none'
+		failAlert.style.display = 'none'
+	});
+	
+	// ------------------------------------- USER DELETE FAIL -------------------------------------
+	$('#deleteFailX').on('click', function() {
+		let successAlert = document.querySelector('#delete-success')
+		let failAlert = document.querySelector('#delete-fail')
+		successAlert.style.display = 'none'
+		failAlert.style.display = 'none'
+	});
 });
+
+

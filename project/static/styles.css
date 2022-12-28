@@ -469,3 +469,7 @@ form {
     font-size: 24px;
     color: var(--fail-color);
 }
+
+.fa-times:hover {
+    cursor: pointer;
+}
