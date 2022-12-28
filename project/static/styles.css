@@ -7,6 +7,17 @@
     text-rendering: optimizeLegibility;
 }
 
+/* ---------------------------COLOR VARIABLES------------------------------------------- */
+
+:root {
+    --success-bg: #D1E7DD;
+    --success-border: #badbcc;
+    --success-color: #0f5132;
+    --fail-bg: #f8d7da;
+    --fail-border: #f5c2c7;
+    --fail-color: #842029;
+}
+
 /* ---------------------------CONTAINER DIV------------------------------------------- */
 
 .container {
@@ -34,46 +45,46 @@ form {
 }
 
 .success {
-    border: solid 2px #badbcc;
-    background-color: #D1E7DD;
-    color: #0f5132;
+    border: solid 2px var(--success-border);
+    background-color: var(--success-bg);
+    color: var(--success-color);
 }
 
 .success:focus {
-    border: solid 2px #badbcc;
-    background-color: #D1E7DD;
-    color: #0f5132;
+    border: solid 2px var(--success-border);
+    background-color: var(--success-bg);
+    color: var(--success-color);
 }
 
 .fail {
-    border: solid 2px #f5c2c7;
-    background-color: #f8d7da;
-    color: #842029;
+    border: solid 2px var(--fail-border);
+    background-color: var(--fail-bg);
+    color: var(--fail-color);
 }
 
 .fail:focus {
-    border: solid 2px #f5c2c7;
-    background-color: #f8d7da;
-    color: #842029;
+    border: solid 2px var(--fail-border);
+    background-color: var(--fail-bg);
+    color: var(--fail-color);
 }
 
 .success:-webkit-autofill,
 .success:-webkit-autofill:focus {
-  -webkit-text-fill-color: #0f5132;
-  -webkit-box-shadow: 0 0 0 1000px #D1E7DD inset;
+  -webkit-text-fill-color: var(--success-color);
+  -webkit-box-shadow: 0 0 0 1000px var(--success-bg) inset;
 }
 
 .fail:-webkit-autofill,
 .fail:-webkit-autofill:focus {
-  -webkit-text-fill-color: #842029;
-  -webkit-box-shadow: 0 0 0 1000px #f8d7da inset;
+  -webkit-text-fill-color: var(--fail-color);
+  -webkit-box-shadow: 0 0 0 1000px var(--fail-bg) inset;
 }
 
 /* ---------------------------USERNAME VALIDATION CLASSES------------------------------------------- */
 
 #taken {
     margin: 0 0 8px;
-    color: #842029;
+    color: var(--fail-color);
     display: none;
     position: relative;
     bottom: 16px;
@@ -82,7 +93,7 @@ form {
 
 #available {
     margin: 0 0 8px;
-    color: #0f5132;
+    color: var(--success-color);
     display: none;
     position: relative;
     bottom: 16px;
@@ -100,8 +111,8 @@ form {
 
 #successAlert {
     display: none;
-    background-color: #D1E7DD;
-    border: solid 1px #badbcc;
+    background-color: var(--success-bg);
+    border: solid 1px var(--success-border);
     padding: 8px;
     margin: 8px 0;
     border-radius: 8px;
@@ -117,20 +128,20 @@ form {
 #successAlert > p {
     margin: 0;
     padding: 0;
-    color: #0f5132;
+    color: var(--success-color);
     display: inline-block;
 }
 
 #successAlert > i {
-    color: #0f5132;
+    color: var(--success-color);
 }
 
 /* ---------------------------FORM SUBMIT FAIL ALERT------------------------------------------- */
 
 #failAlert {
     display: none;
-    background-color: #f8d7da;
-    border: solid 1px #f5c2c7;
+    background-color: var(--fail-bg);
+    border: solid 1px var(--fail-border);
     padding: 8px;
     margin: 8px 0;
     border-radius: 8px;
@@ -146,12 +157,12 @@ form {
 #failAlert > p {
     margin: 0;
     padding: 0;
-    color: #842029;
+    color: var(--fail-color);
     display: inline-block;
 }
 
 #failAlert > i {
-    color: #842029;
+    color: var(--fail-color);
 }
 
 /* ---------------------------USER LIST------------------------------------------- */
@@ -170,8 +181,8 @@ form {
 }
 
 .fail-list {
-    color: #842029;
-    background-color: #f8d7da;
+    color: var(--fail-color);
+    background-color: var(--fail-bg);
 }
 
 .buttons-div {
@@ -252,13 +263,13 @@ form {
     margin-top: 8px;
     padding: 8px;
     border-radius: 8px;
-    border: solid 1px #f5c2c7;
-    background-color: #f8d7da;
+    border: solid 1px var(--fail-border);
+    background-color: var(--fail-bg);
 }
 
 .warning-message > p:nth-child(1) {
     font-size: 24px;
-    color: #842029;
+    color: var(--fail-color);
     display: flex;
     gap: 8px;
     align-items: center;
@@ -338,7 +349,7 @@ form {
 
 #modal-available {
     margin: 0 0 8px;
-    color: #0f5132;
+    color: var(--success-color);
     display: none;
     position: absolute;
     bottom: 60px;
@@ -347,7 +358,7 @@ form {
 
 #modal-taken {
     margin: 0 0 8px;
-    color: #842029;
+    color: var(--fail-color);
     display: none;
     position: absolute;
     bottom: 60px;
@@ -359,8 +370,8 @@ form {
 
 .success-edit {
     display: none;
-    background-color: #D1E7DD;
-    border: solid 1px #badbcc;
+    background-color: var(--success-bg);
+    border: solid 1px var(--success-border);
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -372,18 +383,18 @@ form {
 }
 
 .success-edit > p {
-    color: #0f5132;
+    color: var(--success-color);
 }
 
 .success-edit > i {
-    color: #0f5132;
+    color: var(--success-color);
 }
 
 /* ---------------------------FAIL USER EDIT------------------------------------------- */
 .fail-edit {
     display: none;
-    background-color: #f8d7da;
-    border: solid 1px #f5c2c7;
+    background-color: var(--fail-bg);
+    border: solid 1px var(--fail-border);
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -395,24 +406,24 @@ form {
 }
 
 .fail-edit > p {
-    color: #842029;
+    color: var(--fail-color);
 }
 
 .fail-edit > i {
-    color: #842029;
+    color: var(--fail-color);
 }
 
 .bi-exclamation-triangle {
     font-size: 24px;
-    color: #842029;
+    color: var(--fail-color);
 }
 
 /* ---------------------------SUCCESSFUL USER DELETE------------------------------------------- */
 
 .success-delete {
     display: none;
-    background-color: #D1E7DD;
-    border: solid 1px #badbcc;
+    background-color: var(--success-bg);
+    border: solid 1px var(--success-border);
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -424,18 +435,18 @@ form {
 }
 
 .success-delete > p {
-    color: #0f5132;
+    color: var(--success-color);
 }
 
 .success-delete > i {
-    color: #0f5132;
+    color: var(--success-color);
 }
 
 /* ---------------------------FAIL USER DELETE------------------------------------------- */
 .fail-delete {
     display: none;
-    background-color: #f8d7da;
-    border: solid 1px #f5c2c7;
+    background-color: var(--fail-bg);
+    border: solid 1px var(--fail-border);
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -447,14 +458,14 @@ form {
 }
 
 .fail-delete > p {
-    color: #842029;
+    color: var(--fail-color);
 }
 
 .fail-delete > i {
-    color: #842029;
+    color: var(--fail-color);
 }
 
 .bi-exclamation-triangle {
     font-size: 24px;
-    color: #842029;
+    color: var(--fail-color);
 }
