@@ -28,11 +28,11 @@ $(document).ready(function() {
 				
 				let editButton = document.createElement('button')
 				editButton.classList.add('btn', 'btn-success', 'list-buttons-edit')
-				editButton.innerText = 'Edit'
+				editButton.innerHTML = 'Edit <i class="bi bi-pencil-square"></i>'
 				
 				let deleteButton = document.createElement('button')
 				deleteButton.classList.add('btn', 'btn-danger', 'list-buttons-delete')
-				deleteButton.innerText = 'Delete'
+				deleteButton.innerHTML = 'Delete <i class="bi bi-trash-fill"></i>'
 				
 				div.appendChild(editButton)
 				div.appendChild(deleteButton)
@@ -137,15 +137,16 @@ $(document).ready(function() {
 					
 					let editButton = document.createElement('button')
 					editButton.classList.add('btn', 'btn-success', 'list-buttons-edit')
-					editButton.innerText = 'Edit'
+					editButton.innerHTML = 'Edit <i class="bi bi-pencil-square"></i>'
 					
 					let deleteButton = document.createElement('button')
 					deleteButton.classList.add('btn', 'btn-danger', 'list-buttons-delete')
-					deleteButton.innerText = 'Delete'
+					deleteButton.innerHTML = 'Delete <i class="bi bi-trash-fill"></i>'
 					
 					div.appendChild(editButton)
 					div.appendChild(deleteButton)
 					li.appendChild(div)
+					li.classList.add('list-group-item')
 					
 					list.appendChild(li)
 					
