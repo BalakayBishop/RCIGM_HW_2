@@ -217,7 +217,7 @@ $(document).ready(function() {
 		let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
 		userName = userName.replace('Username: ', '')
 		
-		// ------------------------------- CLICK EDIT ICON --------------------------------
+		// ------------------------------- CLICK EDIT BUTTON --------------------------------
 		if(e.target.classList[2] === 'list-buttons-edit') {
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
@@ -429,7 +429,7 @@ $(document).ready(function() {
 	});
 	
 	
-	// ------------------------------------- USER UPDATE X BUTTON CLICK -------------------------------------
+	// ------------------------------------- USER UPDATE ALERT X BUTTON CLICK -------------------------------------
 	$('#editSuccessClose').on('click', function() {
 		let successAlert = document.getElementById('edit-success')
 		let failAlert = document.getElementById('edit-fail')
