@@ -259,17 +259,12 @@ $(document).ready(function() {
 						usernameInput.classList.remove('fail', 'success')
 						$('#modal-submitButton').prop('disabled', false)
 						
-						// new way to update li info after submission
-						firstName = response['firstName']
-						lastName = response['lastName']
-						userName = response['userName']
-						
 						e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent = "First Name: "
-							+ firstName
+							+ response['firstName']
 						e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent = "Last Name: "
-							+ lastName
+							+ response['lastName']
 						e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent = "Username: "
-							+ userName
+							+ response['userName']
 						
 					},
 					fail: function() {

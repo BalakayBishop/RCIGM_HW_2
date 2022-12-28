@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: fixed the user update/edit modal submit and alert popup for submitting change to the selected user">
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,7 +160,7 @@
       <workItem from="1671816939825" duration="5339000" />
       <workItem from="1672161819295" duration="19721000" />
       <workItem from="1672196838365" duration="760000" />
-      <workItem from="1672259484585" duration="2124000" />
+      <workItem from="1672259484585" duration="2563000" />
     </task>
     <task id="LOCAL-00001" summary="Local: changes made to index.html and styles.css for layout of the form and the style of the form">
       <created>1670272216057</created>
@@ -457,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672189818647</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Local: fixed the user update/edit modal submit and alert popup for submitting change to the selected user">
+      <created>1672261667649</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1672261667649</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +482,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: reformatted file for views to contain only routes and created methods.py file to contain data validations and other methods used in the routes" />
     <MESSAGE value="Local: fixed the import for methods.py to views.py" />
     <MESSAGE value="Local: added fade out for success and fail popup using JS" />
     <MESSAGE value="Local: added and styled edit and delete buttons for each user li" />
@@ -501,11 +506,12 @@
     <MESSAGE value="Local: small changes" />
     <MESSAGE value="Local: small changes to index for formatting, removed if statement from new user form submission to contain both success and fail attributes for the response, and changes the view return to return either success or fail 400" />
     <MESSAGE value="Local: small change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: small change" />
+    <MESSAGE value="Local: fixed the user update/edit modal submit and alert popup for submitting change to the selected user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: fixed the user update/edit modal submit and alert popup for submitting change to the selected user" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1672261520559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1672261613607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
