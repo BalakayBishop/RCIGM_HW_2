@@ -96,13 +96,12 @@ $(document).ready(function() {
 	// ------------------------------------- FORM SUBMISSION -------------------------------------
 	$('#submitButton').on('click', function(event) {
 		event.preventDefault()
-		let successAlert = document.getElementById('successAlert')
-		let failAlert = document.getElementById('failAlert')
 		let form = document.querySelector('form')
 		let usernameInput = document.querySelector('.username')
 		let taken = document.querySelector('#taken')
 		let available = document.querySelector('#available')
-		
+		let successAlert = document.querySelector('#successAlert')
+		let failAlert = document.querySelector('#failAlert')
 		$.ajax({
 			url: '/new_user',
 			type: 'POST',
@@ -113,6 +112,9 @@ $(document).ready(function() {
 				userName: $('#userName').val()
 			}),
 			success: function(response) {
+				successAlert.style.display = 'flex'
+				failAlert.style.display = 'none'
+				
 				let list = document.querySelector('#userList')
 				let form = document.querySelector('#form')
 				let li = document.createElement('li')
@@ -148,9 +150,6 @@ $(document).ready(function() {
 				li.classList.add('list-group-item')
 				
 				list.appendChild(li)
-				
-				successAlert.style.display = 'flex'
-				failAlert.style.display = 'none'
 				
 				setTimeout(function() {
 					$('#successAlert').fadeOut(125)
@@ -208,7 +207,6 @@ $(document).ready(function() {
 		let available = document.querySelector('#modal-available')
 		
 		let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
-		console.log(firstName)
 		firstName = firstName.replace('First Name: ', '')
 		
 		let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
@@ -216,6 +214,8 @@ $(document).ready(function() {
 		
 		let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
 		userName = userName.replace('Username: ', '')
+		
+		console.log(e)
 		
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
 		if(e.target.classList[2] === 'list-buttons-edit') {
@@ -229,7 +229,11 @@ $(document).ready(function() {
 			
 			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
 			
-			$('#modal-submitButton').on('click', function() {
+			$('#modal-submitButton').on('click', function(e2) {
+				e2.preventDefault()
+				let successEditAlert = document.getElementById('edit-success')
+				let failEditAlert = document.getElementById('edit-fail')
+				
 				$.ajax({
 					url: '/update_user',
 					type: 'POST',
@@ -241,10 +245,14 @@ $(document).ready(function() {
 						currentUsername: currentUsername
 					}),
 					success: function(response) {
-						let successAlert = document.querySelector('#edit-success')
-						let failAlert = document.querySelector('#edit-fail')
-						
 						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+						
+						successEditAlert.style.display = 'flex'
+						failEditAlert.style.display = 'none'
+						setTimeout(function() {
+							$('#edit-success').fadeOut(125)
+						}, 2000);
+						
 						form.reset()
 						taken.style.display = 'none'
 						available.style.display = 'none'
@@ -256,20 +264,21 @@ $(document).ready(function() {
 						lastName = response['lastName']
 						userName = response['userName']
 						
-						successAlert.style.display = 'flex'
-						failAlert.style.display = 'none'
+						e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent = "First Name: "
+							+ firstName
+						e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent = "Last Name: "
+							+ lastName
+						e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent = "Username: "
+							+ userName
+						
+					},
+					fail: function() {
+						successEditAlert.style.display = 'none'
+						failEditAlert.style.display = 'flex'
 						
 						setTimeout(function() {
-							$('#edit-success').fadeOut(125)
+							$('.edit-fail').fadeOut(125)
 						}, 2000);
-						
-						form.reset()
-						usernameInput.classList.remove('fail', 'success')
-						taken.style.display = 'none'
-						available.style.display = 'none'
-					},
-					fail: function(response) {
-						console.log(response)
 					}
 				})
 			});
