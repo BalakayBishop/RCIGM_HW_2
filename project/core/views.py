@@ -53,14 +53,14 @@ def new_user():
 		
 		if getUser is not None:
 			return jsonify({
-				'process': 'success',
+				'status': 'success',
 				'id': getUser[0]['id'],
 				'userName': getUser[0]['userName'],
 				'firstName': getUser[0]['firstName'],
 				'lastName': getUser[0]['lastName']
 			})
 	
-	return jsonify({ 'process': 'failed' })
+	return jsonify({ 'status': 'fail' }), 400
 
 
 # -------------------- ROUTE: NEW USER --------------------

@@ -113,74 +113,71 @@ $(document).ready(function() {
 				userName: $('#userName').val()
 			}),
 			success: function(response) {
-				if (response['process'] === 'success') {
-					let list = document.querySelector('#userList')
-					let form = document.querySelector('#form')
-					let li = document.createElement('li')
-					let pDiv = document.createElement('div')
-					let uname = document.createElement('p')
-					let fname = document.createElement('p')
-					let lname = document.createElement('p')
-					
-					fname.innerText = "First Name: " + response['firstName']
-					lname.innerText = "Last Name: " + response['lastName']
-					uname.innerText = "Username: " + response['userName']
-					
-					pDiv.appendChild(fname)
-					pDiv.appendChild(lname)
-					pDiv.appendChild(uname)
-					
-					li.appendChild(pDiv)
-					
-					let div = document.createElement('div')
-					div.classList.add('buttons-div')
-					
-					let editButton = document.createElement('button')
-					editButton.classList.add('btn', 'btn-success', 'list-buttons-edit')
-					editButton.innerHTML = 'Edit <i class="bi bi-pencil-square"></i>'
-					
-					let deleteButton = document.createElement('button')
-					deleteButton.classList.add('btn', 'btn-danger', 'list-buttons-delete')
-					deleteButton.innerHTML = 'Delete <i class="bi bi-trash-fill"></i>'
-					
-					div.appendChild(editButton)
-					div.appendChild(deleteButton)
-					li.appendChild(div)
-					li.classList.add('list-group-item')
-					
-					list.appendChild(li)
-					
-					successAlert.style.display = 'flex'
-					failAlert.style.display = 'none'
-					
-					setTimeout(function() {
-						$('#successAlert').fadeOut(125)
-					}, 2000);
-					
-					form.reset()
-					usernameInput.classList.remove('fail', 'success')
-					taken.style.display = 'none'
-					available.style.display = 'none'
-				}
-				else if (response['process'] === 'fail') {
-					
-					successAlert.style.display = 'none'
-					failAlert.style.display = 'flex'
-					
-					form.reset()
-					usernameInput.classList.remove('fail')
-					available.style.display = 'none'
-					taken.style.display = 'none'
-					
-					setTimeout(function() {
-						$('#failAlert').fadeOut(125)
-					}, 2000);
-					
-					form.reset()
-					usernameInput.classList.remove('fail', 'success')
-					taken.style.display = 'none'
-					available.style.display = 'none'
-				}
+				let list = document.querySelector('#userList')
+				let form = document.querySelector('#form')
+				let li = document.createElement('li')
+				let pDiv = document.createElement('div')
+				let uname = document.createElement('p')
+				let fname = document.createElement('p')
+				let lname = document.createElement('p')
+				
+				fname.innerText = "First Name: " + response['firstName']
+				lname.innerText = "Last Name: " + response['lastName']
+				uname.innerText = "Username: " + response['userName']
+				
+				pDiv.appendChild(fname)
+				pDiv.appendChild(lname)
+				pDiv.appendChild(uname)
+				
+				li.appendChild(pDiv)
+				
+				let div = document.createElement('div')
+				div.classList.add('buttons-div')
+				
+				let editButton = document.createElement('button')
+				editButton.classList.add('btn', 'btn-success', 'list-buttons-edit')
+				editButton.innerHTML = 'Edit <i class="bi bi-pencil-square"></i>'
+				
+				let deleteButton = document.createElement('button')
+				deleteButton.classList.add('btn', 'btn-danger', 'list-buttons-delete')
+				deleteButton.innerHTML = 'Delete <i class="bi bi-trash-fill"></i>'
+				
+				div.appendChild(editButton)
+				div.appendChild(deleteButton)
+				li.appendChild(div)
+				li.classList.add('list-group-item')
+				
+				list.appendChild(li)
+				
+				successAlert.style.display = 'flex'
+				failAlert.style.display = 'none'
+				
+				setTimeout(function() {
+					$('#successAlert').fadeOut(125)
+				}, 2000);
+				
+				form.reset()
+				usernameInput.classList.remove('fail', 'success')
+				taken.style.display = 'none'
+				available.style.display = 'none'
+			},
+			fail: function() {
+				successAlert.style.display = 'none'
+				failAlert.style.display = 'flex'
+				
+				form.reset()
+				usernameInput.classList.remove('fail')
+				available.style.display = 'none'
+				taken.style.display = 'none'
+				
+				setTimeout(function() {
+					$('#failAlert').fadeOut(125)
+				}, 2000);
+				
+				form.reset()
+				usernameInput.classList.remove('fail', 'success')
+				taken.style.display = 'none'
+				available.style.display = 'none'
 			}
 		})
 	});
