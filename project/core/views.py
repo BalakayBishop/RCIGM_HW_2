@@ -63,7 +63,7 @@ def new_user():
 	return jsonify({ 'status': 'fail' }), 400
 
 
-# -------------------- ROUTE: NEW USER --------------------
+# -------------------- ROUTE: UPDATE USER --------------------
 @core.route('/update_user', methods=['POST'])
 def update_user():
 	form_data = request.get_json()
