@@ -8,6 +8,8 @@ class User(db.Model):
 	last_name = db.Column(db.String(50))
 	username = db.Column(db.String(50), unique=True)
 	
+	files = db.relationship('UserFiles', backref='files', lazy='dynamic')
+	
 	def __init__(self, first_name, last_name, username):
 		self.first_name = first_name
 		self.last_name = last_name
@@ -21,3 +23,25 @@ class User(db.Model):
 			'userName': self.username
 		}
 		return user
+	
+	
+class UserFiles(db.Model):
+	__tablename__ = 'files'
+	
+	user = db.relationship(User)
+	
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	user_id = db.Column(db.Integer, db.ForgeinKey('user.id'),  nullable=False)
+	file_path = db.Column(db.String(255))
+	
+	def __init__(self, user_id, file_path):
+		self.user_id = user_id
+		self.file_path = file_path
+		
+	def as_dict(self):
+		file = {
+			'id': self.id,
+			'user_id': self.user_id,
+			'file_path': self.file_path
+		}
+		return file
