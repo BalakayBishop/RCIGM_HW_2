@@ -351,3 +351,6 @@ form {
     color: var(--fail-color);
 }
 
+.form-label {
+    margin-bottom: .25rem!important;
+}
