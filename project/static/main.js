@@ -4,90 +4,62 @@ $(document).ready(function() {
 		url: '/users',
 		type:'GET',
 		success: function(response) {
-			let list = document.querySelector('#userList')
 			for(let i = 0; i < response.length; i++) {
-				let li = document.createElement('li')
-				let uname = document.createElement('p')
-				let fname = document.createElement('p')
-				let lname = document.createElement('p')
-				
-				let pDiv = document.createElement('div')
-				
-				fname.innerText = "First Name: " + response[i]['firstName']
-				lname.innerText = "Last Name: " + response[i]['lastName']
-				uname.innerText = "Username: " + response[i]['userName']
-				
-				pDiv.appendChild(fname)
-				pDiv.appendChild(lname)
-				pDiv.appendChild(uname)
-				
-				li.appendChild(pDiv)
-				
-				let div = document.createElement('div')
-				div.classList.add('buttons-div')
-				
-				let editButton = document.createElement('button')
-				editButton.classList.add('btn', 'btn-success', 'list-buttons-edit')
-				editButton.innerHTML = 'Edit <i class="bi bi-pencil-square"></i>'
-				
-				let deleteButton = document.createElement('button')
-				deleteButton.classList.add('btn', 'btn-danger', 'list-buttons-delete')
-				deleteButton.innerHTML = 'Delete <i class="bi bi-trash-fill"></i>'
-				
-				div.appendChild(editButton)
-				div.appendChild(deleteButton)
-				li.appendChild(div)
-				
-				li.classList.add('list-group-item')
-				
-				list.appendChild(li)
+				$('#userList').append("" +
+					"<li class='list-group-item'>" +
+						"<div class='li-inner'>" +
+							"<div class='li-p-div'>" +
+								"<p>First Name: " + response[i]['firstName'] + "</p>" +
+								"<p>Last Name: " + response[i]['lastName'] + "</p>" +
+								"<p>Last Name: " + response[i]['userName'] + "</p>" +
+							"</div>" +
+							"<div class='li-buttons'>" +
+								"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
+								"<button class='btn btn-danger list-buttons-edit'>Delete</button>" +
+							"</div>" +
+						"</div>" +
+						"<div class='mb-3 file-input'>" +
+							"<label for='formFile' class='form-label'>Select File</label>" +
+							"<input class='form-control formFile' type='file'>" +
+						"</div>" +
+					"</li>"
+				)
 			}
 		},
 		fail: function() {
-			let list = document.querySelector('#userList')
-			let li = document.createElement('li')
-			li.classList.add('list-group-item', 'fail-list')
-			li.innerText = 'Error loading list of users'
-			
-			list.appendChild(li)
+			$('#userList').append("<li class='list-group-item fail-list'>Error Loading Users</li>")
 		}
 	});
 	
 	// ------------------------------------- USERNAME VALIDATION -------------------------------------
 	$('.username').on('input', function() {
-		let username = $(this).val()
 		$.ajax({
 			url: '/username_validation',
 			type: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({
-				input: username
+				input: $(this).val()
 			}),
 			success: function(response) {
-				let usernameInput = document.querySelector('.username')
-				let taken = document.querySelector('#taken')
-				let available = document.querySelector('#available')
-				
 				if (response['class'] === 'success') {
-					usernameInput.classList.remove('fail')
-					usernameInput.classList.add('success')
+					$('.username').addClass('success')
+					$('.username').removeClass('fail')
 					$('#submitButton').prop('disabled', false)
-					available.style.display = 'block'
-					taken.style.display = 'none'
+					$('#available').css('display', 'block')
+					$('#taken').css('display', 'none')
 				}
 				else if (response['class'] === 'fail') {
-					usernameInput.classList.remove('success')
-					usernameInput.classList.add('fail')
+					$('.username').addClass('fail')
+					$('.username').removeClass('success')
 					$('#submitButton').prop('disabled', true)
-					available.style.display = 'none'
-					taken.style.display = 'block'
+					$('#available').css('display', 'none')
+					$('#taken').css('display', 'block')
 				}
 				else if (response['class'] === 'none') {
-					usernameInput.classList.remove('success')
-					usernameInput.classList.remove('fail')
+					$('.username').removeClass('fail', 'success')
 					$('#submitButton').prop('disabled', false)
-					available.style.display = 'none'
-					taken.style.display = 'none'
+					$('#available').css('display', 'none')
+					$('#taken').css('display', 'none')
 				}
 			}
 		})
@@ -96,12 +68,6 @@ $(document).ready(function() {
 	// ------------------------------------- FORM SUBMISSION -------------------------------------
 	$('#submitButton').on('click', function(event) {
 		event.preventDefault()
-		let form = document.querySelector('form')
-		let usernameInput = document.querySelector('.username')
-		let taken = document.querySelector('#taken')
-		let available = document.querySelector('#available')
-		let successAlert = document.querySelector('#successAlert')
-		let failAlert = document.querySelector('#failAlert')
 		
 		$.ajax({
 			url: '/new_user',
@@ -113,67 +79,45 @@ $(document).ready(function() {
 				userName: $('#userName').val()
 			}),
 			success: function(response) {
-				successAlert.style.display = 'flex'
-				failAlert.style.display = 'none'
-				
-				let list = document.querySelector('#userList')
-				let form = document.querySelector('#form')
-				let li = document.createElement('li')
-				let pDiv = document.createElement('div')
-				let uname = document.createElement('p')
-				let fname = document.createElement('p')
-				let lname = document.createElement('p')
-				
-				fname.innerText = "First Name: " + response['firstName']
-				lname.innerText = "Last Name: " + response['lastName']
-				uname.innerText = "Username: " + response['userName']
-				
-				pDiv.appendChild(fname)
-				pDiv.appendChild(lname)
-				pDiv.appendChild(uname)
-				
-				li.appendChild(pDiv)
-				
-				let div = document.createElement('div')
-				div.classList.add('buttons-div')
-				
-				let editButton = document.createElement('button')
-				editButton.classList.add('btn', 'btn-success', 'list-buttons-edit')
-				editButton.innerHTML = 'Edit <i class="bi bi-pencil-square"></i>'
-				
-				let deleteButton = document.createElement('button')
-				deleteButton.classList.add('btn', 'btn-danger', 'list-buttons-delete')
-				deleteButton.innerHTML = 'Delete <i class="bi bi-trash-fill"></i>'
-				
-				div.appendChild(editButton)
-				div.appendChild(deleteButton)
-				li.appendChild(div)
-				li.classList.add('list-group-item')
-				
-				list.appendChild(li)
-				
+				$('#successAlert').css('display', 'flex')
+				$('#userList').append("" +
+					"<li class='list-group-item'>" +
+						"<div class='li-inner'>" +
+							"<div class='li-p-div'>" +
+								"<p>First Name: " + response['firstName'] + "</p>" +
+								"<p>Last Name: " + response['lastName'] + "</p>" +
+								"<p>Last Name: " + response['userName'] + "</p>" +
+							"</div>" +
+							"<div class='li-buttons'>" +
+								"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
+								"<button class='btn btn-danger list-buttons-edit'>Delete</button>" +
+							"</div>" +
+						"</div>" +
+						"<div class='mb-3 file-input'>" +
+							"<label for='formFile' class='form-label'>Select File</label>" +
+							"<input class='form-control formFile' type='file'>" +
+						"</div>" +
+					"</li>"
+				)
 				setTimeout(function() {
 					$('#successAlert').fadeOut(125)
 				}, 2000);
-				
-				form.reset()
-				usernameInput.classList.remove('fail', 'success')
-				taken.style.display = 'none'
-				available.style.display = 'none'
+				$('#form')[0].reset()
+				$('.username').removeClass('success fail')
+				$('#submitButton').prop('disabled', false)
+				$('#available').css('display', 'none')
+				$('#taken').css('display', 'none')
 			},
 			fail: function() {
-				successAlert.style.display = 'none'
-				failAlert.style.display = 'flex'
-				
-				form.reset()
-				usernameInput.classList.remove('fail')
-				available.style.display = 'none'
-				taken.style.display = 'none'
-				
+				$('#form')[0].reset()
+				$('#failAlert').css('display', 'flex')
+				$('.username').removeClass('success fail')
+				$('#submitButton').prop('disabled', false)
+				$('#available').css('display', 'none')
+				$('#taken').css('display', 'none')
 				setTimeout(function() {
 					$('#failAlert').fadeOut(125)
 				}, 2000);
-				
 			}
 		})
 	});
@@ -394,60 +338,19 @@ $(document).ready(function() {
 		})
 	});
 	
-	// ------------------------------------- SUBMISSION ALERTS -------------------------------------
 	
-	// ------------------------------------- NEW USER SUCCESS -------------------------------------
-	$('#createdSuccessX').on('click', function() {
-		let successAlert = document.getElementById('successAlert')
-		let failAlert = document.getElementById('failAlert')
-		
-		successAlert.style.display = 'none'
-		failAlert.style.display = 'none'
+	// ------------------------------------- SUCCESS ALERT CLOSE -------------------------------------
+	$('#successX').on('click', function() {
+		$('#successAlert').hide()
 	});
 	
-	//------------------------------------- NEW USER FAIL -------------------------------------
-	$('#userCreatedFail').on('click', function() {
-		let successAlert = document.getElementById('successAlert')
-		let failAlert = document.getElementById('failAlert')
-		
-		successAlert.style.display = 'none'
-		failAlert.style.display = 'none'
+	//------------------------------------- FAIL ALERT CLOSE -------------------------------------
+	$('#failX').on('click', function() {
+		$('#failAlert').hide()
 	});
 	
+	// ------------------------------------- FILE UPLOAD -------------------------------------
 	
-	// ------------------------------------- USER UPDATE SUCCESS -------------------------------------
-	$('#updateSuccessX').on('click', function() {
-		let successAlert = document.getElementById('edit-success')
-		let failAlert = document.getElementById('edit-fail')
-		
-		successAlert.style.display = 'none'
-		failAlert.style.display = 'none'
-	});
-	
-	// ------------------------------------- USER UPDATE FAIL -------------------------------------
-	$('#updateFailX').on('click', function() {
-		let successAlert = document.getElementById('edit-success')
-		let failAlert = document.getElementById('edit-fail')
-		
-		successAlert.style.display = 'none'
-		failAlert.style.display = 'none'
-	});
-	
-	// ------------------------------------- USER DELETE SUCCESS -------------------------------------
-	$('#deleteSuccessX').on('click', function() {
-		let successAlert = document.querySelector('#delete-success')
-		let failAlert = document.querySelector('#delete-fail')
-		successAlert.style.display = 'none'
-		failAlert.style.display = 'none'
-	});
-	
-	// ------------------------------------- USER DELETE FAIL -------------------------------------
-	$('#deleteFailX').on('click', function() {
-		let successAlert = document.querySelector('#delete-success')
-		let failAlert = document.querySelector('#delete-fail')
-		successAlert.style.display = 'none'
-		failAlert.style.display = 'none'
-	});
 });
 
 

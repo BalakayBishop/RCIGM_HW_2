@@ -107,67 +107,8 @@ form {
     border-color: #0d6efd;
 }
 
-/* ---------------------------FORM SUBMIT SUCCESS ALERT------------------------------------------- */
-
-#successAlert {
-    display: none;
-    background-color: var(--success-bg);
-    border: solid 1px var(--success-border);
-    padding: 8px;
-    margin: 8px 0;
-    border-radius: 8px;
-    position: relative;
-    bottom: 12px;
-    width: 250px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#successAlert > p {
-    margin: 0;
-    padding: 0;
-    color: var(--success-color);
-    display: inline-block;
-}
-
-#successAlert > i {
-    color: var(--success-color);
-}
-
-/* ---------------------------FORM SUBMIT FAIL ALERT------------------------------------------- */
-
-#failAlert {
-    display: none;
-    background-color: var(--fail-bg);
-    border: solid 1px var(--fail-border);
-    padding: 8px;
-    margin: 8px 0;
-    border-radius: 8px;
-    position: relative;
-    bottom: 12px;
-    width: 250px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#failAlert > p {
-    margin: 0;
-    padding: 0;
-    color: var(--fail-color);
-    display: inline-block;
-}
-
-#failAlert > i {
-    color: var(--fail-color);
-}
-
 /* ---------------------------USER LIST------------------------------------------- */
-
-#userList > li {
+.li-inner {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -176,27 +117,17 @@ form {
     align-items: center;
 }
 
-#userList > li > p {
-    display: block;
+.li-p-div {
+    display: inline-block;
 }
 
-.fail-list {
-    color: var(--fail-color);
-    background-color: var(--fail-bg);
-}
-
-.buttons-div {
+.li-buttons {
     display: flex;
     gap: 8px;
 }
 
-.list-buttons-edit, .list-buttons-delete {
-    width: 96px;
-    height: 40px;
-}
-
-.list-buttons-edit > i, .list-buttons-delete > i {
-    color: white;
+.file-input {
+    margin-top: 8px;
 }
 
 /* ---------------------------EDIT MODAL------------------------------------------- */
@@ -368,7 +299,7 @@ form {
 
 /* ---------------------------SUCCESSFUL USER EDIT------------------------------------------- */
 
-.success-edit {
+#successAlert {
     display: none;
     background-color: var(--success-bg);
     border: solid 1px var(--success-border);
@@ -382,16 +313,17 @@ form {
     width: 250px;
 }
 
-.success-edit > p {
+#successAlert > p {
     color: var(--success-color);
 }
 
-.success-edit > i {
+#successAlert > i {
     color: var(--success-color);
+    cursor: pointer;
 }
 
 /* ---------------------------FAIL USER EDIT------------------------------------------- */
-.fail-edit {
+#failAlert {
     display: none;
     background-color: var(--fail-bg);
     border: solid 1px var(--fail-border);
@@ -405,71 +337,17 @@ form {
     width: 250px;
 }
 
-.fail-edit > p {
+#failAlert > p {
     color: var(--fail-color);
 }
 
-.fail-edit > i {
+#failAlert > i {
     color: var(--fail-color);
-}
-
-.bi-exclamation-triangle {
-    font-size: 24px;
-    color: var(--fail-color);
-}
-
-/* ---------------------------SUCCESSFUL USER DELETE------------------------------------------- */
-
-.success-delete {
-    display: none;
-    background-color: var(--success-bg);
-    border: solid 1px var(--success-border);
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    margin: 8px 0;
-    border-radius: 8px;
-    width: 250px;
-}
-
-.success-delete > p {
-    color: var(--success-color);
-}
-
-.success-delete > i {
-    color: var(--success-color);
-}
-
-/* ---------------------------FAIL USER DELETE------------------------------------------- */
-.fail-delete {
-    display: none;
-    background-color: var(--fail-bg);
-    border: solid 1px var(--fail-border);
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    margin: 8px 0;
-    border-radius: 8px;
-    width: 250px;
-}
-
-.fail-delete > p {
-    color: var(--fail-color);
-}
-
-.fail-delete > i {
-    color: var(--fail-color);
-}
-
-.bi-exclamation-triangle {
-    font-size: 24px;
-    color: var(--fail-color);
-}
-
-.fa-times:hover {
     cursor: pointer;
 }
+
+.bi-exclamation-triangle {
+    font-size: 24px;
+    color: var(--fail-color);
+}
+

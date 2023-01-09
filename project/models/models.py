@@ -28,10 +28,10 @@ class User(db.Model):
 class UserFiles(db.Model):
 	__tablename__ = 'files'
 	
-	user = db.relationship(User)
+	# user = db.relationship(User)
 	
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	user_id = db.Column(db.Integer, db.ForgeinKey('user.id'),  nullable=False)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'),  nullable=False)
 	file_path = db.Column(db.String(255))
 	
 	def __init__(self, user_id, file_path):
