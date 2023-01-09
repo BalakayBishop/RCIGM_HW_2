@@ -15,7 +15,7 @@ $(document).ready(function() {
 							"</div>" +
 							"<div class='li-buttons'>" +
 								"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
-								"<button class='btn btn-danger list-buttons-edit'>Delete</button>" +
+								"<button class='btn btn-danger list-buttons-delete'>Delete</button>" +
 							"</div>" +
 						"</div>" +
 						"<div class='mb-3 file-input'>" +
@@ -90,7 +90,7 @@ $(document).ready(function() {
 							"</div>" +
 							"<div class='li-buttons'>" +
 								"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
-								"<button class='btn btn-danger list-buttons-edit'>Delete</button>" +
+								"<button class='btn btn-danger list-buttons-delete'>Delete</button>" +
 							"</div>" +
 						"</div>" +
 						"<div class='mb-3 file-input'>" +
