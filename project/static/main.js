@@ -11,7 +11,7 @@ $(document).ready(function() {
 							"<div class='li-p-div'>" +
 								"<p>First Name: " + response[i]['firstName'] + "</p>" +
 								"<p>Last Name: " + response[i]['lastName'] + "</p>" +
-								"<p>Last Name: " + response[i]['userName'] + "</p>" +
+								"<p>Username: " + response[i]['userName'] + "</p>" +
 							"</div>" +
 							"<div class='li-buttons'>" +
 								"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
@@ -30,7 +30,6 @@ $(document).ready(function() {
 			$('#userList').append("<li class='list-group-item fail-list'>Error Loading Users</li>")
 		}
 	});
-	
 	// ------------------------------------- USERNAME VALIDATION -------------------------------------
 	$('.username').on('input', function() {
 		$.ajax({
@@ -68,7 +67,6 @@ $(document).ready(function() {
 	// ------------------------------------- FORM SUBMISSION -------------------------------------
 	$('#submitButton').on('click', function(event) {
 		event.preventDefault()
-		
 		$.ajax({
 			url: '/new_user',
 			type: 'POST',
@@ -79,14 +77,13 @@ $(document).ready(function() {
 				userName: $('#userName').val()
 			}),
 			success: function(response) {
-				$('#successAlert').css('display', 'flex')
 				$('#userList').append("" +
 					"<li class='list-group-item'>" +
 						"<div class='li-inner'>" +
 							"<div class='li-p-div'>" +
 								"<p>First Name: " + response['firstName'] + "</p>" +
 								"<p>Last Name: " + response['lastName'] + "</p>" +
-								"<p>Last Name: " + response['userName'] + "</p>" +
+								"<p>Username: " + response['userName'] + "</p>" +
 							"</div>" +
 							"<div class='li-buttons'>" +
 								"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
@@ -99,6 +96,8 @@ $(document).ready(function() {
 						"</div>" +
 					"</li>"
 				)
+				$('#successText').text('User successfully created!')
+				$('#successAlert').css('display', 'flex')
 				setTimeout(function() {
 					$('#successAlert').fadeOut(125)
 				}, 2000);
@@ -110,6 +109,7 @@ $(document).ready(function() {
 			},
 			fail: function() {
 				$('#form')[0].reset()
+				$('#failedText').text('User creation failed!')
 				$('#failAlert').css('display', 'flex')
 				$('.username').removeClass('success fail')
 				$('#submitButton').prop('disabled', false)
@@ -124,37 +124,23 @@ $(document).ready(function() {
 	
 	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
 	$('ul').on('click', function(e) {
-		let form = document.querySelector('#modal-form')
-		let usernameInput = document.querySelector('.modal-username')
-		let taken = document.querySelector('#modal-taken')
-		let available = document.querySelector('#modal-available')
-		
 		let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
 		firstName = firstName.replace('First Name: ', '')
-		
 		let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
 		lastName = lastName.replace('Last Name: ', '')
-		
 		let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
 		userName = userName.replace('Username: ', '')
-		
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
 		if(e.target.classList[2] === 'list-buttons-edit') {
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
-			
 			$('#modal-firstName').val(firstName)
 			$('#modal-lastName').val(lastName)
 			$('#modal-userName').val(userName)
 			let currentUsername = userName
-			
 			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
-			
 			$('#modal-submitButton').on('click', function(e2) {
 				e2.preventDefault()
-				let successEditAlert = document.getElementById('edit-success')
-				let failEditAlert = document.getElementById('edit-fail')
-				
 				$.ajax({
 					url: '/update_user',
 					type: 'POST',
@@ -167,64 +153,45 @@ $(document).ready(function() {
 					}),
 					success: function(response) {
 						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-						
-						successEditAlert.style.display = 'flex'
-						failEditAlert.style.display = 'none'
+						$('#successText').val("User successfully updated!")
+						$('#successAlert').css('display', 'flex')
+						e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent = "First Name: " + response['firstName']
+						e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent = "Last Name: " + response['lastName']
+						e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent = "Username: " + response['userName']
 						setTimeout(function() {
-							$('#edit-success').fadeOut(125)
+							$('#successAlert').fadeOut(125)
 						}, 2000);
-						
-						form.reset()
-						taken.style.display = 'none'
-						available.style.display = 'none'
-						usernameInput.classList.remove('fail', 'success')
+						$('#modal-form')[0].reset()
+						$('#modal-available').css('display', 'none')
+						$('#modal-taken').css('display', 'none')
 						$('#modal-submitButton').prop('disabled', false)
-						
-						e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent = "First Name: "
-							+ response['firstName']
-						e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent = "Last Name: "
-							+ response['lastName']
-						e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent = "Username: "
-							+ response['userName']
-						
+						$('.modal-username').removeClass('success fail')
 					},
 					fail: function() {
-						successEditAlert.style.display = 'none'
-						failEditAlert.style.display = 'flex'
-						
+						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+						$('#modal-form')[0].reset()
+						$('#failedText').text('User update failed!')
+						$('#successAlert').css('display', 'none')
+						$('#failAlert').css('display', 'flex')
 						setTimeout(function() {
-							$('.edit-fail').fadeOut(125)
+							$('#failAlert').fadeOut(125)
 						}, 2000);
+						$('#modal-available').css('display', 'none')
+						$('#modal-taken').css('display', 'none')
+						$('#modal-submitButton').prop('disabled', false)
+						$('.modal-username').removeClass('success fail')
 					}
 				})
 			});
 		}
 		// ------------------------------- CLICK DELETE BUTTON --------------------------------
 		else if(e.target.classList[2] === 'list-buttons-delete') {
-			let li = e.target.parentNode.parentNode
-			// DELETE MODAL OPEN
+			let li = e.target.parentNode.parentNode.parentNode
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
-			let list = document.querySelector('#infoList')
-			
-			let listFn = document.createElement('li')
-			listFn.classList.add('list-group-item')
-			listFn.innerText = 'First Name: ' + firstName
-			
-			let listLn = document.createElement('li')
-			listLn.classList.add('list-group-item')
-			listLn.innerText = 'Last Name: ' + lastName
-			
-			let listUn = document.createElement('li')
-			listUn.classList.add('list-group-item')
-			listUn.innerText = 'Username: ' + userName
-			
-			list.appendChild(listFn)
-			list.appendChild(listLn)
-			list.appendChild(listUn)
-			
+			$('#infoList').append("<li class='list-group-item'>First Name: " + firstName + "</li>" +
+				"<li class='list-group-item'>Last Name: " + lastName + "</li>" +
+				"<li class='list-group-item'>Username: " + userName + "</li>");
 			$('.delete-submit').on('click', function() {
-				let successAlert = document.querySelector('#delete-success')
-				let failAlert = document.querySelector('#delete-fail')
 				$.ajax({
 					url: '/delete_user',
 					type: 'POST',
@@ -233,124 +200,98 @@ $(document).ready(function() {
 						userName: userName
 					}),
 					success: function() {
-						
 						li.parentNode.removeChild(li)
 						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-						let ul = document.querySelector('#infoList')
-						ul.innerHTML = ''
-						
-						successAlert.style.display = 'flex'
-						failAlert.style.display = 'none'
-						
+						$('#infoList').html('')
+						$('#successText').text('User successfully deleted!')
+						$('#successAlert').css('display', 'flex')
+						$('#failAlert').css('display', 'none')
 						setTimeout(function() {
-							$('#delete-success').fadeOut(125)
+							$('#successAlert').fadeOut(125)
 						}, 2000);
 					},
 					fail: function() {
 						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-						let ul = document.querySelector('#infoList')
-						ul.innerHTML = ''
-						
-						successAlert.style.display = 'none'
-						failAlert.style.display = 'flex'
-						
+						$('#infoList').html('')
+						$('#failedText').text('User deletion failed!')
+						$('#successAlert').css('display', 'none')
+						$('#failAlert').css('display', 'flex')
 						setTimeout(function() {
-							$('#delete-success').fadeOut(125)
+							$('#failAlert').fadeOut(125)
 						}, 2000);
-						
 					}
 				})
 			});
-			
 		}
-		
 		// EDIT MODAL CLOSED
 		$('.close-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-			form.reset()
-			taken.style.display = 'none'
-			available.style.display = 'none'
-			usernameInput.classList.remove('fail', 'success')
+			$('#modal-form')[0].reset()
+			$('#modal-available').css('display', 'none')
+			$('#modal-taken').css('display', 'none')
+			$('.modal-username').removeClass('success fail')
 			$('#modal-submitButton').prop('disabled', false)
 		});
-		
-		// EDIT & DELETE MODAL CLOSE X ICON
+		// EDIT MODAL CLOSE X
 		$('.modal-xmark-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-			form.reset()
-			taken.style.display = 'none'
-			available.style.display = 'none'
-			usernameInput.classList.remove('fail', 'success')
+			$('#modal-form')[0].reset()
+			$('#modal-available').css('display', 'none')
+			$('#modal-taken').css('display', 'none')
+			$('.modal-username').removeClass('success fail')
 			$('#modal-submitButton').prop('disabled', false)
 		});
-		
 		// DELETE MODAL CLOSE
 		$('.close-delete').on('click', function() {
 			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-			let ul = document.querySelector('#infoList')
-			ul.innerHTML = ''
+			$('#infoList').html('')
 		});
-		
+		// DELETE MODAL CLOSE X
 		$('.modal-xmark-delete').on('click', function() {
 			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-			let ul = document.querySelector('#infoList')
-			ul.innerHTML = ''
+			$('#infoList').html('')
 		});
 	});
-	
 	// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------
 	$('.modal-username').on('input', function() {
-		let username = $(this).val()
 		$.ajax({
 			url: '/username_validation',
 			type: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({
-				input: username
+				input: $(this).val()
 			}),
 			success: function(response) {
-				let usernameInput = document.querySelector('.modal-username')
-				let taken = document.querySelector('#modal-taken')
-				let available = document.querySelector('#modal-available')
-				
 				if (response['class'] === 'success') {
-					usernameInput.classList.remove('fail')
-					usernameInput.classList.add('success')
+					$('.modal-username').addClass('success')
+					$('.modal-username').removeClass('fail')
 					$('#modal-submitButton').prop('disabled', false)
-					available.style.display = 'block'
-					taken.style.display = 'none'
+					$('#modal-available').css('display', 'block')
+					$('#modal-taken').css('display', 'none')
 				}
 				else if (response['class'] === 'fail') {
-					usernameInput.classList.remove('success')
-					usernameInput.classList.add('fail')
-					$('#modal-submitButton').prop('disabled', true)
-					available.style.display = 'none'
-					taken.style.display = 'block'
+					$('.modal-username').addClass('fail')
+					$('.modal-username').removeClass('success')
+					$('#modal-submitButton').prop('disabled', false)
+					$('#modal-available').css('display', 'none')
+					$('#modal-taken').css('display', 'block')
 				}
 				else if (response['class'] === 'none') {
-					usernameInput.classList.remove('success')
-					usernameInput.classList.remove('fail')
+					$('.modal-username').removeClass('success fail')
 					$('#modal-submitButton').prop('disabled', false)
-					available.style.display = 'none'
-					taken.style.display = 'none'
+					$('#modal-available').css('display', 'none')
+					$('#modal-taken').css('display', 'none')
 				}
 			}
 		})
 	});
-	
-	
 	// ------------------------------------- SUCCESS ALERT CLOSE -------------------------------------
 	$('#successX').on('click', function() {
 		$('#successAlert').hide()
 	});
-	
 	//------------------------------------- FAIL ALERT CLOSE -------------------------------------
 	$('#failX').on('click', function() {
 		$('#failAlert').hide()
 	});
-	
 	// ------------------------------------- FILE UPLOAD -------------------------------------
-	
 });
-
-
