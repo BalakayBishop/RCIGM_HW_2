@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: new styles to better suite new jQuery code for lists and alerts">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
+      <change afterPath="$PROJECT_DIR$/project/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,10 +20,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Flask Main" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -165,14 +168,8 @@
       <workItem from="1672352149669" duration="13000" />
       <workItem from="1673026670373" duration="4165000" />
       <workItem from="1673116206648" duration="12000" />
-      <workItem from="1673286888317" duration="15413000" />
-    </task>
-    <task id="LOCAL-00003" summary="Local: added Bootstrap validation (custom is currently broken, but it's there for the future).">
-      <created>1670277887960</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1670277887960</updated>
+      <workItem from="1673286888317" duration="16645000" />
+      <workItem from="1673377646212" duration="1440000" />
     </task>
     <task id="LOCAL-00004" summary="Local: changed the form inputs back to floating labels from Bootstrap">
       <created>1670278767873</created>
@@ -510,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673306921612</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Local: small change to UserFiles class to remove a db.relationship statement">
+      <created>1673306961150</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1673306961150</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -529,7 +533,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: removed margin from the form-buttons div and added gap instead" />
     <MESSAGE value="Local: changes made to the styling of the delete user modal" />
     <MESSAGE value="Local: adding these files" />
     <MESSAGE value="Local: added a div and ul to the html for the delete modal, when the x icon is clicked the info for that user is grabbed and displayed in li in the modal to show what user was selected to be deleted" />
@@ -554,11 +557,12 @@
     <MESSAGE value="Local: fixed the modal, class name was wrong for delete button" />
     <MESSAGE value="Local: changes made to remove vanilla JS and replace it with jQuery and to reduce file size" />
     <MESSAGE value="Local: new styles to better suite new jQuery code for lists and alerts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: new styles to better suite new jQuery code for lists and alerts" />
+    <MESSAGE value="Local: small change to UserFiles class to remove a db.relationship statement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: small change to UserFiles class to remove a db.relationship statement" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1673306503939" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1673379052978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
