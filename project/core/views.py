@@ -5,9 +5,14 @@ from project.core.methods import is_valid, get_user, convert
 from project import db
 
 core = Blueprint('core', __name__)
+
+# -------------------- ROUTE: INDEX --------------------
+@core.route('/')
+def home():
+	return render_template('home.html')
 	
 # -------------------- ROUTE: INDEX --------------------
-@core.route('/', methods=['GET', 'POST'])
+@core.route('/index', methods=['GET', 'POST'])
 def index():
 	return render_template('index.html')
 	

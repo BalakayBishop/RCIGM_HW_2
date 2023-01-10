@@ -293,5 +293,8 @@ $(document).ready(function() {
 	$('#failX').on('click', function() {
 		$('#failAlert').hide()
 	});
-	// ------------------------------------- FILE UPLOAD -------------------------------------
+	// ------------------------------------- LANDING PAGE REDIRECT -------------------------------------
+	$('#landing-redirect').on('click', function() {
+		window.location.href = '/index'
+	})
 });

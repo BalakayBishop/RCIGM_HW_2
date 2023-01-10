@@ -354,3 +354,25 @@ form {
 .form-label {
     margin-bottom: .25rem!important;
 }
+
+/* ---------------------------LANDING PAGE------------------------------------------- */
+#landing-body {
+    height: 75vh;
+}
+
+.landing-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumbotron {
+    background-color: #cccccc;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
