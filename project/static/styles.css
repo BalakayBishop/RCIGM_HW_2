@@ -54,9 +54,72 @@
     cursor: pointer;
 }
 
+svg {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: block;
+    background-color: #0e4166;
+    background-image: linear-gradient(to bottom, rgba(14, 65, 102, 0.86), #0e4166);
+}
+
+/* ---------------------------LOGIN PAGE/FORM------------------------------------------- */
+#landing-redirect {
+    margin-top: 24px;
+    width: 100%;
+}
+
+#landing-body {
+    height: 75vh;
+}
+
+.landing-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumbotron {
+    background-color: #cccccc;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumbotron > h1 {
+    margin-bottom: 32px;
+}
+
+#p-under-button {
+    margin-top: 8px;
+    font-size: 12px;
+    text-align: center;
+}
+
+#login-form {
+    margin: 0;
+}
+
+#password-input-label {
+    margin-top: 8px;
+}
+
+#password-input-label, #email-input-label {
+    margin-bottom: 0!important;
+}
+
 /* ---------------------------FORM------------------------------------------- */
 
-form {
+#form {
     margin-top: 16px;
 }
 
@@ -376,24 +439,3 @@ form {
     margin-bottom: .25rem!important;
 }
 
-/* ---------------------------LANDING PAGE------------------------------------------- */
-#landing-body {
-    height: 75vh;
-}
-
-.landing-container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.jumbotron {
-    background-color: #cccccc;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-}
