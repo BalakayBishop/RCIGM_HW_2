@@ -25,18 +25,39 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 24px;
+    font-family: 'Manrope', sans-serif;
 }
 
 /* ---------------------------CONTENT DIV------------------------------------------- */
 
 .content {
     width: 100%;
+    max-width: 640px;
+}
+
+#index-header {
+    height: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bi-arrow-left-circle-fill {
+    font-size: 32px;
+    color: #333333;
+}
+
+.bi-arrow-left-circle-fill:hover {
+    cursor: pointer;
 }
 
 /* ---------------------------FORM------------------------------------------- */
 
 form {
-    margin-top: 24px;
+    margin-top: 16px;
 }
 
 .form-control:focus {
