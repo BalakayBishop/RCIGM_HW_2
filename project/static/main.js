@@ -293,8 +293,12 @@ $(document).ready(function() {
 	$('#failX').on('click', function() {
 		$('#failAlert').hide()
 	});
-	// ------------------------------------- LANDING PAGE REDIRECT -------------------------------------
+	// ------------------------------------- PAGE REDIRECT -------------------------------------
 	$('#landing-redirect').on('click', function() {
 		window.location.href = '/index'
+	});
+	
+	$('#back-home').on('click', function() {
+		window.location.href = '/'
 	})
 });

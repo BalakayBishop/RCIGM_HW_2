@@ -5,6 +5,7 @@
     color: #333333;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    font-family: 'Manrope', sans-serif;
 }
 
 /* ---------------------------COLOR VARIABLES------------------------------------------- */
@@ -25,7 +26,6 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 24px;
-    font-family: 'Manrope', sans-serif;
 }
 
 /* ---------------------------CONTENT DIV------------------------------------------- */
