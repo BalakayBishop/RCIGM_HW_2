@@ -125,3 +125,11 @@ def users():
 		return jsonify(result)
 	else:
 		return jsonify({"status": "failure"}), 400
+	
+# -------------------- ROUTE: UPLOAD FILES --------------------
+@core.route('/upload', methods=['POST'])
+def upload():
+	data = request.get_json()
+	print(data)
+	
+	return jsonify({'status': 'success'})

@@ -23,6 +23,7 @@ $(document).ready(function() {
 							"<input class='form-control formFile' type='file'>" +
 						"</div>" +
 						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
+						"<ul class='list-group list-group-flush files-list'></ul>" +
 					"</li>"
 				)
 			}
@@ -237,6 +238,7 @@ $(document).ready(function() {
 		}
 		else if(e.target.classList[2] === 'upload') {
 			let fileinput = $(e.target).parent().siblings('div.file-input').children('input.formFile')
+			// console.log()
 			let fileName = fileinput.val()
 			fileName = fileName.replace('C:\\fakepath\\', '')
 			$(fileinput).on('change', function() {
@@ -245,18 +247,22 @@ $(document).ready(function() {
 			if(fileName !== '') {
 				let userName = $(e.target).parent().siblings('div.li-inner').children('div.li-p-div').children(':eq(2)').text()
 				userName = userName.replace('Username: ', '')
-				// $.ajax({
-				// 	url: '/',
-				// 	type: 'POST',
-				// 	contentType: 'application/json',
-				// 	data: JSON.stringify({
-				// 		fileName: fileName
-				// 	}),
-				// 	success: function() {
-				// 	},
-				// 	fail: function() {
-				// 	}
-				// })
+				$.ajax({
+					url: '/upload',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({
+						userName: userName,
+						fileName: fileName
+					}),
+					success: function() {
+						fileinput.val('')
+						$('.files-list').css('display', 'block')
+						$('.files-list').append("<li class='list-group-item'>" + fileName + "</li>")
+					},
+					fail: function() {
+					}
+				})
 			}
 			else {
 				fileinput.addClass('file-input-fail')

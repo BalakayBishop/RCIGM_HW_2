@@ -225,6 +225,14 @@ svg {
     background-color: var(--fail-bg);
 }
 
+.files-list {
+    display: none;
+}
+
+.files-list > li {
+    border: none;
+}
+
 /* ---------------------------EDIT MODAL------------------------------------------- */
 
 .popup-overlay-edit {
