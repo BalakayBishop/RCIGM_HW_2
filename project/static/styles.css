@@ -207,11 +207,22 @@ svg {
 
 .li-buttons {
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
+    width: 144px;
 }
 
 .file-input {
     margin-top: 8px;
+}
+
+.list-group-item {
+    border-color: #999999!important;
+}
+
+.file-input-fail {
+    border: solid 1px var(--fail-border);
+    color: var(--fail-color);
+    background-color: var(--fail-bg);
 }
 
 /* ---------------------------EDIT MODAL------------------------------------------- */
@@ -439,3 +450,9 @@ svg {
     margin-bottom: .25rem!important;
 }
 
+/* ---------------------------UPLOAD BUTTON------------------------------------------- */
+
+#upload-btn {
+    display: flex;
+    justify-content: flex-end;
+}

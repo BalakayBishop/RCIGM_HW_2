@@ -22,6 +22,7 @@ $(document).ready(function() {
 							"<label for='formFile' class='form-label'>Select File</label>" +
 							"<input class='form-control formFile' type='file'>" +
 						"</div>" +
+						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
 					"</li>"
 				)
 			}
@@ -92,8 +93,13 @@ $(document).ready(function() {
 						"</div>" +
 						"<div class='mb-3 file-input'>" +
 							"<label for='formFile' class='form-label'>Select File</label>" +
-							"<input class='form-control formFile' type='file'>" +
+							"<input id='file-input' class='form-control formFile' type='file'>" +
 						"</div>" +
+						"<div class='mb-3 file-input'>" +
+								"<label for='formFile' class='form-label'>Select File</label>" +
+								"<input class='form-control formFile' type='file'>" +
+							"</div>" +
+						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
 					"</li>"
 				)
 				$('#successText').text('User successfully created!')
@@ -124,14 +130,14 @@ $(document).ready(function() {
 	
 	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
 	$('ul').on('click', function(e) {
-		let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
-		firstName = firstName.replace('First Name: ', '')
-		let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
-		lastName = lastName.replace('Last Name: ', '')
-		let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
-		userName = userName.replace('Username: ', '')
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
 		if(e.target.classList[2] === 'list-buttons-edit') {
+			let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
+			firstName = firstName.replace('First Name: ', '')
+			let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
+			lastName = lastName.replace('Last Name: ', '')
+			let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
+			userName = userName.replace('Username: ', '')
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
 			$('#modal-firstName').val(firstName)
@@ -186,6 +192,12 @@ $(document).ready(function() {
 		}
 		// ------------------------------- CLICK DELETE BUTTON --------------------------------
 		else if(e.target.classList[2] === 'list-buttons-delete') {
+			let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
+			firstName = firstName.replace('First Name: ', '')
+			let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
+			lastName = lastName.replace('Last Name: ', '')
+			let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
+			userName = userName.replace('Username: ', '')
 			let li = e.target.parentNode.parentNode.parentNode
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
 			$('#infoList').append("<li class='list-group-item'>First Name: " + firstName + "</li>" +
@@ -223,6 +235,34 @@ $(document).ready(function() {
 				})
 			});
 		}
+		else if(e.target.classList[2] === 'upload') {
+			let fileinput = $(e.target).parent().siblings('div.file-input').children('input.formFile')
+			let fileName = fileinput.val()
+			fileName = fileName.replace('C:\\fakepath\\', '')
+			$(fileinput).on('change', function() {
+				fileinput.removeClass('file-input-fail')
+			})
+			if(fileName !== '') {
+				let userName = $(e.target).parent().siblings('div.li-inner').children('div.li-p-div').children(':eq(2)').text()
+				userName = userName.replace('Username: ', '')
+				// $.ajax({
+				// 	url: '/',
+				// 	type: 'POST',
+				// 	contentType: 'application/json',
+				// 	data: JSON.stringify({
+				// 		fileName: fileName
+				// 	}),
+				// 	success: function() {
+				// 	},
+				// 	fail: function() {
+				// 	}
+				// })
+			}
+			else {
+				fileinput.addClass('file-input-fail')
+			}
+		}
+		
 		// EDIT MODAL CLOSED
 		$('.close-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
