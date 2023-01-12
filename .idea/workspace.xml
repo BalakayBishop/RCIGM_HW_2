@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: new changes to the upload feature for data validation">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/86cbc0e2-81e6-4eb5-8e12-1d7f57d9d78f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/86cbc0e2-81e6-4eb5-8e12-1d7f57d9d78f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
@@ -172,14 +173,8 @@
       <workItem from="1673401097959" duration="9000" />
       <workItem from="1673404733222" duration="28000" />
       <workItem from="1673405333783" duration="60000" />
-      <workItem from="1673454482484" duration="10259000" />
-    </task>
-    <task id="LOCAL-00014" summary="Local: add new event listeners through jQuery for appending user list on page load and form submission, add listener for popup menu close button">
-      <created>1671603614818</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1671603614818</updated>
+      <workItem from="1673454482484" duration="10983000" />
+      <workItem from="1673541551424" duration="3727000" />
     </task>
     <task id="LOCAL-00015" summary="Local: added some new classes to be used for classList.add()">
       <created>1671603637825</created>
@@ -517,7 +512,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673476510011</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Local: more additions to the upload feature that now includes having a hidden ul under the file selector and if the ajax for upload is successful it displays a ul li for the file uploaded">
+      <created>1673479013411</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1673479013411</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,7 +538,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: refactored the li from having icons to buttons for edit and delete. refactored the ul.onclick ajax for opening the modal windows and how the information is loaded into the modal windows" />
     <MESSAGE value="Local: refactored route '/' to have get and post methods, without them it was causing 405 error" />
     <MESSAGE value="Local: minor changes to the modal window" />
     <MESSAGE value="Local: added :root css color variables for the success/fail border, background, and text color" />
@@ -561,11 +562,12 @@
     <MESSAGE value="Local: workspace.xml" />
     <MESSAGE value="Local: changes made to models.py to reflect ON DELETE CASCADE in MySQL for deleting a user will delete all files associated in the files table" />
     <MESSAGE value="Local: new changes to the upload feature for data validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: new changes to the upload feature for data validation" />
+    <MESSAGE value="Local: more additions to the upload feature that now includes having a hidden ul under the file selector and if the ajax for upload is successful it displays a ul li for the file uploaded" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: more additions to the upload feature that now includes having a hidden ul under the file selector and if the ajax for upload is successful it displays a ul li for the file uploaded" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1673478753553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1673551105866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

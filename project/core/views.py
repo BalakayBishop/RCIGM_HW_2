@@ -126,10 +126,20 @@ def users():
 	else:
 		return jsonify({"status": "failure"}), 400
 	
-# -------------------- ROUTE: UPLOAD FILES --------------------
+# -------------------- ROUTE: UPLOAD FILE --------------------
 @core.route('/upload', methods=['POST'])
 def upload():
 	data = request.get_json()
-	print(data)
+	userName = data['userName']
+	fileName = data['fileName']
+	user = User.query.filter_by(username=userName).one_or_none()
+	if user is not None:
+		newFile = UserFiles (
+			user_id=user.id,
+			file_path='D:\\Projects\\Files\\' + fileName
+		)
+		db.session.add(newFile)
+		db.session.commit()
+		return jsonify({'status': 'success'})
 	
-	return jsonify({'status': 'success'})
+	return jsonify({'status': 'failure'}), 400

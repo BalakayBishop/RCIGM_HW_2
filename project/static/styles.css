@@ -231,6 +231,19 @@ svg {
 
 .files-list > li {
     border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-icons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.bi-download:hover, .bi-x-lg:hover {
+    cursor: pointer;
 }
 
 /* ---------------------------EDIT MODAL------------------------------------------- */

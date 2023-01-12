@@ -238,7 +238,6 @@ $(document).ready(function() {
 		}
 		else if(e.target.classList[2] === 'upload') {
 			let fileinput = $(e.target).parent().siblings('div.file-input').children('input.formFile')
-			// console.log()
 			let fileName = fileinput.val()
 			fileName = fileName.replace('C:\\fakepath\\', '')
 			$(fileinput).on('change', function() {
@@ -257,10 +256,25 @@ $(document).ready(function() {
 					}),
 					success: function() {
 						fileinput.val('')
-						$('.files-list').css('display', 'block')
-						$('.files-list').append("<li class='list-group-item'>" + fileName + "</li>")
+						let fileslist = $(e.target).parent().siblings('ul.files-list')
+						fileslist.css('display', 'block')
+						fileslist.append("<li class='list-group-item files-list-item'><p>" +
+								fileName + "</p><div class='file-icons'><i class='bi bi-download'></i>" +
+							"<i class='bi bi-x-lg'></i></div></li>")
+						$('#successText').text('File successfully uploaded!')
+						$('#successAlert').css('display', 'flex')
+						$('#failAlert').css('display', 'none')
+						setTimeout(function() {
+							$('#successAlert').fadeOut(125)
+						}, 2000);
 					},
 					fail: function() {
+						$('#failedText').text('File upload failed!')
+						$('#failAlert').css('display', 'flex')
+						setTimeout(function() {
+							$('#failAlert').fadeOut(125)
+						}, 2000);
+						
 					}
 				})
 			}
