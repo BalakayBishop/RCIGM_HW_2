@@ -24,8 +24,8 @@ $(document).ready(function() {
 						"</div>" +
 						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
 						"<ul class='list-group list-group-flush files-list'></ul>" +
-					"</li>"
-				)
+					"</li>")
+					
 			}
 		},
 		fail: function() {

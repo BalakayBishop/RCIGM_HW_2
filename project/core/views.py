@@ -1,5 +1,6 @@
 # project/core/views.py
 from flask import render_template, Blueprint, request, jsonify
+from sqlalchemy import select
 from project.models.models import User, UserFiles
 from project.core.methods import is_valid, get_user, convert
 from project import db
@@ -125,6 +126,18 @@ def users():
 		return jsonify(result)
 	else:
 		return jsonify({"status": "failure"}), 400
+	
+	
+def test():
+	from sqlalchemy.orm import sessionmaker
+	from project.config import engine
+	Session = sessionmaker(bind=engine)
+	session = Session()
+	query = session.query(User.id, User.first_name, User.last_name, User.username, UserFiles.file_path)\
+		.outerjoin(UserFiles, User.id == UserFiles.user_id).all()
+	print(query)
+	
+test()
 	
 # -------------------- ROUTE: UPLOAD FILE --------------------
 @core.route('/upload', methods=['POST'])
