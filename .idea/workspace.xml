@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: created upload endpoint for files to be uploaded">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: worked out new form to query with an outer join to get all User rows and if they have a file uploaded">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/core/methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/methods.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,14 +172,7 @@
       <workItem from="1673404733222" duration="28000" />
       <workItem from="1673405333783" duration="60000" />
       <workItem from="1673454482484" duration="10983000" />
-      <workItem from="1673541551424" duration="6973000" />
-    </task>
-    <task id="LOCAL-00016" summary="Local: added new views and routes for loading user list, refactored /api endpoint to return the user dictionary object after form submission.">
-      <created>1671603688271</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1671603688271</updated>
+      <workItem from="1673541551424" duration="16672000" />
     </task>
     <task id="LOCAL-00017" summary="Local: committing workspace">
       <created>1671603704501</created>
@@ -518,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673551854148</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Local: worked out new form to query with an outer join to get all User rows and if they have a file uploaded">
+      <created>1673555176348</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1673555176348</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +536,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: minor changes to the modal window" />
     <MESSAGE value="Local: added :root css color variables for the success/fail border, background, and text color" />
     <MESSAGE value="Local: small changes" />
     <MESSAGE value="Local: small changes to index for formatting, removed if statement from new user form submission to contain both success and fail attributes for the response, and changes the view return to return either success or fail 400" />
@@ -562,11 +560,12 @@
     <MESSAGE value="Local: new changes to the upload feature for data validation" />
     <MESSAGE value="Local: more additions to the upload feature that now includes having a hidden ul under the file selector and if the ajax for upload is successful it displays a ul li for the file uploaded" />
     <MESSAGE value="Local: created upload endpoint for files to be uploaded" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: created upload endpoint for files to be uploaded" />
+    <MESSAGE value="Local: worked out new form to query with an outer join to get all User rows and if they have a file uploaded" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: worked out new form to query with an outer join to get all User rows and if they have a file uploaded" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1673554991523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1673588870008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

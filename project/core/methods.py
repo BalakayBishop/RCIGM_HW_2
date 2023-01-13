@@ -24,3 +24,27 @@ def get_user(userName):
 		return convert(user)
 	else:
 		return None
+	
+	
+def convert_join(obj):
+	lst = []
+	if type(obj) == list:
+		for i in range(0, len(obj)):
+			my_dict = {}
+			for index, key in enumerate(obj[i]):
+				if index == 0:
+					my_dict['id'] = obj[i][index]
+				elif index == 1:
+					my_dict['firstName'] = obj[i][index]
+				elif index == 2:
+					my_dict['lastName'] = obj[i][index]
+				elif index == 3:
+					my_dict['userName'] = obj[i][index]
+				else:
+					my_dict['filePath'] = obj[i][index]
+			lst.append(my_dict)
+	for i in lst:
+		print(i)
+	return lst
+	
+	

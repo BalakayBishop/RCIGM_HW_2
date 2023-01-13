@@ -2,7 +2,7 @@
 from flask import render_template, Blueprint, request, jsonify
 from sqlalchemy import select
 from project.models.models import User, UserFiles
-from project.core.methods import is_valid, get_user, convert
+from project.core.methods import is_valid, get_user, convert, convert_join
 from project import db
 
 core = Blueprint('core', __name__)
@@ -135,7 +135,7 @@ def test():
 	session = Session()
 	query = session.query(User.id, User.first_name, User.last_name, User.username, UserFiles.file_path)\
 		.outerjoin(UserFiles, User.id == UserFiles.user_id).all()
-	print(query)
+	convert_join(query)
 	
 test()
 	
