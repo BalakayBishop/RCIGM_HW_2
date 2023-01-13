@@ -23,7 +23,11 @@ $(document).ready(function() {
 							"<input class='form-control formFile' type='file'>" +
 						"</div>" +
 						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
-						"<ul class='list-group list-group-flush files-list'></ul>" +
+						"<ul style='display: flex' class='list-group list-group-flush files-list'>" +
+							"<li class='list-group-item files-list-item'><p>" +
+								response[i]['filePath'] + "</p><div class='file-icons'><i class='bi bi-download'></i>" +
+							"<i class='bi bi-x-lg'></i></div></li>" +
+						"</ul>" +
 					"</li>")
 					
 			}

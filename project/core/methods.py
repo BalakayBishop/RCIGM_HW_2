@@ -25,6 +25,17 @@ def get_user(userName):
 	else:
 		return None
 	
+def remove_dupes(lst):
+	new_list = []
+	for item in lst:
+		if item not in new_list:
+			new_list.append(item)
+	return new_list
+
+def remove_indices(indices, obj_lst):
+	new_list = [item for i, item in enumerate(obj_lst) if i not in indices]
+	return new_list
+	
 	
 def convert_join(obj):
 	lst = []
@@ -41,10 +52,26 @@ def convert_join(obj):
 				elif index == 3:
 					my_dict['userName'] = obj[i][index]
 				else:
-					my_dict['filePath'] = obj[i][index]
+					my_dict['filePath'] = [obj[i][index]]
 			lst.append(my_dict)
-	for i in lst:
-		print(i)
-	return lst
-	
+		
+		dupe_list = []
+		
+		for i in range(len(lst) - 1):
+			for j in range(i+1, len(lst)-1):
+				if lst[i]['id'] == lst[j]['id']:
+					for k in range(len(lst[i]['filePath'])):
+						if lst[i]['filePath'][k] is not None:
+							lst[j]['filePath'].append(lst[i]['filePath'][k])
+							lst[i]['filePath'][k] = None
+							dupe_list.append(i)
+			
+		new_lst = remove_dupes(dupe_list)
+		final_lst = remove_indices(new_lst, lst)
+		
+		for i in range(len(final_lst)):
+			print(i, final_lst[i])
+		
+		return final_lst
+
 	

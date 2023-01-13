@@ -86,7 +86,7 @@ svg {
 
 .jumbotron {
     background-color: #cccccc;
-    width: 40%;
+    width: 400px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
