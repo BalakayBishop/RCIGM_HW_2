@@ -278,7 +278,8 @@ svg {
 
 /* ---------------------------DELETE MODAL------------------------------------------- */
 
-.popup-overlay-delete {
+.popup-overlay-delete,
+.popup-overlay-delete-file {
     background-color: rgba(126, 126, 126, 0.8);
     position: fixed;
     padding: 1rem 2rem;
@@ -290,7 +291,8 @@ svg {
     visibility: hidden;
 }
 
-.popup-content-delete {
+.popup-content-delete,
+.popup-content-delete-file {
     background-color: white;
     border-radius: 8px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
@@ -344,9 +346,13 @@ svg {
     width: 50%;
 }
 
+.popup-content-delete-file .form-buttons > button {
+    width: 50%;
+}
+
 /* ---------------------------MODAL VISIBILITY------------------------------------------- */
 
-.popup-overlay-delete.active, .popup-content-delete.active {
+.active {
     visibility: visible;
 }
 

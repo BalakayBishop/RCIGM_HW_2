@@ -140,6 +140,7 @@ $(document).ready(function() {
 	
 	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
 	$('ul').on('click', function(e) {
+		// console.log(e)
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
 		if(e.target.classList[2] === 'list-buttons-edit') {
 			let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
@@ -245,6 +246,7 @@ $(document).ready(function() {
 				})
 			});
 		}
+		// UPLOAD FILE FUNCTION
 		else if(e.target.classList[2] === 'upload') {
 			let fileinput = $(e.target).parent().siblings('div.file-input').children('input.formFile')
 			let fileName = fileinput.val()
@@ -291,6 +293,20 @@ $(document).ready(function() {
 				fileinput.addClass('file-input-fail')
 			}
 		}
+		// DOWNLOAD FILE FUNCTION
+		else if (e.target.classList[1] === 'bi-download') {
+			let file_id = e.target.parentNode.previousSibling.value
+			// console.log(file_id)
+			
+		}
+		// DELETE FILE FUNCTION
+		else if (e.target.classList[1] === 'bi-x-lg') {
+			let file_id = e.target.parentNode.previousSibling.value
+			// console.log(file_id)
+			
+			$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
+			
+		}
 		
 		// EDIT MODAL CLOSED
 		$('.close-edit').on('click', function() {
@@ -312,12 +328,14 @@ $(document).ready(function() {
 		});
 		// DELETE MODAL CLOSE
 		$('.close-delete').on('click', function() {
-			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+			$('.popup-overlay-delete, .popup-content-delete, .popup-overlay-delete-file, .popup-content-delete-file')
+				.removeClass('active')
 			$('#infoList').html('')
 		});
 		// DELETE MODAL CLOSE X
 		$('.modal-xmark-delete').on('click', function() {
-			$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+			$('.popup-overlay-delete, .popup-content-delete, .popup-overlay-delete-file, .popup-content-delete-file')
+				.removeClass('active')
 			$('#infoList').html('')
 		});
 	});

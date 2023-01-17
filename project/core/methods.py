@@ -70,9 +70,9 @@ def convert_join(obj):
 		new_lst = remove_dupes(dupe_list)
 		final_lst = remove_indices(new_lst, lst)
 		
-		for i in range(len(final_lst)):
-			print(i, final_lst[i])
-		print()
+		# for i in range(len(final_lst)):
+		# 	print(i, final_lst[i])
+		# print()
 
 		return final_lst
 
