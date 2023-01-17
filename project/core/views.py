@@ -125,7 +125,7 @@ def users():
 	from project.config import engine
 	Session = sessionmaker(bind=engine)
 	session = Session()
-	query = session.query(User.id, User.first_name, User.last_name, User.username, UserFiles.file_path) \
+	query = session.query(User.id, User.first_name, User.last_name, User.username,UserFiles.id, UserFiles.file_path) \
 			.outerjoin(UserFiles, User.id == UserFiles.user_id).all()
 	if len(query) != 0:
 		result = convert_join(query)

@@ -40,38 +40,40 @@ def remove_indices(indices, obj_lst):
 def convert_join(obj):
 	lst = []
 	if type(obj) == list:
-		for i in range(0, len(obj)):
+		for i in range(len(obj)):
 			my_dict = {}
-			for index, key in enumerate(obj[i]):
-				if index == 0:
-					my_dict['id'] = obj[i][index]
-				elif index == 1:
-					my_dict['firstName'] = obj[i][index]
-				elif index == 2:
-					my_dict['lastName'] = obj[i][index]
-				elif index == 3:
-					my_dict['userName'] = obj[i][index]
-				else:
-					my_dict['filePath'] = [obj[i][index]]
+			for j in range(len(obj[i])):
+				match j:
+					case 0:
+						my_dict['user_id'] = obj[i][j]
+					case 1:
+						my_dict['user_firstName'] = obj[i][j]
+					case 2:
+						my_dict['user_lastName'] = obj[i][j]
+					case 3:
+						my_dict['user_userName'] = obj[i][j]
+					case 4:
+						my_dict['files'] = [{'id': obj[i][j], 'path': obj[i][j+1]}]
 			lst.append(my_dict)
 		
 		dupe_list = []
 		
-		for i in range(len(lst) - 1):
+		for i in range(0, len(lst) - 1):
 			for j in range(i+1, len(lst)-1):
-				if lst[i]['id'] == lst[j]['id']:
-					for k in range(len(lst[i]['filePath'])):
-						if lst[i]['filePath'][k] is not None:
-							lst[j]['filePath'].append(lst[i]['filePath'][k])
-							lst[i]['filePath'][k] = None
+				if lst[j]['user_id'] == lst[i]['user_id']:
+					for k in range(0, len(lst[i]['files'])):
+						if lst[i]['files'][k] is not None:
+							lst[j]['files'].append(lst[i]['files'][k])
+							lst[i]['files'][k]= None
 							dupe_list.append(i)
-			
+		
 		new_lst = remove_dupes(dupe_list)
 		final_lst = remove_indices(new_lst, lst)
 		
 		for i in range(len(final_lst)):
 			print(i, final_lst[i])
-		
-		return final_lst
+		print()
+
+		return 0
 
 	

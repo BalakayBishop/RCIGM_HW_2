@@ -6,7 +6,7 @@ $(document).ready(function() {
 		success: function(response) {
 			for(let i = 0; i < response.length; i++) {
 				$('#userList').append("" +
-					"<li class='list-group-item'>" +
+					"<li class='list-group-item userList-inner'>" +
 						"<div class='li-inner'>" +
 							"<div class='li-p-div'>" +
 								"<p>First Name: " + response[i]['firstName'] + "</p>" +
@@ -23,13 +23,7 @@ $(document).ready(function() {
 							"<input class='form-control formFile' type='file'>" +
 						"</div>" +
 						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
-						"<ul style='display: flex' class='list-group list-group-flush files-list'>" +
-							"<li class='list-group-item files-list-item'><p>" +
-								response[i]['filePath'] + "</p><div class='file-icons'><i class='bi bi-download'></i>" +
-							"<i class='bi bi-x-lg'></i></div></li>" +
-						"</ul>" +
 					"</li>")
-					
 			}
 		},
 		fail: function() {
