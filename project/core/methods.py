@@ -74,6 +74,6 @@ def convert_join(obj):
 			print(i, final_lst[i])
 		print()
 
-		return 0
+		return final_lst
 
 	

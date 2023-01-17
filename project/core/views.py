@@ -140,14 +140,15 @@ def upload():
 	data = request.get_json()
 	userName = data['userName']
 	fileName = data['fileName']
+	file_path = 'D:\\Projects\\Files\\' + fileName
 	user = User.query.filter_by(username=userName).one_or_none()
 	if user is not None:
 		newFile = UserFiles (
 			user_id=user.id,
-			file_path='D:\\Projects\\Files\\' + fileName
+			file_path=file_path
 		)
 		db.session.add(newFile)
 		db.session.commit()
-		return jsonify({'status': 'success'})
+		return jsonify({'status': 'success', 'path': file_path})
 	
 	return jsonify({'status': 'failure'}), 400

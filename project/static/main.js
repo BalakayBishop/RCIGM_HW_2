@@ -5,25 +5,40 @@ $(document).ready(function() {
 		type:'GET',
 		success: function(response) {
 			for(let i = 0; i < response.length; i++) {
-				$('#userList').append("" +
-					"<li class='list-group-item userList-inner'>" +
-						"<div class='li-inner'>" +
-							"<div class='li-p-div'>" +
-								"<p>First Name: " + response[i]['firstName'] + "</p>" +
-								"<p>Last Name: " + response[i]['lastName'] + "</p>" +
-								"<p>Username: " + response[i]['userName'] + "</p>" +
-							"</div>" +
-							"<div class='li-buttons'>" +
-								"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
-								"<button class='btn btn-danger list-buttons-delete'>Delete</button>" +
-							"</div>" +
+				let mainItem = $("<li class='list-group-item userList-inner'>" +
+					"<div class='li-inner'>" +
+						"<div class='li-p-div'>" +
+							"<p>First Name: " + response[i]['user_firstName'] + "</p>" +
+							"<p>Last Name: " + response[i]['user_lastName'] + "</p>" +
+							"<p>Username: " + response[i]['user_userName'] + "</p>" +
 						"</div>" +
-						"<div class='mb-3 file-input'>" +
-							"<label for='formFile' class='form-label'>Select File</label>" +
-							"<input class='form-control formFile' type='file'>" +
+						"<div class='li-buttons'>" +
+							"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
+							"<button class='btn btn-danger list-buttons-delete'>Delete</button>" +
 						"</div>" +
-						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
-					"</li>")
+					"</div>" +
+					"<div class='mb-3 file-input'>" +
+						"<label for='formFile' class='form-label'>Select File</label>" +
+						"<input class='form-control formFile' type='file'>" +
+					"</div>" +
+					"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
+				"</li>"); // end of mainItem
+				
+				if (response[i]['files'] !== null) {
+					let subList = $("<ul style='display: flex' class='list-group list-group-flush files-list'></ul>")
+					mainItem.append(subList)
+					$('#userList').append(mainItem)
+					for (let j = 0; j < response[i]['files'].length; j++) {
+						if (response[i]['files'][j]['path'] !== null) {
+							let subItem = $("<li class='list-group-item files-list-item'><p>" +
+								response[i]['files'][j]['path'] + "</p>" +
+								"<input type='hidden' value='" + response[i]['files'][j]['id'] + "'>" +
+								"<div class='file-icons'><i class='bi bi-download'></i> <i class='bi" +
+								" bi-x-lg'></i></div></li>")
+							subList.append(subItem)
+						}
+					}
+				}
 			}
 		},
 		fail: function() {
@@ -94,10 +109,6 @@ $(document).ready(function() {
 							"<label for='formFile' class='form-label'>Select File</label>" +
 							"<input id='file-input' class='form-control formFile' type='file'>" +
 						"</div>" +
-						"<div class='mb-3 file-input'>" +
-								"<label for='formFile' class='form-label'>Select File</label>" +
-								"<input class='form-control formFile' type='file'>" +
-							"</div>" +
 						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
 					"</li>"
 				)
@@ -252,12 +263,12 @@ $(document).ready(function() {
 						userName: userName,
 						fileName: fileName
 					}),
-					success: function() {
+					success: function(response) {
 						fileinput.val('')
 						let fileslist = $(e.target).parent().siblings('ul.files-list')
 						fileslist.css('display', 'block')
 						fileslist.append("<li class='list-group-item files-list-item'><p>" +
-								fileName + "</p><div class='file-icons'><i class='bi bi-download'></i>" +
+								response['path'] + "</p><div class='file-icons'><i class='bi bi-download'></i>" +
 							"<i class='bi bi-x-lg'></i></div></li>")
 						$('#successText').text('File successfully uploaded!')
 						$('#successAlert').css('display', 'flex')
