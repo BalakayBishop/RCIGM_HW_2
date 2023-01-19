@@ -270,7 +270,9 @@ $(document).ready(function() {
 						let fileslist = $(e.target).parent().siblings('ul.files-list')
 						fileslist.css('display', 'block')
 						fileslist.append("<li class='list-group-item files-list-item'><p>" +
-								response['path'] + "</p><div class='file-icons'><i class='bi bi-download'></i>" +
+								response['path'] + "</p>" +
+							"<input type='hidden' value='" + response['file_id'] + "'>" +
+							"<div class='file-icons'><i class='bi bi-download'></i>" +
 							"<i class='bi bi-x-lg'></i></div></li>")
 						$('#successText').text('File successfully uploaded!')
 						$('#successAlert').css('display', 'flex')
@@ -295,17 +297,36 @@ $(document).ready(function() {
 		}
 		// DOWNLOAD FILE FUNCTION
 		else if (e.target.classList[1] === 'bi-download') {
-			let file_id = e.target.parentNode.previousSibling.value
-			// console.log(file_id)
+			let file_id = $(e.target).parent('div.file-icons').siblings('input').val()
 			
 		}
 		// DELETE FILE FUNCTION
 		else if (e.target.classList[1] === 'bi-x-lg') {
 			let file_id = e.target.parentNode.previousSibling.value
-			// console.log(file_id)
-			
+			let file = e.target.parentNode.parentNode.childNodes[0].textContent
 			$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
-			
+			$('#file-info').text(file)
+			let li = e.target.parentNode.parentNode
+			$('.delete-file-submit').on('click', function() {
+				$.ajax({
+					url: '/delete_file',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({
+						file_id: file_id
+					}),
+					success: function(response) {
+						$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+						li.parentNode.removeChild(li)
+						$('#file-info').text('')
+						$('#successText').text('File successfully deleted!')
+						$('#successAlert').css('display', 'flex')
+						setTimeout(function() {
+							$('#successAlert').fadeOut(125)
+						}, 2000);
+					}
+				});
+			});
 		}
 		
 		// EDIT MODAL CLOSED
@@ -331,12 +352,14 @@ $(document).ready(function() {
 			$('.popup-overlay-delete, .popup-content-delete, .popup-overlay-delete-file, .popup-content-delete-file')
 				.removeClass('active')
 			$('#infoList').html('')
+			$('#file-info').text('')
 		});
 		// DELETE MODAL CLOSE X
 		$('.modal-xmark-delete').on('click', function() {
 			$('.popup-overlay-delete, .popup-content-delete, .popup-overlay-delete-file, .popup-content-delete-file')
 				.removeClass('active')
 			$('#infoList').html('')
+			$('#file-info').text('')
 		});
 	});
 	// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------

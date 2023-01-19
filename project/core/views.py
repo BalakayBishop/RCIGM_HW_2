@@ -1,8 +1,7 @@
 # project/core/views.py
 from flask import render_template, Blueprint, request, jsonify
-from sqlalchemy import select
 from project.models.models import User, UserFiles
-from project.core.methods import is_valid, get_user, convert, convert_join
+from project.core.methods import is_valid, get_user, get_file, convert, convert_join
 from project import db
 
 core = Blueprint('core', __name__)
@@ -120,7 +119,6 @@ def delete_user():
 # -------------------- ROUTE: GET ALL USERS IN DICT --------------------
 @core.route('/users', methods=['GET'])
 def users():
-	# query = User.query.all()
 	from sqlalchemy.orm import sessionmaker
 	from project.config import engine
 	Session = sessionmaker(bind=engine)
@@ -148,7 +146,28 @@ def upload():
 			file_path=file_path
 		)
 		db.session.add(newFile)
+		db.session.flush()
+		new_file_id = newFile.id
 		db.session.commit()
-		return jsonify({'status': 'success', 'path': file_path})
+		file = get_file(new_file_id)
+		if file is not None:
+			return jsonify({
+				'status': 'success',
+				'path': file_path,
+				'file_id': file['id']
+			})
+	
+	return jsonify({'status': 'failure'}), 400
+
+# -------------------- ROUTE: UPLOAD FILE --------------------
+@core.route('/delete_file', methods=['POST'])
+def delete_file():
+	data = request.get_json()
+	file_id = data['file_id']
+	file = UserFiles.query.filter_by(id=file_id).one_or_none()
+	if file is not None:
+		db.session.delete(file)
+		db.session.commit()
+		return jsonify({'status': 'success'})
 	
 	return jsonify({'status': 'failure'}), 400

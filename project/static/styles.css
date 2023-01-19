@@ -327,13 +327,17 @@ svg {
     flex-wrap: nowrap;
 }
 
-.userInfo {
-
-}
-
 .userInfo > p {
     margin: 8px 0 0 0;
     font-size: 24px;
+}
+
+#delete-file-header {
+    font-size: 24px;
+}
+
+#file-info {
+    padding: .5rem 1rem;
 }
 
 /* ---------------------------MODAL BUTTONS------------------------------------------- */
@@ -364,7 +368,6 @@ svg {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-end;
-    margin-top: 40px;
     gap: 8px;
 }
 

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: task completed! refactored the ajax GET for the list of users to accurately show the files that are associated with users in the sub ul and li">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/core/methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/methods.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
@@ -176,14 +177,8 @@
       <workItem from="1673454482484" duration="10983000" />
       <workItem from="1673541551424" duration="17354000" />
       <workItem from="1673621749207" duration="10041000" />
-      <workItem from="1673977066576" duration="13428000" />
-    </task>
-    <task id="LOCAL-00021" summary="Local: added and styled edit and delete buttons for each user li">
-      <created>1671645119228</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1671645119228</updated>
+      <workItem from="1673977066576" duration="14053000" />
+      <workItem from="1674081959407" duration="5671000" />
     </task>
     <task id="LOCAL-00022" summary="Local: added basic modal that I will improve upon for both edit and delete options for the user li">
       <created>1671648803136</created>
@@ -521,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673993147902</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Local: added modal for deleting files">
+      <created>1673997091809</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1673997091809</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +542,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: fixed the user update/edit modal submit and alert popup for submitting change to the selected user" />
     <MESSAGE value="Local: removed redundant var assignment" />
     <MESSAGE value="Local: formatting changes to better differentiate the alerts for new user, user update and deletion. Moved all update popups to bottom of JS file to better organize" />
     <MESSAGE value="Local: small fix to the modal edit submit function to fix a new li being made after an edit being made" />
@@ -565,11 +566,12 @@
     <MESSAGE value="Local: got the query and data massaging to work in the capacity that i would like where there is only one row for each user in DB and all the files associated to that user are in a list in the dictionary of users" />
     <MESSAGE value="Local: major changes! Added UserFiles.ID to the query, changed the convert_join to use a switch case instead of if and elif, changed data structure to store the files and paths to now be a list of dictionaries that contains key value-pair of the file's id and the file's path, had to modify the looping structure that appends the list when there is more than one user ID detected" />
     <MESSAGE value="Local: task completed! refactored the ajax GET for the list of users to accurately show the files that are associated with users in the sub ul and li" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: task completed! refactored the ajax GET for the list of users to accurately show the files that are associated with users in the sub ul and li" />
+    <MESSAGE value="Local: added modal for deleting files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: added modal for deleting files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1673996888324" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674087513848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

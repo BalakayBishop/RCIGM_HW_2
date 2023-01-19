@@ -1,4 +1,4 @@
-from project.models.models import User
+from project.models.models import User, UserFiles
 
 def is_valid(username_check):
 	usernameExist = User.query.filter_by(username=username_check).one_or_none()
@@ -22,6 +22,13 @@ def get_user(userName):
 	user = User.query.filter_by(username=userName).one_or_none()
 	if user is not None:
 		return convert(user)
+	else:
+		return None
+	
+def get_file(file_id):
+	file = UserFiles.query.filter_by(id=file_id).one_or_none()
+	if file is not None:
+		return UserFiles.as_dict(file)
 	else:
 		return None
 	
