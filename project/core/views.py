@@ -1,7 +1,7 @@
 # project/core/views.py
 from flask import render_template, Blueprint, request, jsonify
 from project.models.models import User, UserFiles
-from project.core.methods import is_valid, get_user, get_file, convert, convert_join
+from project.core.methods import is_valid, get_user, get_file, convert_join
 from project import db
 
 core = Blueprint('core', __name__)

@@ -315,7 +315,7 @@ $(document).ready(function() {
 					data: JSON.stringify({
 						file_id: file_id
 					}),
-					success: function(response) {
+					success: function() {
 						$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
 						li.parentNode.removeChild(li)
 						$('#file-info').text('')

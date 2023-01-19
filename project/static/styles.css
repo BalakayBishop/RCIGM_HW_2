@@ -123,6 +123,12 @@ svg {
     margin-top: 16px;
 }
 
+#form-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .form-control:focus {
     box-shadow: none;
     border: 1px solid #ced4da;
@@ -433,9 +439,9 @@ svg {
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    margin: 8px 0;
-    border-radius: 8px;
+    border-radius: .375rem;
     width: 250px;
+    height: 38px;
 }
 
 #successAlert > p {
@@ -457,9 +463,9 @@ svg {
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    margin: 8px 0;
-    border-radius: 8px;
+    border-radius: .375rem;
     width: 250px;
+    height: 38px;
 }
 
 #failAlert > p {

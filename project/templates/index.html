@@ -56,19 +56,19 @@
 					</div>
 					<p id="taken">Username is already taken!</p>
 					<p id="available">Username is available!</p>
-
-					<button type="submit" id="submitButton" class="btn btn-primary mb-3">Submit</button>
+					<div id="form-footer" class="mb-3">
+						<button type="submit" id="submitButton" class="btn btn-primary mb">Submit</button>
+						<!--New User Success & Fail Alert-->
+						<div id="successAlert" class="" role="alert">
+							<p id="successText">Success!</p>
+							<i id="successX" class="fa fa-times successClose" aria-hidden="true"></i>
+						</div>
+						<div id="failAlert" class="" role="alert">
+							<p id="failedText">Failed!</p>
+							<i id="failX" class="fa fa-times" aria-hidden="true"></i>
+						</div>
+					</div>
 				</form> <!--End of Form-->
-
-				<!--New User Success & Fail Alert-->
-				<div id="successAlert" class="" role="alert">
-					<p id="successText">Success!</p>
-					<i id="successX" class="fa fa-times successClose" aria-hidden="true"></i>
-				</div>
-				<div id="failAlert" class="" role="alert">
-					<p id="failedText">Failed!</p>
-					<i id="failX" class="fa fa-times" aria-hidden="true"></i>
-				</div>
 
 				<!--List of All Users-->
 				<h2>List of All Users</h2>
