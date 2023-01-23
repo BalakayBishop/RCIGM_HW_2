@@ -3,7 +3,7 @@ from project import db
 
 class User(db.Model):
 	__tablename__ = 'user'
-	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	first_name = db.Column(db.String(50))
 	last_name = db.Column(db.String(50))
 	username = db.Column(db.String(50), unique=True)
@@ -28,8 +28,8 @@ class User(db.Model):
 class UserFiles(db.Model):
 	__tablename__ = 'files'
 	
-	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
+	file_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.user_id', ondelete='CASCADE'))
 	file_path = db.Column(db.String(255))
 	
 	def __init__(self, user_id, file_path):

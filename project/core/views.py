@@ -123,13 +123,11 @@ def users():
 	from project.config import engine
 	Session = sessionmaker(bind=engine)
 	session = Session()
-	query = session.query(User.id, User.first_name, User.last_name, User.username,UserFiles.id, UserFiles.file_path) \
-			.outerjoin(UserFiles, User.id == UserFiles.user_id).all()
-	if len(query) != 0:
-		result = convert_join(query)
-		return jsonify(result)
-	else:
-		return jsonify({"status": "failure"}), 400
+	query = session.query(UserFiles).outerjoin(User).all()
+	result = convert_join(query)
+	# print(query)
+	
+	return jsonify({"status": "success"}), 200
 
 	
 # -------------------- ROUTE: UPLOAD FILE --------------------

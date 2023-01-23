@@ -287,7 +287,6 @@ $(document).ready(function() {
 						setTimeout(function() {
 							$('#failAlert').fadeOut(125)
 						}, 2000);
-						
 					}
 				})
 			}

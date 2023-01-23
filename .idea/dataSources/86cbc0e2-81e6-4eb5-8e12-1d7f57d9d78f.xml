@@ -1079,8 +1079,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="304" parent="302" name="id">
-      <AutoIncrement>8</AutoIncrement>
+    <column id="304" parent="302" name="file_id">
+      <AutoIncrement>18</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1096,11 +1096,11 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <foreign-key id="307" parent="302" name="user_filesFK">
       <ColNames>user_id</ColNames>
       <OnDelete>cascade</OnDelete>
-      <RefColNames>id</RefColNames>
+      <RefColNames>user_id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
     <index id="308" parent="302" name="PRIMARY">
-      <ColNames>id</ColNames>
+      <ColNames>file_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1113,7 +1113,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="311" parent="303" name="id">
+    <column id="311" parent="303" name="user_id">
       <AutoIncrement>67</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1135,7 +1135,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>4</Position>
     </column>
     <index id="315" parent="303" name="PRIMARY">
-      <ColNames>id</ColNames>
+      <ColNames>user_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
