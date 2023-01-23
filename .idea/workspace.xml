@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: making backend changes to the query to get all the users and files">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: reformatted data structure to be simpler and more efficient">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/core/methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/methods.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,14 +178,7 @@
       <workItem from="1673977066576" duration="14053000" />
       <workItem from="1674081959407" duration="7466000" />
       <workItem from="1674235113808" duration="1180000" />
-      <workItem from="1674492863630" duration="8664000" />
-    </task>
-    <task id="LOCAL-00025" summary="Local: small changes made to the successful and failed user updates">
-      <created>1671856023211</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1671856023211</updated>
+      <workItem from="1674492863630" duration="10320000" />
     </task>
     <task id="LOCAL-00026" summary="Local: small changes made to the successful and failed user updates and to the modals for opening and closing">
       <created>1672162666644</created>
@@ -522,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674495660105</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Local: reformatted data structure to be simpler and more efficient">
+      <created>1674505801688</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1674505801688</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +542,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: adding new features for uploading files. Added new db.Model class to reflect changes made to database in MySQL, and connected the User class to the new class via db.relationship" />
     <MESSAGE value="Local: made major changes to the JS, removed a lot of vanilla JS and replaced it with jQuery (broke my modal for delete)" />
     <MESSAGE value="Local: fixed the modal, class name was wrong for delete button" />
     <MESSAGE value="Local: changes made to remove vanilla JS and replace it with jQuery and to reduce file size" />
@@ -566,11 +566,12 @@
     <MESSAGE value="Local: finished delete file functionality! added new route in views.py, added new method to get the newly created file as a dictionary in methods.py" />
     <MESSAGE value="Local: styling changes made to the alerts" />
     <MESSAGE value="Local: making backend changes to the query to get all the users and files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: making backend changes to the query to get all the users and files" />
+    <MESSAGE value="Local: reformatted data structure to be simpler and more efficient" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: reformatted data structure to be simpler and more efficient" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674505595030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674507327526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -32,7 +32,6 @@
 
 .content {
     width: 100%;
-    max-width: 640px;
 }
 
 #index-header {
@@ -197,59 +196,19 @@ svg {
     border-color: #0d6efd;
 }
 
-/* ---------------------------USER LIST------------------------------------------- */
-.li-inner {
+/* ---------------------------USER TABLE------------------------------------------- */
+th, td {
+    text-align: center!important;
+    vertical-align: middle;
+}
+
+.action-buttons {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-between;
+    flex-wrap: nowrap;
     align-items: center;
-}
-
-.li-p-div {
-    display: inline-block;
-}
-
-.li-buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 144px;
-}
-
-.file-input {
-    margin-top: 8px;
-}
-
-.list-group-item {
-    border-color: #999999!important;
-}
-
-.file-input-fail {
-    border: solid 1px var(--fail-border);
-    color: var(--fail-color);
-    background-color: var(--fail-bg);
-}
-
-.files-list {
-    display: none;
-}
-
-.files-list > li {
-    border: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.file-icons {
-    display: flex;
+    justify-content: center;
     gap: 8px;
-    align-items: center;
-}
-
-.bi-download:hover, .bi-x-lg:hover {
-    cursor: pointer;
 }
 
 /* ---------------------------EDIT MODAL------------------------------------------- */

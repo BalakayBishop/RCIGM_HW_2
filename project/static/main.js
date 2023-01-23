@@ -4,45 +4,10 @@ $(document).ready(function() {
 		url: '/users',
 		type:'GET',
 		success: function(response) {
-			for(let i = 0; i < response.length; i++) {
-				let mainItem = $("<li class='list-group-item userList-inner'>" +
-					"<div class='li-inner'>" +
-						"<div class='li-p-div'>" +
-							"<p>First Name: " + response[i]['user_firstName'] + "</p>" +
-							"<p>Last Name: " + response[i]['user_lastName'] + "</p>" +
-							"<p>Username: " + response[i]['user_userName'] + "</p>" +
-						"</div>" +
-						"<div class='li-buttons'>" +
-							"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
-							"<button class='btn btn-danger list-buttons-delete'>Delete</button>" +
-						"</div>" +
-					"</div>" +
-					"<div class='mb-3 file-input'>" +
-						"<label for='formFile' class='form-label'>Select File</label>" +
-						"<input class='form-control formFile' type='file'>" +
-					"</div>" +
-					"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
-				"</li>"); // end of mainItem
-				
-				if (response[i]['files'] !== null) {
-					let subList = $("<ul style='display: flex' class='list-group list-group-flush files-list'></ul>")
-					mainItem.append(subList)
-					$('#userList').append(mainItem)
-					for (let j = 0; j < response[i]['files'].length; j++) {
-						if (response[i]['files'][j]['path'] !== null) {
-							let subItem = $("<li class='list-group-item files-list-item'><p>" +
-								response[i]['files'][j]['path'] + "</p>" +
-								"<input type='hidden' value='" + response[i]['files'][j]['id'] + "'>" +
-								"<div class='file-icons'><i class='bi bi-download'></i> <i class='bi" +
-								" bi-x-lg'></i></div></li>")
-							subList.append(subItem)
-						}
-					}
-				}
-			}
+			for(let i = 0; i < response.length; i++) {}
 		},
 		fail: function() {
-			$('#userList').append("<li class='list-group-item fail-list'>Error Loading Users</li>")
+		
 		}
 	});
 	// ------------------------------------- USERNAME VALIDATION -------------------------------------
@@ -92,26 +57,6 @@ $(document).ready(function() {
 				userName: $('#userName').val()
 			}),
 			success: function(response) {
-				$('#userList').append("" +
-					"<li class='list-group-item'>" +
-						"<div class='li-inner'>" +
-							"<div class='li-p-div'>" +
-								"<p>First Name: " + response['firstName'] + "</p>" +
-								"<p>Last Name: " + response['lastName'] + "</p>" +
-								"<p>Username: " + response['userName'] + "</p>" +
-							"</div>" +
-							"<div class='li-buttons'>" +
-								"<button class='btn btn-success list-buttons-edit'>Edit</button>" +
-								"<button class='btn btn-danger list-buttons-delete'>Delete</button>" +
-							"</div>" +
-						"</div>" +
-						"<div class='mb-3 file-input'>" +
-							"<label for='formFile' class='form-label'>Select File</label>" +
-							"<input id='file-input' class='form-control formFile' type='file'>" +
-						"</div>" +
-						"<div id='upload-btn'><button class='btn btn-primary upload'>Upload</button></div>" +
-					"</li>"
-				)
 				$('#successText').text('User successfully created!')
 				$('#successAlert').css('display', 'flex')
 				setTimeout(function() {
@@ -139,22 +84,22 @@ $(document).ready(function() {
 	});
 	
 	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
-	$('ul').on('click', function(e) {
-		// console.log(e)
+	$('table').on('click', function(e) {
+		console.log(e)
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
-		if(e.target.classList[2] === 'list-buttons-edit') {
-			let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
-			firstName = firstName.replace('First Name: ', '')
-			let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
-			lastName = lastName.replace('Last Name: ', '')
-			let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
-			userName = userName.replace('Username: ', '')
+		if(e.target.classList[2] === 'table-buttons-edit') {
+			// let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
+			// firstName = firstName.replace('First Name: ', '')
+			// let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
+			// lastName = lastName.replace('Last Name: ', '')
+			// let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
+			// userName = userName.replace('Username: ', '')
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
-			$('#modal-firstName').val(firstName)
-			$('#modal-lastName').val(lastName)
-			$('#modal-userName').val(userName)
-			let currentUsername = userName
+			// $('#modal-firstName').val(firstName)
+			// $('#modal-lastName').val(lastName)
+			// $('#modal-userName').val(userName)
+			// let currentUsername = userName
 			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
 			$('#modal-submitButton').on('click', function(e2) {
 				e2.preventDefault()
