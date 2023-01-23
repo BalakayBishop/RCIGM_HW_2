@@ -44,9 +44,18 @@ def remove_indices(indices, obj_lst):
 	return new_list
 	
 	
-def convert_join(obj):
-	for sql_obj in obj:
-		print(sql_obj.user_id, sql_obj.file_id)
-	return 0
+def convert_join(query):
+	lst = list()
+	i = 0
+	if len(query) != 0:
+		for obj in query:
+			lst.append({"user_id": obj.user_id,"user_firstName": obj.first_name,"user_lastName": obj.last_name,"user_userName": obj.username,"files": []})
+			for file in obj.files:
+				lst[i]['files'].append({"file_id": file.file_id, "file_path": file.file_path})
+			i += 1
+		# for i in lst:
+		# 	print(i)
+		return lst
+	return None
 
 	

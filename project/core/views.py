@@ -123,12 +123,11 @@ def users():
 	from project.config import engine
 	Session = sessionmaker(bind=engine)
 	session = Session()
-	query = session.query(UserFiles).outerjoin(User).all()
+	query = session.query(User).outerjoin(UserFiles).all()
 	result = convert_join(query)
-	# print(query)
-	
-	return jsonify({"status": "success"}), 200
-
+	if result is not None:
+		return jsonify(result), 200
+	return jsonify({"status": "fail"}), 400
 	
 # -------------------- ROUTE: UPLOAD FILE --------------------
 @core.route('/upload', methods=['POST'])
