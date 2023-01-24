@@ -202,6 +202,14 @@ th, td {
     vertical-align: middle;
 }
 
+.table {
+    border-color: rgb(191, 191, 191);
+}
+
+.list-group-item {
+    border-color: rgb(204, 204, 204);
+}
+
 .action-buttons {
     display: flex;
     flex-direction: row;
@@ -209,6 +217,27 @@ th, td {
     align-items: center;
     justify-content: center;
     gap: 8px;
+}
+
+.files {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.files-icons {
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+i {
+    cursor: pointer;
 }
 
 /* ---------------------------EDIT MODAL------------------------------------------- */

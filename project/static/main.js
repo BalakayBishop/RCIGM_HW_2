@@ -4,7 +4,38 @@ $(document).ready(function() {
 		url: '/users',
 		type:'GET',
 		success: function(response) {
-			for(let i = 0; i < response.length; i++) {}
+			for(let i = 0; i < response.length; i++) {
+				// console.log(response[i]['files'])
+				
+				let main = $("<tr>" +
+					"<th scope='row'>" + response[i]['user_id'] + "</th>" +
+					"<td>" + response[i]['user_firstName'] + "</td>" +
+					"<td>" + response[i]['user_lastName'] + "</td>" +
+					"<td>" + response[i]['user_userName'] + "</td>" +
+				"</tr>")
+				
+				let td = $("<td></td>")
+				let ul = $("<ul class='list-group list-group-flush '></ul>")
+				td.append(ul)
+				main.append(td)
+				$('tbody').append(main)
+					for (let j = 0; j < response[i]['files'].length; j++) {
+						let li = $("<li class='list-group-item' value='"+response[i]['files'][j]['file_id']+"'>"+
+							"<div class='files'>" +
+								"<p>" + response[i]['files'][j]['file_path'] + "</p>" +
+								"<div class='files-icons'>" +
+									"<i class='bi bi-download'></i>" +
+									"<i class='bi bi-x-lg'></i>" +
+								"</div>" +
+							"</div>" +
+						"</li>")
+						ul.append(li)
+					}
+				main.append("<td><div class='action-buttons'>" +
+					"<button class='btn btn-primary table-buttons-edit'>Edit</button>" +
+					"<button class='btn btn-danger table-buttons-delete'>Delete</button>" +
+					"</div></td>")
+			}
 		},
 		fail: function() {
 		
@@ -88,18 +119,8 @@ $(document).ready(function() {
 		console.log(e)
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
 		if(e.target.classList[2] === 'table-buttons-edit') {
-			// let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
-			// firstName = firstName.replace('First Name: ', '')
-			// let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
-			// lastName = lastName.replace('Last Name: ', '')
-			// let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
-			// userName = userName.replace('Username: ', '')
 			// MODAL OPEN
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
-			// $('#modal-firstName').val(firstName)
-			// $('#modal-lastName').val(lastName)
-			// $('#modal-userName').val(userName)
-			// let currentUsername = userName
 			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
 			$('#modal-submitButton').on('click', function(e2) {
 				e2.preventDefault()
@@ -111,15 +132,12 @@ $(document).ready(function() {
 						firstName: $('#modal-firstName').val(),
 						lastName: $('#modal-lastName').val(),
 						userName: $('#modal-userName').val(),
-						currentUsername: currentUsername
+						currentUsername: 'currentUsername'
 					}),
 					success: function(response) {
 						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 						$('#successText').val("User successfully updated!")
 						$('#successAlert').css('display', 'flex')
-						e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent = "First Name: " + response['firstName']
-						e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent = "Last Name: " + response['lastName']
-						e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent = "Username: " + response['userName']
 						setTimeout(function() {
 							$('#successAlert').fadeOut(125)
 						}, 2000);
@@ -147,28 +165,18 @@ $(document).ready(function() {
 			});
 		}
 		// ------------------------------- CLICK DELETE BUTTON --------------------------------
-		else if(e.target.classList[2] === 'list-buttons-delete') {
-			let firstName = e.target.parentNode.parentNode.childNodes[0].childNodes[0].textContent
-			firstName = firstName.replace('First Name: ', '')
-			let lastName = e.target.parentNode.parentNode.childNodes[0].childNodes[1].textContent
-			lastName = lastName.replace('Last Name: ', '')
-			let userName = e.target.parentNode.parentNode.childNodes[0].childNodes[2].textContent
-			userName = userName.replace('Username: ', '')
-			let li = e.target.parentNode.parentNode.parentNode
+		else if(e.target.classList[2] === 'table-buttons-delete') {
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
-			$('#infoList').append("<li class='list-group-item'>First Name: " + firstName + "</li>" +
-				"<li class='list-group-item'>Last Name: " + lastName + "</li>" +
-				"<li class='list-group-item'>Username: " + userName + "</li>");
+			
 			$('.delete-submit').on('click', function() {
 				$.ajax({
 					url: '/delete_user',
 					type: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify({
-						userName: userName
+						userName: 'userName'
 					}),
 					success: function() {
-						li.parentNode.removeChild(li)
 						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
 						$('#infoList').html('')
 						$('#successText').text('User successfully deleted!')
@@ -193,12 +201,6 @@ $(document).ready(function() {
 		}
 		// UPLOAD FILE FUNCTION
 		else if(e.target.classList[2] === 'upload') {
-			let fileinput = $(e.target).parent().siblings('div.file-input').children('input.formFile')
-			let fileName = fileinput.val()
-			fileName = fileName.replace('C:\\fakepath\\', '')
-			$(fileinput).on('change', function() {
-				fileinput.removeClass('file-input-fail')
-			})
 			if(fileName !== '') {
 				let userName = $(e.target).parent().siblings('div.li-inner').children('div.li-p-div').children(':eq(2)').text()
 				userName = userName.replace('Username: ', '')
@@ -211,14 +213,6 @@ $(document).ready(function() {
 						fileName: fileName
 					}),
 					success: function(response) {
-						fileinput.val('')
-						let fileslist = $(e.target).parent().siblings('ul.files-list')
-						fileslist.css('display', 'block')
-						fileslist.append("<li class='list-group-item files-list-item'><p>" +
-								response['path'] + "</p>" +
-							"<input type='hidden' value='" + response['file_id'] + "'>" +
-							"<div class='file-icons'><i class='bi bi-download'></i>" +
-							"<i class='bi bi-x-lg'></i></div></li>")
 						$('#successText').text('File successfully uploaded!')
 						$('#successAlert').css('display', 'flex')
 						$('#failAlert').css('display', 'none')
@@ -236,41 +230,8 @@ $(document).ready(function() {
 				})
 			}
 			else {
-				fileinput.addClass('file-input-fail')
-			}
-		}
-		// DOWNLOAD FILE FUNCTION
-		else if (e.target.classList[1] === 'bi-download') {
-			let file_id = $(e.target).parent('div.file-icons').siblings('input').val()
 			
-		}
-		// DELETE FILE FUNCTION
-		else if (e.target.classList[1] === 'bi-x-lg') {
-			let file_id = e.target.parentNode.previousSibling.value
-			let file = e.target.parentNode.parentNode.childNodes[0].textContent
-			$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
-			$('#file-info').text(file)
-			let li = e.target.parentNode.parentNode
-			$('.delete-file-submit').on('click', function() {
-				$.ajax({
-					url: '/delete_file',
-					type: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify({
-						file_id: file_id
-					}),
-					success: function() {
-						$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
-						li.parentNode.removeChild(li)
-						$('#file-info').text('')
-						$('#successText').text('File successfully deleted!')
-						$('#successAlert').css('display', 'flex')
-						setTimeout(function() {
-							$('#successAlert').fadeOut(125)
-						}, 2000);
-					}
-				});
-			});
+			}
 		}
 		
 		// EDIT MODAL CLOSED
@@ -341,11 +302,11 @@ $(document).ready(function() {
 	});
 	// ------------------------------------- SUCCESS ALERT CLOSE -------------------------------------
 	$('#successX').on('click', function() {
-		$('#successAlert').hide()
+		$('#successAlert').css('display', 'none')
 	});
 	//------------------------------------- FAIL ALERT CLOSE -------------------------------------
 	$('#failX').on('click', function() {
-		$('#failAlert').hide()
+		$('#failAlert').css('display', 'none')
 	});
 	// ------------------------------------- PAGE REDIRECT -------------------------------------
 	$('#landing-redirect').on('click', function() {
