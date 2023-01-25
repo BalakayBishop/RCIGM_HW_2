@@ -8,6 +8,9 @@ $(document).ready(function() {
 				// console.log(response[i]['files'])
 				
 				let main = $("<tr>" +
+					"<td><div class='action-icons'>" +
+						"<i class='bi bi-pencil-square'></i> <i class='bi bi-trash3'></i>" +
+					"</div></td>" +
 					"<th scope='row'>" + response[i]['user_id'] + "</th>" +
 					"<td>" + response[i]['user_firstName'] + "</td>" +
 					"<td>" + response[i]['user_lastName'] + "</td>" +
@@ -31,9 +34,12 @@ $(document).ready(function() {
 						"</li>")
 						ul.append(li)
 					}
-				main.append("<td><div class='action-buttons'>" +
-					"<button class='btn btn-primary table-buttons-edit'>Edit</button>" +
-					"<button class='btn btn-danger table-buttons-delete'>Delete</button>" +
+				main.append("<td><div class='input-div'>" +
+						"<label for='file-input' class='form-label'>Upload File</label>" +
+						"<input class='form-control file-input' type='file'>" +
+					"</div>" +
+					"<div class='upload-button-div mt-2'>" +
+						"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
 					"</div></td>")
 			}
 		},
@@ -116,11 +122,19 @@ $(document).ready(function() {
 	
 	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
 	$('table').on('click', function(e) {
-		console.log(e)
+		// console.log(e)
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
-		if(e.target.classList[2] === 'table-buttons-edit') {
+		if(e.target.classList[1] === 'bi-pencil-square') {
 			// MODAL OPEN
+			let userid_val = e.target.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].textContent
+			let firstname_val = e.target.parentNode.parentNode.parentNode.childNodes[2].childNodes[0].textContent
+			let lastname_val = e.target.parentNode.parentNode.parentNode.childNodes[3].childNodes[0].textContent
+			let username_val = e.target.parentNode.parentNode.parentNode.childNodes[4].childNodes[0].textContent
+			
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
+			$('#modal-firstName').val(firstname_val)
+			$('#modal-lastName').val(lastname_val)
+			$('#modal-userName').val(username_val)
 			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
 			$('#modal-submitButton').on('click', function(e2) {
 				e2.preventDefault()
@@ -132,7 +146,7 @@ $(document).ready(function() {
 						firstName: $('#modal-firstName').val(),
 						lastName: $('#modal-lastName').val(),
 						userName: $('#modal-userName').val(),
-						currentUsername: 'currentUsername'
+						current_userid: userid_val
 					}),
 					success: function(response) {
 						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
@@ -165,7 +179,7 @@ $(document).ready(function() {
 			});
 		}
 		// ------------------------------- CLICK DELETE BUTTON --------------------------------
-		else if(e.target.classList[2] === 'table-buttons-delete') {
+		else if(e.target.classList[1] === 'bi-trash3') {
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
 			
 			$('.delete-submit').on('click', function() {

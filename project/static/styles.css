@@ -198,8 +198,19 @@ svg {
 
 /* ---------------------------USER TABLE------------------------------------------- */
 th, td {
-    text-align: center!important;
+    text-align: center;
     vertical-align: middle;
+}
+
+div.input-div {
+    text-align: left;
+}
+
+.upload-button-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
 }
 
 .table {
@@ -210,13 +221,21 @@ th, td {
     border-color: rgb(204, 204, 204);
 }
 
-.action-buttons {
+.action-icons {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     gap: 8px;
+}
+
+.action-icons > .bi-pencil-square {
+    color: var(--success-color);
+}
+
+.action-icons > .bi-trash3 {
+    color: var(--fail-color);
 }
 
 .files {
@@ -363,6 +382,7 @@ i {
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
+    margin-top: 2rem!important;
 }
 
 .popup-content-edit > p {
@@ -402,7 +422,7 @@ i {
     color: var(--success-color);
     display: none;
     position: absolute;
-    bottom: 60px;
+    bottom: 56px;
     left: 44px;
 }
 
