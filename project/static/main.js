@@ -126,6 +126,7 @@ $(document).ready(function() {
 		// ------------------------------- CLICK EDIT BUTTON --------------------------------
 		if(e.target.classList[1] === 'bi-pencil-square') {
 			// MODAL OPEN
+			$('#modal-submitButton').prop('disabled', true)
 			let userid_val = e.target.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].textContent
 			let firstname_val = e.target.parentNode.parentNode.parentNode.childNodes[2].childNodes[0].textContent
 			let lastname_val = e.target.parentNode.parentNode.parentNode.childNodes[3].childNodes[0].textContent
@@ -135,6 +136,34 @@ $(document).ready(function() {
 			$('#modal-firstName').val(firstname_val)
 			$('#modal-lastName').val(lastname_val)
 			$('#modal-userName').val(username_val)
+			let input_firstname = false;
+			let input_lastname = false;
+			let input_username = false;
+			$('#modal-firstName').on('change', function() {
+				input_firstname = true
+				allChanged()
+			})
+			$('#modal-lastName').on('change', function() {
+				input_lastname = true
+				allChanged()
+			})
+			$('#modal-userName').on('change', function() {
+				input_username = true
+				allChanged()
+			})
+			function allChanged() {
+				if (input_firstname || input_lastname || input_username) {
+					if ($('#modal-firstName').val(firstname_val) !== '' && $('#modal-lastName').val(lastname_val) !== '' && $('#modal-userName').val(username_val) !== '') {
+						$('#modal-submitButton').prop('disabled', false)
+					}
+					else {
+						$('#modal-submitButton').prop('disabled', true)
+					}
+				}
+				else {
+					$('#modal-submitButton').prop('disabled', true)
+				}
+			}
 			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
 			$('#modal-submitButton').on('click', function(e2) {
 				e2.preventDefault()
@@ -149,6 +178,7 @@ $(document).ready(function() {
 						current_userid: userid_val
 					}),
 					success: function(response) {
+						console.log(e2)
 						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 						$('#successText').val("User successfully updated!")
 						$('#successAlert').css('display', 'flex')
@@ -246,9 +276,6 @@ $(document).ready(function() {
 					}
 				})
 			}
-			else {
-			
-			}
 		}
 		
 		// EDIT MODAL CLOSED
@@ -304,13 +331,13 @@ $(document).ready(function() {
 				else if (response['class'] === 'fail') {
 					$('.modal-username').addClass('fail')
 					$('.modal-username').removeClass('success')
-					$('#modal-submitButton').prop('disabled', false)
+					$('#modal-submitButton').prop('disabled', true)
 					$('#modal-available').css('display', 'none')
 					$('#modal-taken').css('display', 'block')
 				}
 				else if (response['class'] === 'none') {
 					$('.modal-username').removeClass('success fail')
-					$('#modal-submitButton').prop('disabled', false)
+					$('#modal-submitButton').prop('disabled', true)
 					$('#modal-available').css('display', 'none')
 					$('#modal-taken').css('display', 'none')
 				}

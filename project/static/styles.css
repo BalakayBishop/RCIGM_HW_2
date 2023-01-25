@@ -389,6 +389,10 @@ i {
     color: #333333;
 }
 
+#modal-form {
+    margin-top: 2rem;
+}
+
 /* ---------------------------MODAL HEADER AND X------------------------------------------- */
 
 .modalHeader {
