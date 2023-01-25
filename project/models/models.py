@@ -15,15 +15,6 @@ class User(db.Model):
 		self.last_name = last_name
 		self.username = username
 	
-	def as_dict(self):
-		user = {
-			'id': self.id,
-			'firstName': self.first_name,
-			'lastName': self.last_name,
-			'userName': self.username
-		}
-		return user
-	
 	
 class UserFiles(db.Model):
 	__tablename__ = 'files'

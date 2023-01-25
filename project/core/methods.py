@@ -7,13 +7,6 @@ def is_valid(username_check):
 	elif usernameExist is not None:
 		return False
 	
-def get_file(file_id):
-	file = UserFiles.query.filter_by(id=file_id).one_or_none()
-	if file is not None:
-		return UserFiles.as_dict(file)
-	else:
-		return None
-	
 def convert_join(query):
 	lst = list()
 	i = 0

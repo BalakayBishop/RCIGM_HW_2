@@ -214,19 +214,22 @@ $(document).ready(function() {
 			});
 		}
 		// UPLOAD FILE FUNCTION
-		else if(e.target.classList[2] === 'upload') {
+		else if(e.target.classList[2] === 'upload-button') {
+			console.log(e)
+			let fileName = e.target.parentNode.previousSibling.childNodes[1].value
+			fileName = fileName.replace("C:\\fakepath\\", "")
 			if(fileName !== '') {
-				let userName = $(e.target).parent().siblings('div.li-inner').children('div.li-p-div').children(':eq(2)').text()
-				userName = userName.replace('Username: ', '')
+				let user_id = e.target.parentNode.parentNode.parentNode.childNodes[1].textContent
 				$.ajax({
 					url: '/upload',
 					type: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify({
-						userName: userName,
+						user_id: user_id,
 						fileName: fileName
 					}),
 					success: function(response) {
+						console.log(response)
 						$('#successText').text('File successfully uploaded!')
 						$('#successAlert').css('display', 'flex')
 						$('#failAlert').css('display', 'none')

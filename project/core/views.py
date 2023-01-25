@@ -1,7 +1,7 @@
 # project/core/views.py
 from flask import render_template, Blueprint, request, jsonify
 from project.models.models import User, UserFiles
-from project.core.methods import is_valid, get_file, convert_join
+from project.core.methods import is_valid, convert_join
 from project import db
 
 core = Blueprint('core', __name__)
@@ -128,26 +128,24 @@ def users():
 @core.route('/upload', methods=['POST'])
 def upload():
 	data = request.get_json()
-	userName = data['userName']
+	user_id = data['user_id']
 	fileName = data['fileName']
 	file_path = 'D:\\Projects\\Files\\' + fileName
-	user = User.query.filter_by(username=userName).one_or_none()
+	user = User.query.filter_by(user_id=user_id).one_or_none()
 	if user is not None:
 		newFile = UserFiles (
-			user_id=user.id,
+			user_id=user.user_id,
 			file_path=file_path
 		)
 		db.session.add(newFile)
 		db.session.flush()
-		new_file_id = newFile.id
 		db.session.commit()
-		file = get_file(new_file_id)
-		if file is not None:
-			return jsonify({
-				'status': 'success',
-				'path': newFile.file_path,
-				'file_id': newFile.id
-			})
+		
+		return jsonify({
+			'status': 'success',
+			'path': newFile.file_path,
+			'file_id': newFile.file_id
+		})
 	
 	return jsonify({'status': 'fail'}), 400
 
