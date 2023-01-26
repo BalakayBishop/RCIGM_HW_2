@@ -43,7 +43,7 @@ $(document).ready(function() {
 					"</div></td>")
 			}
 		},
-		error: function(jqXHR, textStatus, errorThrown) {
+		error: function(jqXHR) {
 			if (jqXHR.status === 400) {
 			
 			}
@@ -125,7 +125,7 @@ $(document).ready(function() {
 				$('#available').css('display', 'none')
 				$('#taken').css('display', 'none')
 			},
-			error: function(jqXHR, textStatus, errorThrown) {
+			error: function(jqXHR) {
 				if (jqXHR.status === 400) {
 					$('#form')[0].reset()
 					$('#failedText').text('User creation failed!')
@@ -236,17 +236,25 @@ $(document).ready(function() {
 		// ------------------------------- CLICK DELETE BUTTON --------------------------------
 		else if(e.target.classList[1] === 'bi-trash3') {
 			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
-			
+			let $user_id = $(e.target).closest('tr').find('th').text()
+			let $first_name = $(e.target).closest('tr').find('td:eq(1)').text()
+			let $last_name = $(e.target).closest('tr').find('td:eq(2)').text()
+			let $username = $(e.target).closest('tr').find('td:eq(3)').text()
+			$('#infoList').append("<li class='list-group-item'>User ID: " + $user_id + " </li>" +
+				"<li class='list-group-item'>First Name: " + $first_name + "</li>" +
+				"<li class='list-group-item'>Last Name: " + $last_name + "</li>" +
+				"<li class='list-group-item'>Username: " + $username + "</li>")
 			$('.delete-submit').on('click', function() {
 				$.ajax({
 					url: '/delete_user',
 					type: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify({
-						userName: 'userName'
+						user_id: $user_id
 					}),
 					success: function() {
 						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+						$(e.target).closest("tr").remove();
 						$('#infoList').html('')
 						$('#successText').text('User successfully deleted!')
 						$('#successAlert').css('display', 'flex')
@@ -270,11 +278,11 @@ $(document).ready(function() {
 		}
 		// UPLOAD FILE FUNCTION
 		else if(e.target.classList[2] === 'upload-button') {
-			console.log(e)
-			let fileName = e.target.parentNode.previousSibling.childNodes[1].value
+			let fileName = $(e.target).closest('tr').find('td:eq(5) input').val()
 			fileName = fileName.replace("C:\\fakepath\\", "")
 			if(fileName !== '') {
-				let user_id = e.target.parentNode.parentNode.parentNode.childNodes[1].textContent
+				let user_id = $(e.target).closest('tr').find('th').text()
+				console.log(user_id)
 				$.ajax({
 					url: '/upload',
 					type: 'POST',
@@ -292,9 +300,9 @@ $(document).ready(function() {
 							"</div>" +
 							"</div>" +
 							"</li>");
-						let $list = $(e.target).parent().parent().prev().find('ul');
+						let $list = $(e.target).closest('tr').find('td:eq(4) ul');
 						$list.append(new_li);
-						e.target.parentNode.previousSibling.childNodes[1].value = ''
+						$(e.target).closest('tr').find('td:eq(5) input').val('')
 						$('#successText').text('File successfully uploaded!')
 						$('#successAlert').css('display', 'flex')
 						$('#failAlert').css('display', 'none')

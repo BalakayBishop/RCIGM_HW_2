@@ -65,7 +65,7 @@ def new_user():
 			'userName': user.username,
 			'firstName': user.first_name,
 			'lastName': user.last_name
-		})
+		}), 200
 	
 	return jsonify({ 'status': 'fail' }), 400
 
@@ -94,7 +94,7 @@ def update_user():
 			'userName': user.username,
 			'firstName': user.first_name,
 			'lastName': user.last_name
-		})
+		}), 200
 	
 	return jsonify({'status': 'fail'}), 400
 
@@ -103,14 +103,14 @@ def update_user():
 @core.route('/delete_user', methods=['POST'])
 def delete_user():
 	data = request.get_json()
-	username = data['userName']
+	user_id = data['user_id']
 	
-	if len(username) != 0:
-		user = User.query.filter_by(username=username).one_or_none()
+	if len(user_id) != 0:
+		user = session.query(User).filter_by(user_id=user_id).one_or_none()
 		if user is not None:
 			session.delete(user)
 			session.commit()
-			return jsonify({'status': 'success'})
+			return jsonify({'status': 'success'}), 200
 		
 	return jsonify({'status': 'fail'}), 400
 
@@ -146,7 +146,7 @@ def upload():
 			'status': 'success',
 			'path': newFile.file_path,
 			'file_id': newFile.file_id
-		})
+		}), 200
 	
 	return jsonify({'status': 'fail'}), 400
 
@@ -159,6 +159,6 @@ def delete_file():
 	if file is not None:
 		session.delete(file)
 		session.commit()
-		return jsonify({'status': 'success'})
+		return jsonify({'status': 'success'}), 200
 	
 	return jsonify({'status': 'fail'}), 400
