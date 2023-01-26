@@ -43,8 +43,10 @@ $(document).ready(function() {
 					"</div></td>")
 			}
 		},
-		fail: function() {
-		
+		error: function(jqXHR, textStatus, errorThrown) {
+			if (jqXHR.status === 400) {
+			
+			}
 		}
 	});
 	// ------------------------------------- USERNAME VALIDATION -------------------------------------
@@ -94,6 +96,24 @@ $(document).ready(function() {
 				userName: $('#userName').val()
 			}),
 			success: function(response) {
+					$('tbody').append("<tr>" +
+					"<td class='td-action-icons'><div class='action-icons'>" +
+						"<i class='bi bi-pencil-square'></i> <i class='bi bi-trash3'></i>" +
+					"</div></td>" +
+					"<th scope='row'>" + response['id'] + "</th>" +
+					"<td class='td-firstname'>" + response['firstName'] + "</td>" +
+					"<td class='td-lastname'>" + response['lastName'] + "</td>" +
+					"<td class='td-username'>" + response['userName'] + "</td>" +
+					"<td class='td-file-list'><ul class='list-group list-group-flush '></ul></td>" +
+					"<td class='td-upload-file'><div class='input-div'>" +
+						"<label for='file-input' class='form-label'>Upload File</label>" +
+						"<input class='form-control file-input' type='file'>" +
+					"</div>" +
+					"<div class='upload-button-div mt-2'>" +
+						"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
+					"</div></td>" +
+				"</tr>")
+				
 				$('#successText').text('User successfully created!')
 				$('#successAlert').css('display', 'flex')
 				setTimeout(function() {
@@ -105,17 +125,20 @@ $(document).ready(function() {
 				$('#available').css('display', 'none')
 				$('#taken').css('display', 'none')
 			},
-			fail: function() {
-				$('#form')[0].reset()
-				$('#failedText').text('User creation failed!')
-				$('#failAlert').css('display', 'flex')
-				$('.username').removeClass('success fail')
-				$('#submitButton').prop('disabled', false)
-				$('#available').css('display', 'none')
-				$('#taken').css('display', 'none')
-				setTimeout(function() {
-					$('#failAlert').fadeOut(125)
-				}, 2000);
+			error: function(jqXHR, textStatus, errorThrown) {
+				if (jqXHR.status === 400) {
+					$('#form')[0].reset()
+					$('#failedText').text('User creation failed!')
+					$('#failAlert').css('display', 'flex')
+					$('.username').removeClass('success fail')
+					$('#submitButton').prop('disabled', false)
+					$('#available').css('display', 'none')
+					$('#taken').css('display', 'none')
+					setTimeout(function() {
+						$('#failAlert').fadeOut(125)
+					}, 2000);
+				}
+				
 			}
 		})
 	});
@@ -190,19 +213,22 @@ $(document).ready(function() {
 						$('#modal-submitButton').prop('disabled', false)
 						$('.modal-username').removeClass('success fail')
 					},
-					fail: function() {
-						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-						$('#modal-form')[0].reset()
-						$('#failedText').text('User update failed!')
-						$('#successAlert').css('display', 'none')
-						$('#failAlert').css('display', 'flex')
-						setTimeout(function() {
-							$('#failAlert').fadeOut(125)
-						}, 2000);
-						$('#modal-available').css('display', 'none')
-						$('#modal-taken').css('display', 'none')
-						$('#modal-submitButton').prop('disabled', false)
-						$('.modal-username').removeClass('success fail')
+					error: function(jqXHR) {
+						if (jqXHR.status === 400) {
+							$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+							$('#modal-form')[0].reset()
+							$('#failedText').text('User update failed!')
+							$('#successAlert').css('display', 'none')
+							$('#failAlert').css('display', 'flex')
+							setTimeout(function() {
+								$('#failAlert').fadeOut(125)
+							}, 2000);
+							$('#modal-available').css('display', 'none')
+							$('#modal-taken').css('display', 'none')
+							$('#modal-submitButton').prop('disabled', false)
+							$('.modal-username').removeClass('success fail')
+						}
+						
 					}
 				})
 			});
@@ -229,7 +255,7 @@ $(document).ready(function() {
 							$('#successAlert').fadeOut(125)
 						}, 2000);
 					},
-					fail: function() {
+					error: function() {
 						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
 						$('#infoList').html('')
 						$('#failedText').text('User deletion failed!')
@@ -258,7 +284,17 @@ $(document).ready(function() {
 						fileName: fileName
 					}),
 					success: function(response) {
-						console.log(response)
+						let new_li = $("<li class='list-group-item' value='"+ response['file_id']+"'>" +
+							"<div class='files'>" +
+							"<p>" + response['path'] + "</p>" +
+							"<div class='files-icons'>" +
+								"<i class='bi bi-download'></i><i class='bi bi-x-lg'></i>" +
+							"</div>" +
+							"</div>" +
+							"</li>");
+						let $list = $(e.target).parent().parent().prev().find('ul');
+						$list.append(new_li);
+						e.target.parentNode.previousSibling.childNodes[1].value = ''
 						$('#successText').text('File successfully uploaded!')
 						$('#successAlert').css('display', 'flex')
 						$('#failAlert').css('display', 'none')
@@ -266,7 +302,7 @@ $(document).ready(function() {
 							$('#successAlert').fadeOut(125)
 						}, 2000);
 					},
-					fail: function() {
+					error: function() {
 						$('#failedText').text('File upload failed!')
 						$('#failAlert').css('display', 'flex')
 						setTimeout(function() {
