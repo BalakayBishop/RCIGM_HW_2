@@ -2,7 +2,6 @@
 from flask import render_template, Blueprint, request, jsonify
 from project.models.models import User, UserFiles
 from project.core.methods import is_valid, convert_join
-from project import db
 from sqlalchemy.orm import sessionmaker
 from project.config import engine
 
@@ -56,9 +55,9 @@ def new_user():
 			last_name=last_name,
 			username=username
 		)
-		db.session.add(user)
-		db.session.flush()
-		db.session.commit()
+		session.add(user)
+		session.flush()
+		session.commit()
 		
 		return jsonify({
 			'status': 'success',
@@ -109,8 +108,8 @@ def delete_user():
 	if len(username) != 0:
 		user = User.query.filter_by(username=username).one_or_none()
 		if user is not None:
-			db.session.delete(user)
-			db.session.commit()
+			session.delete(user)
+			session.commit()
 			return jsonify({'status': 'success'})
 		
 	return jsonify({'status': 'fail'}), 400
@@ -119,6 +118,7 @@ def delete_user():
 # -------------------- ROUTE: GET ALL USERS IN DICT --------------------
 @core.route('/users', methods=['GET'])
 def users():
+	session.flush()
 	query = session.query(User).outerjoin(UserFiles).all()
 	result = convert_join(query)
 	if result is not None:
@@ -138,9 +138,9 @@ def upload():
 			user_id=user.user_id,
 			file_path=file_path
 		)
-		db.session.add(newFile)
-		db.session.flush()
-		db.session.commit()
+		session.add(newFile)
+		session.flush()
+		session.commit()
 		
 		return jsonify({
 			'status': 'success',
@@ -157,8 +157,8 @@ def delete_file():
 	file_id = data['file_id']
 	file = UserFiles.query.filter_by(id=file_id).one_or_none()
 	if file is not None:
-		db.session.delete(file)
-		db.session.commit()
+		session.delete(file)
+		session.commit()
 		return jsonify({'status': 'success'})
 	
 	return jsonify({'status': 'fail'}), 400
