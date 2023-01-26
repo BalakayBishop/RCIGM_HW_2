@@ -153,12 +153,7 @@ $(document).ready(function() {
 			})
 			function allChanged() {
 				if (input_firstname || input_lastname || input_username) {
-					if ($('#modal-firstName').val(firstname_val) !== '' && $('#modal-lastName').val(lastname_val) !== '' && $('#modal-userName').val(username_val) !== '') {
-						$('#modal-submitButton').prop('disabled', false)
-					}
-					else {
-						$('#modal-submitButton').prop('disabled', true)
-					}
+					$('#modal-submitButton').prop('disabled', false)
 				}
 				else {
 					$('#modal-submitButton').prop('disabled', true)
@@ -179,6 +174,10 @@ $(document).ready(function() {
 					}),
 					success: function(response) {
 						console.log(e2)
+						e.target.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].textContent = response['user_id']
+						e.target.parentNode.parentNode.parentNode.childNodes[2].childNodes[0].textContent = response['firstName']
+						e.target.parentNode.parentNode.parentNode.childNodes[3].childNodes[0].textContent = response['lastName']
+						e.target.parentNode.parentNode.parentNode.childNodes[4].childNodes[0].textContent = response['userName']
 						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 						$('#successText').val("User successfully updated!")
 						$('#successAlert').css('display', 'flex')

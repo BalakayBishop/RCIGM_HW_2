@@ -3,6 +3,11 @@ from flask import render_template, Blueprint, request, jsonify
 from project.models.models import User, UserFiles
 from project.core.methods import is_valid, convert_join
 from project import db
+from sqlalchemy.orm import sessionmaker
+from project.config import engine
+
+Session = sessionmaker(bind=engine)
+session = Session()
 
 core = Blueprint('core', __name__)
 
@@ -73,24 +78,24 @@ def update_user():
 	first_name = form_data['firstName'],
 	last_name = form_data['lastName'],
 	username = form_data['userName']
-	user_id = form_data['current_userid']
+	current_id = form_data['current_userid']
 	
-	if len(first_name) != 0 and len(last_name) != 0 and len(username) != 0:
-		user = User.query.filter_by(user_id=user_id).one_or_none()
-		if user is not None:
-			user.first_name = first_name
-			user.last_name = last_name
-			user.username = username
-			
-			db.session.commit()
-			
-			return jsonify({
-				'status': 'success',
-				'id': user.user_id,
-				'userName': user.username,
-				'firstName': user.first_name,
-				'lastName': user.last_name
-			})
+	user = session.query(User).filter(User.user_id == current_id).one_or_none()
+	if user is not None:
+		session.query(User).filter(User.user_id == current_id).update({
+			'first_name': first_name,
+			'last_name': last_name,
+			'username': username
+		}, synchronize_session='fetch')
+		session.commit()
+
+		return jsonify({
+			'status': 'success',
+			'user_id': user.user_id,
+			'userName': user.username,
+			'firstName': user.first_name,
+			'lastName': user.last_name
+		})
 	
 	return jsonify({'status': 'fail'}), 400
 
@@ -114,10 +119,6 @@ def delete_user():
 # -------------------- ROUTE: GET ALL USERS IN DICT --------------------
 @core.route('/users', methods=['GET'])
 def users():
-	from sqlalchemy.orm import sessionmaker
-	from project.config import engine
-	Session = sessionmaker(bind=engine)
-	session = Session()
 	query = session.query(User).outerjoin(UserFiles).all()
 	result = convert_join(query)
 	if result is not None:

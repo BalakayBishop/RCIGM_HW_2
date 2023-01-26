@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: improved and fixed the file upload method and ajax request and flask endpoint">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: add form data validation for editing user">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/86cbc0e2-81e6-4eb5-8e12-1d7f57d9d78f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/86cbc0e2-81e6-4eb5-8e12-1d7f57d9d78f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,14 +178,7 @@
       <workItem from="1673977066576" duration="14053000" />
       <workItem from="1674081959407" duration="7466000" />
       <workItem from="1674235113808" duration="1180000" />
-      <workItem from="1674492863630" duration="27931000" />
-    </task>
-    <task id="LOCAL-00030" summary="Local: added a div and ul to the html for the delete modal, when the x icon is clicked the info for that user is grabbed and displayed in li in the modal to show what user was selected to be deleted">
-      <created>1672177045747</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1672177045747</updated>
+      <workItem from="1674492863630" duration="30001000" />
     </task>
     <task id="LOCAL-00031" summary="Local: created a new view to delete user from database on delete user confirmation button">
       <created>1672179215933</created>
@@ -522,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674687568535</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Local: add form data validation for editing user">
+      <created>1674689315664</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1674689315664</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +542,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: small change to UserFiles class to remove a db.relationship statement" />
     <MESSAGE value="Local: added new landing page with styles and added jQuery listener for button click to redirect to index" />
     <MESSAGE value="Local: added new header back arrow icon that will function as back button to home page, added Manrope Google Font" />
     <MESSAGE value="Local: small changes, added functionality to the back button for /index header button" />
@@ -566,11 +566,12 @@
     <MESSAGE value="Local: changed user list to table and completed the JS AJAX GET to format the table upon page load" />
     <MESSAGE value="Local: major changes made to the structure of the page, changes to views.py getting rid of poor code, changes to main.js for ajax requests" />
     <MESSAGE value="Local: improved and fixed the file upload method and ajax request and flask endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: improved and fixed the file upload method and ajax request and flask endpoint" />
+    <MESSAGE value="Local: add form data validation for editing user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: add form data validation for editing user" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674689244549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674691321205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
