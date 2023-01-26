@@ -150,10 +150,10 @@ $(document).ready(function() {
 		if(e.target.classList[1] === 'bi-pencil-square') {
 			// MODAL OPEN
 			$('#modal-submitButton').prop('disabled', true)
-			let userid_val = e.target.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].textContent
-			let firstname_val = e.target.parentNode.parentNode.parentNode.childNodes[2].childNodes[0].textContent
-			let lastname_val = e.target.parentNode.parentNode.parentNode.childNodes[3].childNodes[0].textContent
-			let username_val = e.target.parentNode.parentNode.parentNode.childNodes[4].childNodes[0].textContent
+			let userid_val = $(e.target).closest('tr').find('th').text()
+			let firstname_val = $(e.target).closest('tr').find('td:eq(1)').text()
+			let lastname_val = $(e.target).closest('tr').find('td:eq(2)').text()
+			let username_val = $(e.target).closest('tr').find('td:eq(3)').text()
 			
 			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
 			$('#modal-firstName').val(firstname_val)
@@ -197,10 +197,11 @@ $(document).ready(function() {
 					}),
 					success: function(response) {
 						console.log(e2)
-						e.target.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].textContent = response['user_id']
-						e.target.parentNode.parentNode.parentNode.childNodes[2].childNodes[0].textContent = response['firstName']
-						e.target.parentNode.parentNode.parentNode.childNodes[3].childNodes[0].textContent = response['lastName']
-						e.target.parentNode.parentNode.parentNode.childNodes[4].childNodes[0].textContent = response['userName']
+						$(e.target).closest('tr').find('th').text(response['user_id'])
+						$(e.target).closest('tr').find('td:eq(1)').text(response['firstName'])
+						$(e.target).closest('tr').find('td:eq(2)').text(response['lastName'])
+						$(e.target).closest('tr').find('td:eq(3)').text(response['userName'])
+						
 						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 						$('#successText').val("User successfully updated!")
 						$('#successAlert').css('display', 'flex')
