@@ -24,13 +24,12 @@ $(document).ready(function() {
 				"</tr>")
 				
 				let td = $("<td></td>")
-				let ul = $("<ul class='list-group list-group-flush '></ul>")
+				let ul = $("<ul id='ul-"+ response[i]['user_id'] +"' class='list-group list-group-flush'></ul>")
 				td.append(ul)
 				main.append(td)
 				$('tbody').append(main)
 					for (let j = 0; j < response[i]['files'].length; j++) {
-						let li = $("<li class='list-group-item' id='"+response[i]['files'][j]['file_id']+"'" +
-							" value='"+response[i]['files'][j]['file_id']+"'>"+
+						let li = $("<li class='list-group-item' id='"+response[i]['files'][j]['file_id']+"'>"+
 							"<div class='files'>" +
 								"<p>" + response[i]['files'][j]['file_path'] + "</p>" +
 								"<div class='files-icons'>" +
@@ -113,7 +112,7 @@ $(document).ready(function() {
 					"<td class='td-firstname'>" + response['firstName'] + "</td>" +
 					"<td class='td-lastname'>" + response['lastName'] + "</td>" +
 					"<td class='td-username'>" + response['userName'] + "</td>" +
-					"<td class='td-file-list'><ul class='list-group list-group-flush '></ul></td>" +
+					"<td class='td-file-list'><ul id='ul-"+ response['user_id'] +"' class='list-group list-group-flush '></ul></td>" +
 					"<td class='td-upload-file'><div class='input-div'>" +
 						"<label for='file-input' class='form-label'>Upload File</label>" +
 						"<input class='form-control file-input' type='file'>" +
@@ -155,10 +154,10 @@ $(document).ready(function() {
 	$("#user-table").on("click", "td .edit-user", function() {
 		let $tr_id = $(this).closest('tr').attr('id')
 		$('#modal-submitButton').prop('disabled', true)
-		let userid_val = $(this).closest('tr').find('th').text()
-		let firstname_val = $(this).closest('tr').find('td:eq(1)').text()
-		let lastname_val = $(this).closest('tr').find('td:eq(2)').text()
-		let username_val = $(this).closest('tr').find('td:eq(3)').text()
+		let userid_val = $("#"+$tr_id).find('th').text()
+		let firstname_val = $("#"+$tr_id).find('td:eq(1)').text()
+		let lastname_val = $("#"+$tr_id).find('td:eq(2)').text()
+		let username_val = $("#"+$tr_id).find('td:eq(3)').text()
 		$('.popup-overlay-edit, .popup-content-edit').addClass('active')
 		$('#modal-firstName').val(firstname_val)
 		$('#modal-lastName').val(lastname_val)
@@ -243,10 +242,10 @@ $(document).ready(function() {
 		let $tr_id = $(this).closest('tr').attr('id')
 		console.log($tr_id)
 		$('.popup-overlay-delete, .popup-content-delete').addClass('active')
-		let userid_val = $(this).closest('tr').find('th').text()
-		let firstname_val = $(this).closest('tr').find('td:eq(1)').text()
-		let lastname_val = $(this).closest('tr').find('td:eq(2)').text()
-		let username_val = $(this).closest('tr').find('td:eq(3)').text()
+		let userid_val = $("#"+$tr_id).find('th').text()
+		let firstname_val = $("#"+$tr_id).find('td:eq(1)').text()
+		let lastname_val = $("#"+$tr_id).find('td:eq(2)').text()
+		let username_val = $("#"+$tr_id).find('td:eq(3)').text()
 		$('#infoList').append("<li class='list-group-item'>User ID: " + userid_val + " </li>" +
 			"<li class='list-group-item'>First Name: " + firstname_val + "</li>" +
 			"<li class='list-group-item'>Last Name: " + lastname_val + "</li>" +
@@ -324,61 +323,54 @@ $(document).ready(function() {
 			});
 		});
 	}); // ----- END OF DELETE FILE -----
-	// 	// UPLOAD FILE FUNCTION
-	// 	else if(e.target.classList[2] === 'upload-button') {
-	// 		let fileName = $(e.target).closest('tr').find('td:eq(5) input').val()
-	// 		fileName = fileName.replace("C:\\fakepath\\", "")
-	// 		if(fileName !== '') {
-	// 			let user_id = $(e.target).closest('tr').find('th').text()
-	// 			$.ajax({
-	// 				url: '/upload',
-	// 				type: 'POST',
-	// 				contentType: 'application/json',
-	// 				data: JSON.stringify({
-	// 					user_id: user_id,
-	// 					fileName: fileName
-	// 				}),
-	// 				success: function(response) {
-	// 					let new_li = $("<li class='list-group-item' value='"+ response['file_id']+"'>" +
-	// 						"<div class='files'>" +
-	// 						"<p>" + response['path'] + "</p>" +
-	// 						"<div class='files-icons'>" +
-	// 							"<i class='bi bi-download'></i><i class='bi bi-x-lg'></i>" +
-	// 						"</div>" +
-	// 						"</div>" +
-	// 						"</li>");
-	// 					let $list = $(e.target).closest('tr').find('td:eq(4) ul');
-	// 					$list.append(new_li);
-	// 					$(e.target).closest('tr').find('td:eq(5) input').val('')
-	// 					$('#successText').text('File successfully uploaded!')
-	// 					$('#successAlert').css('display', 'flex')
-	// 					$('#failAlert').css('display', 'none')
-	// 					setTimeout(function() {
-	// 						$('#successAlert').fadeOut(125)
-	// 					}, 2000);
-	// 				},
-	// 				error: function() {
-	// 					$('#failedText').text('File upload failed!')
-	// 					$('#failAlert').css('display', 'flex')
-	// 					setTimeout(function() {
-	// 						$('#failAlert').fadeOut(125)
-	// 					}, 2000);
-	// 				}
-	// 			})
-	// 		}
-	// 	}
-	// }); // end of table.click
+	// ------------------------------------- UPLOAD FILE -------------------------------------
+	$("#user-table").on("click", "td .upload-button", function(event) {
+		event.preventDefault()
+		let $id = $(this).closest('tr').attr('id')
+		let fileName = $(this).closest('tr').find('td:eq(5) input').val()
+		fileName = fileName.replace("C:\\fakepath\\", "")
+		if(fileName !== '') {
+			let user_id = $(this).closest('tr').find('th').text()
+			$.ajax({
+				url: '/upload',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					user_id: user_id,
+					fileName: fileName
+				}),
+				success: function(response) {
+					let new_li = $("<li class='list-group-item' id='"+ response['file_id']+"'>" +
+						"<div class='files'>" +
+						"<p>" + response['path'] + "</p>" +
+						"<div class='files-icons'>" +
+							"<i class='bi bi-download'></i><i class='bi bi-x-lg delete-file'></i>" +
+						"</div>" +
+						"</div>" +
+						"</li>");
+					let $list = $("#ul-"+$id);
+					$list.append(new_li);
+					$("#"+$id).find('td:eq(5) input').val('')
+					$('#successText').text('File successfully uploaded!')
+					$('#successAlert').css('display', 'flex')
+					$('#failAlert').css('display', 'none')
+					setTimeout(function() {
+						$('#successAlert').fadeOut(125)
+					}, 2000);
+				},
+				error: function() {
+					$('#failedText').text('File upload failed!')
+					$('#failAlert').css('display', 'flex')
+					setTimeout(function() {
+						$('#failAlert').fadeOut(125)
+					}, 2000);
+				}
+			})
+		}
+	}); // ----- END OF UPLOAD FILE -----
+	
 	// EDIT MODAL CLOSED
-		$('.close-edit').on('click', function() {
-			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-			$('#modal-form')[0].reset()
-			$('#modal-available').css('display', 'none')
-			$('#modal-taken').css('display', 'none')
-			$('.modal-username').removeClass('success fail')
-			$('#modal-submitButton').prop('disabled', false)
-		});
-		// EDIT MODAL CLOSE X
-		$('.modal-xmark-edit').on('click', function() {
+		$('.close-edit, .modal-xmark-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 			$('#modal-form')[0].reset()
 			$('#modal-available').css('display', 'none')
@@ -387,14 +379,7 @@ $(document).ready(function() {
 			$('#modal-submitButton').prop('disabled', false)
 		});
 		// DELETE MODAL CLOSE
-		$('.close-delete').on('click', function() {
-			$('.popup-overlay-delete, .popup-content-delete, .popup-overlay-delete-file, .popup-content-delete-file')
-				.removeClass('active')
-			$('#infoList').html('')
-			$('#file-info').text('')
-		});
-		// DELETE MODAL CLOSE X
-		$('.modal-xmark-delete').on('click', function() {
+		$('.close-delete, .modal-xmark-delete').on('click', function() {
 			$('.popup-overlay-delete, .popup-content-delete, .popup-overlay-delete-file, .popup-content-delete-file')
 				.removeClass('active')
 			$('#infoList').html('')
