@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: adding runtime.txt">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: updated the edit user and delete user functions by replacing the e.target JS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,14 +179,7 @@
       <workItem from="1674235113808" duration="1180000" />
       <workItem from="1674492863630" duration="37117000" />
       <workItem from="1674772826202" duration="9388000" />
-      <workItem from="1674837055618" duration="10783000" />
-    </task>
-    <task id="LOCAL-00039" summary="Local: added :root css color variables for the success/fail border, background, and text color">
-      <created>1672188835778</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1672188835778</updated>
+      <workItem from="1674837055618" duration="12691000" />
     </task>
     <task id="LOCAL-00040" summary="Local: small changes">
       <created>1672189167221</created>
@@ -524,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674845562028</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Local: updated the edit user and delete user functions by replacing the e.target JS">
+      <created>1674852779318</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1674852779318</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +543,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: more additions to the upload feature that now includes having a hidden ul under the file selector and if the ajax for upload is successful it displays a ul li for the file uploaded" />
     <MESSAGE value="Local: created upload endpoint for files to be uploaded" />
     <MESSAGE value="Local: worked out new form to query with an outer join to get all User rows and if they have a file uploaded" />
     <MESSAGE value="Local: working towards figuring out how to return the new query of users and their files while getting rid of duplicates but associating the files to one row instead of multiple" />
@@ -568,11 +567,12 @@
     <MESSAGE value="Local: refactored main.js to remove a lot of vanilla JS selectors for e.target, and finished the delete file function and endpoint" />
     <MESSAGE value="Local: adding requirements.txt" />
     <MESSAGE value="Local: adding runtime.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: adding runtime.txt" />
+    <MESSAGE value="Local: updated the edit user and delete user functions by replacing the e.target JS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: updated the edit user and delete user functions by replacing the e.target JS" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674852702209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674860498546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

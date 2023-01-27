@@ -29,12 +29,13 @@ $(document).ready(function() {
 				main.append(td)
 				$('tbody').append(main)
 					for (let j = 0; j < response[i]['files'].length; j++) {
-						let li = $("<li class='list-group-item' value='"+response[i]['files'][j]['file_id']+"'>"+
+						let li = $("<li class='list-group-item' id='"+response[i]['files'][j]['file_id']+"'" +
+							" value='"+response[i]['files'][j]['file_id']+"'>"+
 							"<div class='files'>" +
 								"<p>" + response[i]['files'][j]['file_path'] + "</p>" +
 								"<div class='files-icons'>" +
 									"<i class='bi bi-download'></i>" +
-									"<i class='bi bi-x-lg'></i>" +
+									"<i class='bi bi-x-lg delete-file'></i>" +
 								"</div>" +
 							"</div>" +
 						"</li>")
@@ -237,7 +238,8 @@ $(document).ready(function() {
 	}); // ----- END OF EDIT USER MODAL -----
 	
 	// ------------------------------------- DELETE USER MODAL -------------------------------------
-	$("#user-table").on("click", "td .delete-user", function() {
+	$("#user-table").on("click", "td .delete-user", function(event) {
+		event.preventDefault()
 		let $tr_id = $(this).closest('tr').attr('id')
 		console.log($tr_id)
 		$('.popup-overlay-delete, .popup-content-delete').addClass('active')
@@ -283,47 +285,45 @@ $(document).ready(function() {
 	}); // ----- END OF DELETE USER MODAL -----
 	
 	// ------------------------------------- DELETE FILE MODAL -------------------------------------
-	$("#user-table").on("click", "td .delete-user", function() {
-	
+	$("#user-table").on("click", "td .delete-file", function(event) {
+		event.preventDefault()
+		$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
+			let $file_id = $(this).closest('li').attr('id')
+			let $file_name = $(this).closest('div.files').find('p').text()
+			$('#file-info').text($file_name)
+
+			$('.delete-file-submit').on('click', function() {
+				$.ajax({
+				url: '/delete_file',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					file_id: $file_id
+				}),
+				success: function() {
+					$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+					$("#"+$file_id).remove()
+					$('#file-info').text('')
+					$('#successText').text('File successfully deleted!')
+					$('#successAlert').css('display', 'flex')
+					$('#failAlert').css('display', 'none')
+					setTimeout(function() {
+						$('#successAlert').fadeOut(125)
+					}, 2000);
+				},
+				error: function() {
+					$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+					$('#file-info').text('')
+					$('#failedText').text('File deletion failed!')
+					$('#failAlert').css('display', 'flex')
+					$('#successAlertAlert').css('display', 'none')
+					setTimeout(function() {
+						$('#failAlert').fadeOut(125)
+					}, 2000);
+				}
+			});
+		});
 	}); // ----- END OF DELETE FILE -----
-	// 	else if (e.target.classList[1] === "bi-x-lg") {
-	// 		$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
-	// 		let $file_id = $(e.target).closest('li').val()
-	// 		let $file_name = $(e.target).closest('div.files').find('p').text()
-	// 		$('#file-info').text($file_name)
-	//
-	// 		$('.delete-file-submit').on('click', function() {
-	// 				$.ajax({
-	// 				url: '/delete_file',
-	// 				type: 'POST',
-	// 				contentType: 'application/json',
-	// 				data: JSON.stringify({
-	// 					file_id: $file_id
-	// 				}),
-	// 				success: function() {
-	// 					$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
-	// 					$(e.target).closest('li').remove()
-	// 					$('#file-info').text('')
-	// 					$('#successText').text('File successfully deleted!')
-	// 					$('#successAlert').css('display', 'flex')
-	// 					$('#failAlert').css('display', 'none')
-	// 					setTimeout(function() {
-	// 						$('#successAlert').fadeOut(125)
-	// 					}, 2000);
-	// 				},
-	// 				error: function() {
-	// 					$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
-	// 					$('#file-info').text('')
-	// 					$('#failedText').text('File deletion failed!')
-	// 					$('#failAlert').css('display', 'flex')
-	// 					$('#successAlertAlert').css('display', 'none')
-	// 					setTimeout(function() {
-	// 						$('#failAlert').fadeOut(125)
-	// 					}, 2000);
-	// 				}
-	// 			});
-	// 		})
-	// 	}
 	// 	// UPLOAD FILE FUNCTION
 	// 	else if(e.target.classList[2] === 'upload-button') {
 	// 		let fileName = $(e.target).closest('tr').find('td:eq(5) input').val()
