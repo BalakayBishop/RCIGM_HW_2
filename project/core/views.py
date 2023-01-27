@@ -130,7 +130,7 @@ def upload():
 	data = request.get_json()
 	user_id = data['user_id']
 	fileName = data['fileName']
-	file_path = 'D:\\Projects\\Files\\' + fileName
+	file_path = 'D:\Projects\Files\\' + fileName
 	user = session.query(User).filter(User.user_id==user_id).one_or_none()
 	if user is not None:
 		newFile = UserFiles (

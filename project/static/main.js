@@ -13,9 +13,9 @@ $(document).ready(function() {
 		type:'GET',
 		success: function(response) {
 			for(let i = 0; i < response.length; i++) {
-				let main = $("<tr>" +
+				let main = $("<tr id='"+ response[i]['user_id'] +"'>" +
 					"<td><div class='action-icons'>" +
-						"<i class='bi bi-pencil-square'></i> <i class='bi bi-trash3'></i>" +
+						"<i class='bi bi-pencil-square edit-user'></i> <i class='bi bi-trash3 delete-user'></i>" +
 					"</div></td>" +
 					"<th scope='row'>" + response[i]['user_id'] + "</th>" +
 					"<td>" + response[i]['user_firstName'] + "</td>" +
@@ -146,228 +146,229 @@ $(document).ready(function() {
 						$('#failAlert').fadeOut(125)
 					}, 2000);
 				}
-				
 			}
 		})
 	});
 	
-	// ------------------------------------- MODALS FOR EDIT AND DELETE -------------------------------------
-	$('table').on('click', function(e) {
-		// console.log(e)
-		// ------------------------------- CLICK EDIT BUTTON --------------------------------
-		if(e.target.classList[1] === 'bi-pencil-square') {
-			// MODAL OPEN
-			$('#modal-submitButton').prop('disabled', true)
-			let userid_val = $(e.target).closest('tr').find('th').text()
-			let firstname_val = $(e.target).closest('tr').find('td:eq(1)').text()
-			let lastname_val = $(e.target).closest('tr').find('td:eq(2)').text()
-			let username_val = $(e.target).closest('tr').find('td:eq(3)').text()
-			
-			$('.popup-overlay-edit, .popup-content-edit').addClass('active')
-			$('#modal-firstName').val(firstname_val)
-			$('#modal-lastName').val(lastname_val)
-			$('#modal-userName').val(username_val)
-			let input_firstname = false;
-			let input_lastname = false;
-			let input_username = false;
-			$('#modal-firstName').on('change', function() {
-				input_firstname = true
-				allChanged()
-			})
-			$('#modal-lastName').on('change', function() {
-				input_lastname = true
-				allChanged()
-			})
-			$('#modal-userName').on('change', function() {
-				input_username = true
-				allChanged()
-			})
-			function allChanged() {
-				if (input_firstname || input_lastname || input_username) {
-					$('#modal-submitButton').prop('disabled', false)
-				}
-				else {
-					$('#modal-submitButton').prop('disabled', true)
-				}
+	// ------------------------------------- EDIT USER MODAL -------------------------------------
+	$("#user-table").on("click", "td .edit-user", function() {
+		let $tr_id = $(this).closest('tr').attr('id')
+		$('#modal-submitButton').prop('disabled', true)
+		let userid_val = $(this).closest('tr').find('th').text()
+		let firstname_val = $(this).closest('tr').find('td:eq(1)').text()
+		let lastname_val = $(this).closest('tr').find('td:eq(2)').text()
+		let username_val = $(this).closest('tr').find('td:eq(3)').text()
+		$('.popup-overlay-edit, .popup-content-edit').addClass('active')
+		$('#modal-firstName').val(firstname_val)
+		$('#modal-lastName').val(lastname_val)
+		$('#modal-userName').val(username_val)
+		let input_firstname = false;
+		let input_lastname = false;
+		let input_username = false;
+		$('#modal-firstName').on('change', function() {
+			input_firstname = true
+			allChanged()
+		})
+		$('#modal-lastName').on('change', function() {
+			input_lastname = true
+			allChanged()
+		})
+		$('#modal-userName').on('change', function() {
+			input_username = true
+			allChanged()
+		})
+		function allChanged() {
+			if (input_firstname || input_lastname || input_username) {
+				$('#modal-submitButton').prop('disabled', false)
 			}
-			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
-			$('#modal-submitButton').on('click', function(e2) {
-				e2.preventDefault()
-				$.ajax({
-					url: '/update_user',
-					type: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify({
-						firstName: $('#modal-firstName').val(),
-						lastName: $('#modal-lastName').val(),
-						userName: $('#modal-userName').val(),
-						current_userid: userid_val
-					}),
-					success: function(response) {
-						console.log(e2)
-						$(e.target).closest('tr').find('th').text(response['user_id'])
-						$(e.target).closest('tr').find('td:eq(1)').text(response['firstName'])
-						$(e.target).closest('tr').find('td:eq(2)').text(response['lastName'])
-						$(e.target).closest('tr').find('td:eq(3)').text(response['userName'])
-						
-						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-						$('#successText').val("User successfully updated!")
-						$('#successAlert').css('display', 'flex')
-						setTimeout(function() {
-							$('#successAlert').fadeOut(125)
-						}, 2000);
-						$('#modal-form')[0].reset()
-						$('#modal-available').css('display', 'none')
-						$('#modal-taken').css('display', 'none')
-						$('#modal-submitButton').prop('disabled', false)
-						$('.modal-username').removeClass('success fail')
-					},
-					error: function(jqXHR) {
-						if (jqXHR.status === 400) {
-							$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-							$('#modal-form')[0].reset()
-							$('#failedText').text('User update failed!')
-							$('#successAlert').css('display', 'none')
-							$('#failAlert').css('display', 'flex')
-							setTimeout(function() {
-								$('#failAlert').fadeOut(125)
-							}, 2000);
-							$('#modal-available').css('display', 'none')
-							$('#modal-taken').css('display', 'none')
-							$('#modal-submitButton').prop('disabled', false)
-							$('.modal-username').removeClass('success fail')
-						}
-						
-					}
-				})
-			});
+			else {
+				$('#modal-submitButton').prop('disabled', true)
+			}
 		}
-		// ------------------------------- CLICK DELETE BUTTON --------------------------------
-		else if(e.target.classList[1] === 'bi-trash3') {
-			$('.popup-overlay-delete, .popup-content-delete').addClass('active')
-			let $user_id = $(e.target).closest('tr').find('th').text()
-			let $first_name = $(e.target).closest('tr').find('td:eq(1)').text()
-			let $last_name = $(e.target).closest('tr').find('td:eq(2)').text()
-			let $username = $(e.target).closest('tr').find('td:eq(3)').text()
-			$('#infoList').append("<li class='list-group-item'>User ID: " + $user_id + " </li>" +
-				"<li class='list-group-item'>First Name: " + $first_name + "</li>" +
-				"<li class='list-group-item'>Last Name: " + $last_name + "</li>" +
-				"<li class='list-group-item'>Username: " + $username + "</li>")
-			$('.delete-submit').on('click', function() {
-				$.ajax({
-					url: '/delete_user',
-					type: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify({
-						user_id: $user_id
-					}),
-					success: function() {
-						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-						$(e.target).closest("tr").remove();
-						$('#infoList').html('')
-						$('#successText').text('User successfully deleted!')
-						$('#successAlert').css('display', 'flex')
-						$('#failAlert').css('display', 'none')
-						setTimeout(function() {
-							$('#successAlert').fadeOut(125)
-						}, 2000);
-					},
-					error: function() {
-						$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-						$('#infoList').html('')
-						$('#failedText').text('User deletion failed!')
+			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
+		$('#modal-submitButton').on('click', function(event) {
+			event.preventDefault()
+			$.ajax({
+				url: '/update_user',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					firstName: $('#modal-firstName').val(),
+					lastName: $('#modal-lastName').val(),
+					userName: $('#modal-userName').val(),
+					current_userid: userid_val
+				}),
+				success: function(response) {
+					$("#"+$tr_id).find('th').text(response['user_id'])
+					$("#"+$tr_id).find('td:eq(1)').text(response['firstName'])
+					$("#"+$tr_id).find('td:eq(2)').text(response['lastName'])
+					$("#"+$tr_id).find('td:eq(3)').text(response['userName'])
+
+					$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+					$('#successText').val("User successfully updated!")
+					$('#successAlert').css('display', 'flex')
+					setTimeout(function() {
+						$('#successAlert').fadeOut(125)
+					}, 2000);
+					$('#modal-form')[0].reset()
+					$('#modal-available').css('display', 'none')
+					$('#modal-taken').css('display', 'none')
+					$('#modal-submitButton').prop('disabled', false)
+					$('.modal-username').removeClass('success fail')
+				},
+				error: function(jqXHR) {
+					if (jqXHR.status === 400) {
+						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+						$('#modal-form')[0].reset()
+						$('#failedText').text('User update failed!')
 						$('#successAlert').css('display', 'none')
 						$('#failAlert').css('display', 'flex')
 						setTimeout(function() {
 							$('#failAlert').fadeOut(125)
 						}, 2000);
+						$('#modal-available').css('display', 'none')
+						$('#modal-taken').css('display', 'none')
+						$('#modal-submitButton').prop('disabled', false)
+						$('.modal-username').removeClass('success fail')
 					}
-				})
-			});
-		}
-		else if (e.target.classList[1] === "bi-x-lg") {
-			$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
-			let $file_id = $(e.target).closest('li').val()
-			let $file_name = $(e.target).closest('div.files').find('p').text()
-			$('#file-info').text($file_name)
-			
-			$('.delete-file-submit').on('click', function() {
-					$.ajax({
-					url: '/delete_file',
-					type: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify({
-						file_id: $file_id
-					}),
-					success: function() {
-						$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
-						$(e.target).closest('li').remove()
-						$('#file-info').text('')
-						$('#successText').text('File successfully deleted!')
-						$('#successAlert').css('display', 'flex')
-						$('#failAlert').css('display', 'none')
-						setTimeout(function() {
-							$('#successAlert').fadeOut(125)
-						}, 2000);
-					},
-					error: function() {
-						$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
-						$('#file-info').text('')
-						$('#failedText').text('File deletion failed!')
-						$('#failAlert').css('display', 'flex')
-						$('#successAlertAlert').css('display', 'none')
-						setTimeout(function() {
-							$('#failAlert').fadeOut(125)
-						}, 2000);
-					}
-				});
+				}
 			})
-		}
-		// UPLOAD FILE FUNCTION
-		else if(e.target.classList[2] === 'upload-button') {
-			let fileName = $(e.target).closest('tr').find('td:eq(5) input').val()
-			fileName = fileName.replace("C:\\fakepath\\", "")
-			if(fileName !== '') {
-				let user_id = $(e.target).closest('tr').find('th').text()
-				$.ajax({
-					url: '/upload',
-					type: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify({
-						user_id: user_id,
-						fileName: fileName
-					}),
-					success: function(response) {
-						let new_li = $("<li class='list-group-item' value='"+ response['file_id']+"'>" +
-							"<div class='files'>" +
-							"<p>" + response['path'] + "</p>" +
-							"<div class='files-icons'>" +
-								"<i class='bi bi-download'></i><i class='bi bi-x-lg'></i>" +
-							"</div>" +
-							"</div>" +
-							"</li>");
-						let $list = $(e.target).closest('tr').find('td:eq(4) ul');
-						$list.append(new_li);
-						$(e.target).closest('tr').find('td:eq(5) input').val('')
-						$('#successText').text('File successfully uploaded!')
-						$('#successAlert').css('display', 'flex')
-						$('#failAlert').css('display', 'none')
-						setTimeout(function() {
-							$('#successAlert').fadeOut(125)
-						}, 2000);
-					},
-					error: function() {
-						$('#failedText').text('File upload failed!')
-						$('#failAlert').css('display', 'flex')
-						setTimeout(function() {
-							$('#failAlert').fadeOut(125)
-						}, 2000);
-					}
-				})
-			}
-		}
-		
-		// EDIT MODAL CLOSED
+		});
+	}); // ----- END OF EDIT USER MODAL -----
+	
+	// ------------------------------------- DELETE USER MODAL -------------------------------------
+	$("#user-table").on("click", "td .delete-user", function() {
+		let $tr_id = $(this).closest('tr').attr('id')
+		console.log($tr_id)
+		$('.popup-overlay-delete, .popup-content-delete').addClass('active')
+		let userid_val = $(this).closest('tr').find('th').text()
+		let firstname_val = $(this).closest('tr').find('td:eq(1)').text()
+		let lastname_val = $(this).closest('tr').find('td:eq(2)').text()
+		let username_val = $(this).closest('tr').find('td:eq(3)').text()
+		$('#infoList').append("<li class='list-group-item'>User ID: " + userid_val + " </li>" +
+			"<li class='list-group-item'>First Name: " + firstname_val + "</li>" +
+			"<li class='list-group-item'>Last Name: " + lastname_val + "</li>" +
+			"<li class='list-group-item'>Username: " + username_val + "</li>")
+		$('.delete-submit').on('click', function() {
+			$.ajax({
+				url: '/delete_user',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					user_id: $tr_id
+				}),
+				success: function() {
+					$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+					$("#"+$tr_id).remove();
+					$('#infoList').html('')
+					$('#successText').text('User successfully deleted!')
+					$('#successAlert').css('display', 'flex')
+					$('#failAlert').css('display', 'none')
+					setTimeout(function() {
+						$('#successAlert').fadeOut(125)
+					}, 2000);
+				},
+				error: function() {
+					$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+					$('#infoList').html('')
+					$('#failedText').text('User deletion failed!')
+					$('#successAlert').css('display', 'none')
+					$('#failAlert').css('display', 'flex')
+					setTimeout(function() {
+						$('#failAlert').fadeOut(125)
+					}, 2000);
+				}
+			})
+		});
+	}); // ----- END OF DELETE USER MODAL -----
+	
+	// ------------------------------------- DELETE FILE MODAL -------------------------------------
+	$("#user-table").on("click", "td .delete-user", function() {
+	
+	}); // ----- END OF DELETE FILE -----
+	// 	else if (e.target.classList[1] === "bi-x-lg") {
+	// 		$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
+	// 		let $file_id = $(e.target).closest('li').val()
+	// 		let $file_name = $(e.target).closest('div.files').find('p').text()
+	// 		$('#file-info').text($file_name)
+	//
+	// 		$('.delete-file-submit').on('click', function() {
+	// 				$.ajax({
+	// 				url: '/delete_file',
+	// 				type: 'POST',
+	// 				contentType: 'application/json',
+	// 				data: JSON.stringify({
+	// 					file_id: $file_id
+	// 				}),
+	// 				success: function() {
+	// 					$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+	// 					$(e.target).closest('li').remove()
+	// 					$('#file-info').text('')
+	// 					$('#successText').text('File successfully deleted!')
+	// 					$('#successAlert').css('display', 'flex')
+	// 					$('#failAlert').css('display', 'none')
+	// 					setTimeout(function() {
+	// 						$('#successAlert').fadeOut(125)
+	// 					}, 2000);
+	// 				},
+	// 				error: function() {
+	// 					$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+	// 					$('#file-info').text('')
+	// 					$('#failedText').text('File deletion failed!')
+	// 					$('#failAlert').css('display', 'flex')
+	// 					$('#successAlertAlert').css('display', 'none')
+	// 					setTimeout(function() {
+	// 						$('#failAlert').fadeOut(125)
+	// 					}, 2000);
+	// 				}
+	// 			});
+	// 		})
+	// 	}
+	// 	// UPLOAD FILE FUNCTION
+	// 	else if(e.target.classList[2] === 'upload-button') {
+	// 		let fileName = $(e.target).closest('tr').find('td:eq(5) input').val()
+	// 		fileName = fileName.replace("C:\\fakepath\\", "")
+	// 		if(fileName !== '') {
+	// 			let user_id = $(e.target).closest('tr').find('th').text()
+	// 			$.ajax({
+	// 				url: '/upload',
+	// 				type: 'POST',
+	// 				contentType: 'application/json',
+	// 				data: JSON.stringify({
+	// 					user_id: user_id,
+	// 					fileName: fileName
+	// 				}),
+	// 				success: function(response) {
+	// 					let new_li = $("<li class='list-group-item' value='"+ response['file_id']+"'>" +
+	// 						"<div class='files'>" +
+	// 						"<p>" + response['path'] + "</p>" +
+	// 						"<div class='files-icons'>" +
+	// 							"<i class='bi bi-download'></i><i class='bi bi-x-lg'></i>" +
+	// 						"</div>" +
+	// 						"</div>" +
+	// 						"</li>");
+	// 					let $list = $(e.target).closest('tr').find('td:eq(4) ul');
+	// 					$list.append(new_li);
+	// 					$(e.target).closest('tr').find('td:eq(5) input').val('')
+	// 					$('#successText').text('File successfully uploaded!')
+	// 					$('#successAlert').css('display', 'flex')
+	// 					$('#failAlert').css('display', 'none')
+	// 					setTimeout(function() {
+	// 						$('#successAlert').fadeOut(125)
+	// 					}, 2000);
+	// 				},
+	// 				error: function() {
+	// 					$('#failedText').text('File upload failed!')
+	// 					$('#failAlert').css('display', 'flex')
+	// 					setTimeout(function() {
+	// 						$('#failAlert').fadeOut(125)
+	// 					}, 2000);
+	// 				}
+	// 			})
+	// 		}
+	// 	}
+	// }); // end of table.click
+	// EDIT MODAL CLOSED
 		$('.close-edit').on('click', function() {
 			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
 			$('#modal-form')[0].reset()
@@ -399,7 +400,6 @@ $(document).ready(function() {
 			$('#infoList').html('')
 			$('#file-info').text('')
 		});
-	});
 	// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------
 	$('.modal-username').on('input', function() {
 		$.ajax({

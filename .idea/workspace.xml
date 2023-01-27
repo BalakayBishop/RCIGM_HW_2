@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: updated the user update function to replace vanilla JS with jQuery">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: adding runtime.txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
@@ -178,28 +178,8 @@
       <workItem from="1674081959407" duration="7466000" />
       <workItem from="1674235113808" duration="1180000" />
       <workItem from="1674492863630" duration="37117000" />
-      <workItem from="1674772826202" duration="5670000" />
-    </task>
-    <task id="LOCAL-00036" summary="Local: refactored the li from having icons to buttons for edit and delete. refactored the ul.onclick ajax for opening the modal windows and how the information is loaded into the modal windows">
-      <created>1672183480120</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1672183480120</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Local: refactored route '/' to have get and post methods, without them it was causing 405 error">
-      <created>1672184368107</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1672184368107</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Local: minor changes to the modal window">
-      <created>1672187977949</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1672187977949</updated>
+      <workItem from="1674772826202" duration="9388000" />
+      <workItem from="1674837055618" duration="10783000" />
     </task>
     <task id="LOCAL-00039" summary="Local: added :root css color variables for the success/fail border, background, and text color">
       <created>1672188835778</created>
@@ -523,7 +503,28 @@
       <option name="project" value="LOCAL" />
       <updated>1674775598780</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Local: refactored main.js to remove a lot of vanilla JS selectors for e.target, and finished the delete file function and endpoint">
+      <created>1674779508617</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1674779508617</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Local: adding requirements.txt">
+      <created>1674845230269</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1674845230269</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Local: adding runtime.txt">
+      <created>1674845562028</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1674845562028</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,9 +543,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: workspace.xml" />
-    <MESSAGE value="Local: changes made to models.py to reflect ON DELETE CASCADE in MySQL for deleting a user will delete all files associated in the files table" />
-    <MESSAGE value="Local: new changes to the upload feature for data validation" />
     <MESSAGE value="Local: more additions to the upload feature that now includes having a hidden ul under the file selector and if the ajax for upload is successful it displays a ul li for the file uploaded" />
     <MESSAGE value="Local: created upload endpoint for files to be uploaded" />
     <MESSAGE value="Local: worked out new form to query with an outer join to get all User rows and if they have a file uploaded" />
@@ -567,11 +565,14 @@
     <MESSAGE value="Local: removed the db import and replaced it with sessionmaker and engine" />
     <MESSAGE value="Local: updated and completed the user deletion" />
     <MESSAGE value="Local: updated the user update function to replace vanilla JS with jQuery" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: updated the user update function to replace vanilla JS with jQuery" />
+    <MESSAGE value="Local: refactored main.js to remove a lot of vanilla JS selectors for e.target, and finished the delete file function and endpoint" />
+    <MESSAGE value="Local: adding requirements.txt" />
+    <MESSAGE value="Local: adding runtime.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: adding runtime.txt" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674779309207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674852702209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
