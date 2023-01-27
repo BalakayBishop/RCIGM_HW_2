@@ -1,12 +1,18 @@
 $(document).ready(function() {
+	// ------------------------------------- PAGE REDIRECT -------------------------------------
+	$('#landing-redirect').on('click', function() {
+		window.location.href = '/index'
+	});
+	
+	$('#back-home').on('click', function() {
+		window.location.href = '/'
+	})
 	// ------------------------------------- LIST OF USERS ON PAGE LOAD -------------------------------------
 	$.ajax({
 		url: '/users',
 		type:'GET',
 		success: function(response) {
 			for(let i = 0; i < response.length; i++) {
-				// console.log(response[i]['files'])
-				
 				let main = $("<tr>" +
 					"<td><div class='action-icons'>" +
 						"<i class='bi bi-pencil-square'></i> <i class='bi bi-trash3'></i>" +
@@ -34,13 +40,15 @@ $(document).ready(function() {
 						"</li>")
 						ul.append(li)
 					}
-				main.append("<td><div class='input-div'>" +
+				main.append("<td>" +
+					"<div class='input-div'>" +
 						"<label for='file-input' class='form-label'>Upload File</label>" +
 						"<input class='form-control file-input' type='file'>" +
 					"</div>" +
 					"<div class='upload-button-div mt-2'>" +
 						"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
-					"</div></td>")
+					"</div>" +
+				"</td>")
 			}
 		},
 		error: function(jqXHR) {
@@ -277,13 +285,50 @@ $(document).ready(function() {
 				})
 			});
 		}
+		else if (e.target.classList[1] === "bi-x-lg") {
+			$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
+			let $file_id = $(e.target).closest('li').val()
+			let $file_name = $(e.target).closest('div.files').find('p').text()
+			$('#file-info').text($file_name)
+			
+			$('.delete-file-submit').on('click', function() {
+					$.ajax({
+					url: '/delete_file',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({
+						file_id: $file_id
+					}),
+					success: function() {
+						$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+						$(e.target).closest('li').remove()
+						$('#file-info').text('')
+						$('#successText').text('File successfully deleted!')
+						$('#successAlert').css('display', 'flex')
+						$('#failAlert').css('display', 'none')
+						setTimeout(function() {
+							$('#successAlert').fadeOut(125)
+						}, 2000);
+					},
+					error: function() {
+						$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+						$('#file-info').text('')
+						$('#failedText').text('File deletion failed!')
+						$('#failAlert').css('display', 'flex')
+						$('#successAlertAlert').css('display', 'none')
+						setTimeout(function() {
+							$('#failAlert').fadeOut(125)
+						}, 2000);
+					}
+				});
+			})
+		}
 		// UPLOAD FILE FUNCTION
 		else if(e.target.classList[2] === 'upload-button') {
 			let fileName = $(e.target).closest('tr').find('td:eq(5) input').val()
 			fileName = fileName.replace("C:\\fakepath\\", "")
 			if(fileName !== '') {
 				let user_id = $(e.target).closest('tr').find('th').text()
-				console.log(user_id)
 				$.ajax({
 					url: '/upload',
 					type: 'POST',
@@ -396,12 +441,4 @@ $(document).ready(function() {
 	$('#failX').on('click', function() {
 		$('#failAlert').css('display', 'none')
 	});
-	// ------------------------------------- PAGE REDIRECT -------------------------------------
-	$('#landing-redirect').on('click', function() {
-		window.location.href = '/index'
-	});
-	
-	$('#back-home').on('click', function() {
-		window.location.href = '/'
-	})
 });

@@ -56,7 +56,6 @@ def new_user():
 			username=username
 		)
 		session.add(user)
-		session.flush()
 		session.commit()
 		
 		return jsonify({
@@ -106,7 +105,7 @@ def delete_user():
 	user_id = data['user_id']
 	
 	if len(user_id) != 0:
-		user = session.query(User).filter_by(user_id=user_id).one_or_none()
+		user = session.query(User).filter(User.user_id==user_id).one_or_none()
 		if user is not None:
 			session.delete(user)
 			session.commit()
@@ -132,14 +131,13 @@ def upload():
 	user_id = data['user_id']
 	fileName = data['fileName']
 	file_path = 'D:\\Projects\\Files\\' + fileName
-	user = User.query.filter_by(user_id=user_id).one_or_none()
+	user = session.query(User).filter(User.user_id==user_id).one_or_none()
 	if user is not None:
 		newFile = UserFiles (
 			user_id=user.user_id,
 			file_path=file_path
 		)
 		session.add(newFile)
-		session.flush()
 		session.commit()
 		
 		return jsonify({
@@ -150,12 +148,12 @@ def upload():
 	
 	return jsonify({'status': 'fail'}), 400
 
-# -------------------- ROUTE: UPLOAD FILE --------------------
+# -------------------- ROUTE: DELETE FILE --------------------
 @core.route('/delete_file', methods=['POST'])
 def delete_file():
 	data = request.get_json()
 	file_id = data['file_id']
-	file = UserFiles.query.filter_by(id=file_id).one_or_none()
+	file = session.query(UserFiles).filter(UserFiles.file_id==file_id).one_or_none()
 	if file is not None:
 		session.delete(file)
 		session.commit()
