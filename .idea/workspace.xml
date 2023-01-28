@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactored the delete file function to remove e.target">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactored to give elements unique IDs in order to have better selectors using jQuery">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,14 +180,7 @@
       <workItem from="1674235113808" duration="1180000" />
       <workItem from="1674492863630" duration="37117000" />
       <workItem from="1674772826202" duration="9388000" />
-      <workItem from="1674837055618" duration="14567000" />
-    </task>
-    <task id="LOCAL-00041" summary="Local: small changes to index for formatting, removed if statement from new user form submission to contain both success and fail attributes for the response, and changes the view return to return either success or fail 400">
-      <created>1672189672330</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1672189672330</updated>
+      <workItem from="1674837055618" duration="16802000" />
     </task>
     <task id="LOCAL-00042" summary="Local: small change">
       <created>1672189818647</created>
@@ -523,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674860569307</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Local: refactored to give elements unique IDs in order to have better selectors using jQuery">
+      <created>1674862563883</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1674862563883</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,7 +544,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: worked out new form to query with an outer join to get all User rows and if they have a file uploaded" />
     <MESSAGE value="Local: working towards figuring out how to return the new query of users and their files while getting rid of duplicates but associating the files to one row instead of multiple" />
     <MESSAGE value="Local: got the query and data massaging to work in the capacity that i would like where there is only one row for each user in DB and all the files associated to that user are in a list in the dictionary of users" />
     <MESSAGE value="Local: major changes! Added UserFiles.ID to the query, changed the convert_join to use a switch case instead of if and elif, changed data structure to store the files and paths to now be a list of dictionaries that contains key value-pair of the file's id and the file's path, had to modify the looping structure that appends the list when there is more than one user ID detected" />
@@ -567,11 +568,12 @@
     <MESSAGE value="Local: adding runtime.txt" />
     <MESSAGE value="Local: updated the edit user and delete user functions by replacing the e.target JS" />
     <MESSAGE value="Local: refactored the delete file function to remove e.target" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored the delete file function to remove e.target" />
+    <MESSAGE value="Local: refactored to give elements unique IDs in order to have better selectors using jQuery" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored to give elements unique IDs in order to have better selectors using jQuery" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674862338409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674864446518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

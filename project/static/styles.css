@@ -261,8 +261,8 @@ i {
 
 /* ---------------------------EDIT MODAL------------------------------------------- */
 
-.popup-overlay-edit {
-    background-color: rgba(126, 126, 126, 0.8);
+.popup-overlay {
+    background-color: rgba(80, 80, 80, 0.8);
     position: fixed;
     padding: 2rem;
     margin: 0;
@@ -273,7 +273,7 @@ i {
     visibility: hidden;
 }
 
-.popup-content-edit {
+.popup-content {
     background-color: white;
     border-radius: 8px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
@@ -285,7 +285,7 @@ i {
     visibility: hidden;
 }
 
-.popup-overlay-edit.active, .popup-content-edit.active {
+.popup-overlay.active, .popup-content.active {
     visibility: visible;
 }
 
@@ -415,7 +415,7 @@ i {
     cursor: pointer;
 }
 
-.modal-xmark-edit, .modal-xmark-delete {
+.modal-x {
     font-size: 24px;
 }
 

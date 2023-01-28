@@ -158,7 +158,9 @@ $(document).ready(function() {
 		let firstname_val = $("#"+$tr_id).find('td:eq(1)').text()
 		let lastname_val = $("#"+$tr_id).find('td:eq(2)').text()
 		let username_val = $("#"+$tr_id).find('td:eq(3)').text()
-		$('.popup-overlay-edit, .popup-content-edit').addClass('active')
+		// DISPLAY MODAL WINDOW
+		$('.popup-overlay, .popup-content').css('visibility', 'visible')
+		editModal()
 		$('#modal-firstName').val(firstname_val)
 		$('#modal-lastName').val(lastname_val)
 		$('#modal-userName').val(username_val)
@@ -204,7 +206,7 @@ $(document).ready(function() {
 					$("#"+$tr_id).find('td:eq(2)').text(response['lastName'])
 					$("#"+$tr_id).find('td:eq(3)').text(response['userName'])
 
-					$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
+					$('.popup-overlay, .popup-content').removeClass('active')
 					$('#successText').val("User successfully updated!")
 					$('#successAlert').css('display', 'flex')
 					setTimeout(function() {
@@ -241,7 +243,7 @@ $(document).ready(function() {
 		event.preventDefault()
 		let $tr_id = $(this).closest('tr').attr('id')
 		console.log($tr_id)
-		$('.popup-overlay-delete, .popup-content-delete').addClass('active')
+		$('.popup-overlay, .popup-content').addClass('active')
 		let userid_val = $("#"+$tr_id).find('th').text()
 		let firstname_val = $("#"+$tr_id).find('td:eq(1)').text()
 		let lastname_val = $("#"+$tr_id).find('td:eq(2)').text()
@@ -259,7 +261,7 @@ $(document).ready(function() {
 					user_id: $tr_id
 				}),
 				success: function() {
-					$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
+					$('.popup-overlay, .popup-content').removeClass('active')
 					$("#"+$tr_id).remove();
 					$('#infoList').html('')
 					$('#successText').text('User successfully deleted!')
@@ -300,7 +302,7 @@ $(document).ready(function() {
 					file_id: $file_id
 				}),
 				success: function() {
-					$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+					$('.popup-overlay, .popup-content').removeClass('active')
 					$("#"+$file_id).remove()
 					$('#file-info').text('')
 					$('#successText').text('File successfully deleted!')
@@ -370,20 +372,8 @@ $(document).ready(function() {
 	}); // ----- END OF UPLOAD FILE -----
 	
 	// EDIT MODAL CLOSED
-		$('.close-edit, .modal-xmark-edit').on('click', function() {
-			$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-			$('#modal-form')[0].reset()
-			$('#modal-available').css('display', 'none')
-			$('#modal-taken').css('display', 'none')
-			$('.modal-username').removeClass('success fail')
-			$('#modal-submitButton').prop('disabled', false)
-		});
-		// DELETE MODAL CLOSE
-		$('.close-delete, .modal-xmark-delete').on('click', function() {
-			$('.popup-overlay-delete, .popup-content-delete, .popup-overlay-delete-file, .popup-content-delete-file')
-				.removeClass('active')
-			$('#infoList').html('')
-			$('#file-info').text('')
+		$('.popup-content').on('click', '.modal-x', function() {
+			$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 		});
 	// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------
 	$('.modal-username').on('input', function() {
@@ -426,4 +416,38 @@ $(document).ready(function() {
 	$('#failX').on('click', function() {
 		$('#failAlert').css('display', 'none')
 	});
+	
+	function editModal() {
+		let edit_modal = $("<div class='modalHeader'>" +
+			"<h2>Edit User</h2>" +
+			"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
+		"</div>" +
+			"<form id=\"modal-form\" method=\"POST\" class=\"needs-validation\">" +
+			"<div class=\"form-floating mb-3\">" +
+			"<input type=\"text\" name=\"firstName\" class=\"form-control\" id=\"modal-firstName\"" +
+			"placeholder=\"John\" required>" +
+			"<label htmlFor=\"modal-firstName\">First Name</label>" +
+			"</div>\n" +
+			"" +
+			"<div class=\"form-floating mb-3\">" +
+			"<input type=\"text\" name=\"lastName\" class=\"form-control\" id=\"modal-lastName\" placeholder=\"Doe\"" +
+			"   required>" +
+			"<label htmlFor=\"modal-lastName\">Last Name</label>" +
+			"</div>" +
+			"" +
+			"<div class=\"form-floating mb-3\">" +
+			"<input type=\"text\" name=\"userName\" class=\"form-control modal-username\" id=\"modal-userName\"" +
+			"placeholder=\"john_doe\" required>\n" +
+			"<label htmlFor=\"modal-userName\">Username</label>" +
+			"</div>" +
+			"<p id=\"modal-taken\">Username is already taken!</p>" +
+			"<p id=\"modal-available\">Username is available!</p>" +
+			"<div class=\"form-buttons\">" +
+			"<button type=\"button\" id=\"modal-submitButton\" class=\"btn btn-primary submit\">Submit</button>" +
+			"<button type=\"button\" class=\"btn btn-secondary close-edit\">Cancel</button>" +
+			"</div>" +
+			"</form>"
+		)
+		$('.popup-content').append(edit_modal)
+	}
 });

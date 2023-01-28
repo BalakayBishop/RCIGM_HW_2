@@ -90,96 +90,11 @@
 
 			</div> <!--End of Div Content-->
 
-			<div class="popup-overlay-edit">
-				<div class="popup-content-edit">
-					<div class="modalHeader">
-						<h2>Edit User</h2>
-						<p><i class="fa-solid fa-xmark modal-xmark-edit"></i></p>
-					</div>
-
-					<form id="modal-form" method="POST" class="needs-validation">
-						<div class="form-floating mb-3">
-						  <input type="text" name="firstName" class="form-control" id="modal-firstName"
-						         placeholder="John" required>
-						  <label for="modal-firstName">First Name</label>
-						</div>
-
-						<div class="form-floating mb-3">
-						  <input type="text" name="lastName" class="form-control" id="modal-lastName" placeholder="Doe"
-						         required>
-						  <label for="modal-lastName">Last Name</label>
-						</div>
-
-						<div class="form-floating mb-3">
-						  <input type="text" name="userName" class="form-control modal-username" id="modal-userName"
-						         placeholder="john_doe" required>
-						  <label for="modal-userName">Username</label>
-						</div>
-						<p id="modal-taken">Username is already taken!</p>
-						<p id="modal-available">Username is available!</p>
-
-						<div class="form-buttons">
-							<button type="button" id="modal-submitButton" class="btn btn-primary submit">Submit</button>
-							<button type="button" class="btn btn-secondary close-edit">Cancel</button>
-						</div>
-
-					</form>
-				</div>
-			</div> <!-- End of Edit Modal -->
-
-			<div class="popup-overlay-delete">
-				<div class="popup-content-delete">
-					<div class="modalHeader">
-						<h2>Delete User?</h2>
-						<p><i class="fa-solid fa-xmark modal-xmark-delete"></i></p>
-					</div>
-
-					<div class="warning-message">
-						<p><i class="bi bi-exclamation-triangle"></i>Warning!</p>
-						<p>Are you sure that you want to delete this user?</p>
-						<p>This action cannot be undone!</p>
-					</div>
-
-					<div class="userInfo">
-						<p>User to be deleted: </p>
-						<ul id="infoList" class="list-group list-group-flush">
-
-						</ul>
-					</div>
-
-					<div class="form-buttons mt-4">
-						<button type="button" class="btn btn-danger delete-submit">Yes, delete this user!</button>
-						<button type="button" class="btn btn-secondary close-delete">Cancel, do not delete!</button>
-					</div>
+			<div class="popup-overlay">
+				<div class="popup-content">
 
 				</div>
-			</div> <!-- End of User Delete Modal -->
-
-			<div class="popup-overlay-delete-file">
-				<div class="popup-content-delete-file">
-					<div class="modalHeader">
-						<h2>Delete File?</h2>
-						<p><i class="fa-solid fa-xmark modal-xmark-delete"></i></p>
-					</div>
-
-					<div class="warning-message">
-						<p><i class="bi bi-exclamation-triangle"></i>Warning!</p>
-						<p>Are you sure that you want to delete this file?</p>
-						<p>This action cannot be undone!</p>
-					</div>
-
-					<div class="mt-4">
-						<p id="delete-file-header">File to be deleted: </p>
-						<p id="file-info"></p>
-					</div>
-
-					<div class="form-buttons mt-4">
-						<button type="button" class="btn btn-danger delete-file-submit">Yes, delete this file!</button>
-						<button type="button" class="btn btn-secondary close-delete">Cancel, do not delete!</button>
-					</div>
-
-				</div>
-			</div> <!-- End of File Delete Modal -->
+			</div> <!-- End of Modal -->
 
 		</div> <!--End of Div Container-->
 	</body>
