@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactored to give elements unique IDs in order to have better selectors using jQuery">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactoring to only have one modal window and when certain icons are clicked the modal is dynamically populated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,14 +179,7 @@
       <workItem from="1674235113808" duration="1180000" />
       <workItem from="1674492863630" duration="37117000" />
       <workItem from="1674772826202" duration="9388000" />
-      <workItem from="1674837055618" duration="16802000" />
-    </task>
-    <task id="LOCAL-00042" summary="Local: small change">
-      <created>1672189818647</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1672189818647</updated>
+      <workItem from="1674837055618" duration="19116000" />
     </task>
     <task id="LOCAL-00043" summary="Local: fixed the user update/edit modal submit and alert popup for submitting change to the selected user">
       <created>1672261667649</created>
@@ -525,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674862563883</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Local: refactoring to only have one modal window and when certain icons are clicked the modal is dynamically populated">
+      <created>1674864691969</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1674864691969</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,7 +543,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: working towards figuring out how to return the new query of users and their files while getting rid of duplicates but associating the files to one row instead of multiple" />
     <MESSAGE value="Local: got the query and data massaging to work in the capacity that i would like where there is only one row for each user in DB and all the files associated to that user are in a list in the dictionary of users" />
     <MESSAGE value="Local: major changes! Added UserFiles.ID to the query, changed the convert_join to use a switch case instead of if and elif, changed data structure to store the files and paths to now be a list of dictionaries that contains key value-pair of the file's id and the file's path, had to modify the looping structure that appends the list when there is more than one user ID detected" />
     <MESSAGE value="Local: task completed! refactored the ajax GET for the list of users to accurately show the files that are associated with users in the sub ul and li" />
@@ -569,11 +567,12 @@
     <MESSAGE value="Local: updated the edit user and delete user functions by replacing the e.target JS" />
     <MESSAGE value="Local: refactored the delete file function to remove e.target" />
     <MESSAGE value="Local: refactored to give elements unique IDs in order to have better selectors using jQuery" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored to give elements unique IDs in order to have better selectors using jQuery" />
+    <MESSAGE value="Local: refactoring to only have one modal window and when certain icons are clicked the modal is dynamically populated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: refactoring to only have one modal window and when certain icons are clicked the modal is dynamically populated" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674864446518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1674873365913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

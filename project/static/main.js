@@ -153,17 +153,10 @@ $(document).ready(function() {
 	// ------------------------------------- EDIT USER MODAL -------------------------------------
 	$("#user-table").on("click", "td .edit-user", function() {
 		let $tr_id = $(this).closest('tr').attr('id')
-		$('#modal-submitButton').prop('disabled', true)
 		let userid_val = $("#"+$tr_id).find('th').text()
 		let firstname_val = $("#"+$tr_id).find('td:eq(1)').text()
 		let lastname_val = $("#"+$tr_id).find('td:eq(2)').text()
 		let username_val = $("#"+$tr_id).find('td:eq(3)').text()
-		// DISPLAY MODAL WINDOW
-		$('.popup-overlay, .popup-content').css('visibility', 'visible')
-		editModal()
-		$('#modal-firstName').val(firstname_val)
-		$('#modal-lastName').val(lastname_val)
-		$('#modal-userName').val(username_val)
 		let input_firstname = false;
 		let input_lastname = false;
 		let input_username = false;
@@ -179,6 +172,36 @@ $(document).ready(function() {
 			input_username = true
 			allChanged()
 		})
+		// DISPLAY MODAL WINDOW
+		$('.popup-overlay, .popup-content').css('visibility', 'visible')
+		$('.popup-content').html("<div class='modalHeader'>" +
+			"<h2>Edit User</h2>" +
+			"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
+			"</div>" +
+			"<form id='modal-form' method='POST' class='needs-validation'>" +
+				"<div class='form-floating mb-3'>" +
+					"<input type='text' name='firstName' class='form-control' id='modal-firstName'" +
+					" placeholder='John' required>" +
+					"<label for='modal-firstName'>First Name</label>" +
+				"</div>" +
+				"<div class='form-floating mb-3'>" +
+					"<input type='text' name='lastName' class='form-control' id='modal-lastName' placeholder='Doe'" +
+					"   required>" +
+					"<label for='modal-lastName'>Last Name</label>" +
+				"</div>" +
+				"<div class='form-floating mb-3'>" +
+					"<input type='text' name='userName' class='form-control modal-username' id='modal-userName'" +
+					" placeholder='john_doe' required>" +
+					"<label for='modal-userName'>Username</label>" +
+				"</div>" +
+				"<p id='modal-taken'>Username is already taken!</p>" +
+				"<p id='modal-available'>Username is available!</p>" +
+				"<div class='form-buttons'>" +
+					"<button type='button' id='modal-submitButton' class='btn btn-primary submit'>Submit</button>" +
+					"<button type='button' class='btn btn-secondary close'>Cancel</button>" +
+				"</div>" +
+			"</form>"
+		)
 		function allChanged() {
 			if (input_firstname || input_lastname || input_username) {
 				$('#modal-submitButton').prop('disabled', false)
@@ -187,6 +210,43 @@ $(document).ready(function() {
 				$('#modal-submitButton').prop('disabled', true)
 			}
 		}
+		$('#modal-firstName').val(firstname_val)
+		$('#modal-lastName').val(lastname_val)
+		$('#modal-userName').val(username_val)
+		$('#modal-submitButton').prop('disabled', true)
+		// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------
+		$('#modal-userName').on('input', function() {
+			$.ajax({
+				url: '/username_validation',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					input: $(this).val()
+				}),
+				success: function(response) {
+					if (response['class'] === 'success') {
+						$('.modal-username').addClass('success')
+						$('.modal-username').removeClass('fail')
+						$('#modal-submitButton').prop('disabled', false)
+						$('#modal-available').css('display', 'block')
+						$('#modal-taken').css('display', 'none')
+					}
+					else if (response['class'] === 'fail') {
+						$('.modal-username').addClass('fail')
+						$('.modal-username').removeClass('success')
+						$('#modal-submitButton').prop('disabled', true)
+						$('#modal-available').css('display', 'none')
+						$('#modal-taken').css('display', 'block')
+					}
+					else if (response['class'] === 'none') {
+						$('.modal-username').removeClass('success fail')
+						$('#modal-submitButton').prop('disabled', true)
+						$('#modal-available').css('display', 'none')
+						$('#modal-taken').css('display', 'none')
+					}
+				}
+			})
+		});
 			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
 		$('#modal-submitButton').on('click', function(event) {
 			event.preventDefault()
@@ -201,37 +261,22 @@ $(document).ready(function() {
 					current_userid: userid_val
 				}),
 				success: function(response) {
+					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
+					$('.popup-content').html('')
 					$("#"+$tr_id).find('th').text(response['user_id'])
 					$("#"+$tr_id).find('td:eq(1)').text(response['firstName'])
 					$("#"+$tr_id).find('td:eq(2)').text(response['lastName'])
 					$("#"+$tr_id).find('td:eq(3)').text(response['userName'])
-
-					$('.popup-overlay, .popup-content').removeClass('active')
 					$('#successText').val("User successfully updated!")
 					$('#successAlert').css('display', 'flex')
 					setTimeout(function() {
 						$('#successAlert').fadeOut(125)
 					}, 2000);
-					$('#modal-form')[0].reset()
-					$('#modal-available').css('display', 'none')
-					$('#modal-taken').css('display', 'none')
-					$('#modal-submitButton').prop('disabled', false)
-					$('.modal-username').removeClass('success fail')
 				},
 				error: function(jqXHR) {
 					if (jqXHR.status === 400) {
-						$('.popup-overlay-edit, .popup-content-edit').removeClass('active')
-						$('#modal-form')[0].reset()
-						$('#failedText').text('User update failed!')
-						$('#successAlert').css('display', 'none')
-						$('#failAlert').css('display', 'flex')
-						setTimeout(function() {
-							$('#failAlert').fadeOut(125)
-						}, 2000);
-						$('#modal-available').css('display', 'none')
-						$('#modal-taken').css('display', 'none')
-						$('#modal-submitButton').prop('disabled', false)
-						$('.modal-username').removeClass('success fail')
+						$('.popup-overlay, .popup-content').css('visibility', 'hidden')
+						$('.popup-content').html('')
 					}
 				}
 			})
@@ -372,42 +417,11 @@ $(document).ready(function() {
 	}); // ----- END OF UPLOAD FILE -----
 	
 	// EDIT MODAL CLOSED
-		$('.popup-content').on('click', '.modal-x', function() {
+		$('.popup-content').on('click', '.modal-x, .close', function() {
 			$('.popup-overlay, .popup-content').css('visibility', 'hidden')
+			$('.popup-content').html('')
 		});
-	// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------
-	$('.modal-username').on('input', function() {
-		$.ajax({
-			url: '/username_validation',
-			type: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify({
-				input: $(this).val()
-			}),
-			success: function(response) {
-				if (response['class'] === 'success') {
-					$('.modal-username').addClass('success')
-					$('.modal-username').removeClass('fail')
-					$('#modal-submitButton').prop('disabled', false)
-					$('#modal-available').css('display', 'block')
-					$('#modal-taken').css('display', 'none')
-				}
-				else if (response['class'] === 'fail') {
-					$('.modal-username').addClass('fail')
-					$('.modal-username').removeClass('success')
-					$('#modal-submitButton').prop('disabled', true)
-					$('#modal-available').css('display', 'none')
-					$('#modal-taken').css('display', 'block')
-				}
-				else if (response['class'] === 'none') {
-					$('.modal-username').removeClass('success fail')
-					$('#modal-submitButton').prop('disabled', true)
-					$('#modal-available').css('display', 'none')
-					$('#modal-taken').css('display', 'none')
-				}
-			}
-		})
-	});
+	
 	// ------------------------------------- SUCCESS ALERT CLOSE -------------------------------------
 	$('#successX').on('click', function() {
 		$('#successAlert').css('display', 'none')
@@ -416,38 +430,4 @@ $(document).ready(function() {
 	$('#failX').on('click', function() {
 		$('#failAlert').css('display', 'none')
 	});
-	
-	function editModal() {
-		let edit_modal = $("<div class='modalHeader'>" +
-			"<h2>Edit User</h2>" +
-			"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
-		"</div>" +
-			"<form id=\"modal-form\" method=\"POST\" class=\"needs-validation\">" +
-			"<div class=\"form-floating mb-3\">" +
-			"<input type=\"text\" name=\"firstName\" class=\"form-control\" id=\"modal-firstName\"" +
-			"placeholder=\"John\" required>" +
-			"<label htmlFor=\"modal-firstName\">First Name</label>" +
-			"</div>\n" +
-			"" +
-			"<div class=\"form-floating mb-3\">" +
-			"<input type=\"text\" name=\"lastName\" class=\"form-control\" id=\"modal-lastName\" placeholder=\"Doe\"" +
-			"   required>" +
-			"<label htmlFor=\"modal-lastName\">Last Name</label>" +
-			"</div>" +
-			"" +
-			"<div class=\"form-floating mb-3\">" +
-			"<input type=\"text\" name=\"userName\" class=\"form-control modal-username\" id=\"modal-userName\"" +
-			"placeholder=\"john_doe\" required>\n" +
-			"<label htmlFor=\"modal-userName\">Username</label>" +
-			"</div>" +
-			"<p id=\"modal-taken\">Username is already taken!</p>" +
-			"<p id=\"modal-available\">Username is available!</p>" +
-			"<div class=\"form-buttons\">" +
-			"<button type=\"button\" id=\"modal-submitButton\" class=\"btn btn-primary submit\">Submit</button>" +
-			"<button type=\"button\" class=\"btn btn-secondary close-edit\">Cancel</button>" +
-			"</div>" +
-			"</form>"
-		)
-		$('.popup-content').append(edit_modal)
-	}
 });

@@ -259,7 +259,7 @@ i {
     cursor: pointer;
 }
 
-/* ---------------------------EDIT MODAL------------------------------------------- */
+/* ---------------------------MODAL WINDOW------------------------------------------- */
 
 .popup-overlay {
     background-color: rgba(80, 80, 80, 0.8);
@@ -285,40 +285,30 @@ i {
     visibility: hidden;
 }
 
-.popup-overlay.active, .popup-content.active {
-    visibility: visible;
+/* ---------------------------MODAL HEADER AND X------------------------------------------- */
+
+.modalHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* ---------------------------DELETE MODAL------------------------------------------- */
-
-.popup-overlay-delete,
-.popup-overlay-delete-file {
-    background-color: rgba(126, 126, 126, 0.8);
-    position: fixed;
-    padding: 1rem 2rem;
+.modalHeader > h2, p {
     margin: 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    visibility: hidden;
+    color: #333333;
 }
 
-.popup-content-delete,
-.popup-content-delete-file {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
-    padding: 2rem;
-    width: 50%;
-    position: absolute;
-    left: 25%;
-    top: 10%;
-    visibility: hidden;
+.modalHeader > p {
+    display: inline-block;
 }
 
-.popup-content-delete > .form-buttons {
-    margin-top: 16px;
+.fa-xmark:hover {
+    cursor: pointer;
+}
+
+.modal-x {
+    font-size: 24px;
 }
 
 .warning-message {
@@ -353,26 +343,6 @@ i {
     padding: .5rem 1rem;
 }
 
-/* ---------------------------MODAL BUTTONS------------------------------------------- */
-
-.popup-content-edit .form-buttons > button {
-    width: 50%;
-}
-
-.popup-content-delete .form-buttons > button {
-    width: 50%;
-}
-
-.popup-content-delete-file .form-buttons > button {
-    width: 50%;
-}
-
-/* ---------------------------MODAL VISIBILITY------------------------------------------- */
-
-.active {
-    visibility: visible;
-}
-
 /* ---------------------------MODAL FORM------------------------------------------- */
 
 .form-buttons {
@@ -385,7 +355,11 @@ i {
     margin-top: 2rem!important;
 }
 
-.popup-content-edit > p {
+.form-buttons > button {
+    width: 50%;
+}
+
+.popup-content > p {
     color: #333333;
 }
 
@@ -393,40 +367,14 @@ i {
     margin-top: 2rem;
 }
 
-/* ---------------------------MODAL HEADER AND X------------------------------------------- */
-
-.modalHeader {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modalHeader > h2, p {
-    margin: 0;
-    color: #333333;
-}
-
-.modalHeader > p {
-    display: inline-block;
-}
-
-.fa-xmark:hover {
-    cursor: pointer;
-}
-
-.modal-x {
-    font-size: 24px;
-}
-
-/* ---------------------------MODAL FORM USERNAME VALIDATION------------------------------------------- */
+/* ---------------------------MODAL FORM USERNAME VALIDATION------------------------------ */
 
 #modal-available {
     margin: 0 0 8px;
     color: var(--success-color);
     display: none;
     position: absolute;
-    bottom: 56px;
+    bottom: 69px;
     left: 44px;
 }
 
@@ -435,12 +383,11 @@ i {
     color: var(--fail-color);
     display: none;
     position: absolute;
-    bottom: 60px;
+    bottom: 69px;
     left: 44px;
 }
 
-
-/* ---------------------------SUCCESSFUL USER EDIT------------------------------------------- */
+/* ---------------------------SUCCESSFUL ALERT-------------------------------- */
 
 #successAlert {
     display: none;
@@ -465,7 +412,7 @@ i {
     cursor: pointer;
 }
 
-/* ---------------------------FAIL USER EDIT------------------------------------------- */
+/* ---------------------------FAIL ALERT------------------------------------------- */
 #failAlert {
     display: none;
     background-color: var(--fail-bg);
@@ -496,11 +443,4 @@ i {
 
 .form-label {
     margin-bottom: .25rem!important;
-}
-
-/* ---------------------------UPLOAD BUTTON------------------------------------------- */
-
-#upload-btn {
-    display: flex;
-    justify-content: flex-end;
 }
