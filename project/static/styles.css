@@ -374,7 +374,7 @@ i {
     color: var(--success-color);
     display: none;
     position: absolute;
-    bottom: 69px;
+    bottom: 56px;
     left: 44px;
 }
 
@@ -383,7 +383,7 @@ i {
     color: var(--fail-color);
     display: none;
     position: absolute;
-    bottom: 69px;
+    bottom: 56px;
     left: 44px;
 }
 

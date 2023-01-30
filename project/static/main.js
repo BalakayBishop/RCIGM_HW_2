@@ -287,16 +287,12 @@ $(document).ready(function() {
 	$("#user-table").on("click", "td .delete-user", function(event) {
 		event.preventDefault()
 		let $tr_id = $(this).closest('tr').attr('id')
-		console.log($tr_id)
-		$('.popup-overlay, .popup-content').addClass('active')
 		let userid_val = $("#"+$tr_id).find('th').text()
 		let firstname_val = $("#"+$tr_id).find('td:eq(1)').text()
 		let lastname_val = $("#"+$tr_id).find('td:eq(2)').text()
 		let username_val = $("#"+$tr_id).find('td:eq(3)').text()
-		$('#infoList').append("<li class='list-group-item'>User ID: " + userid_val + " </li>" +
-			"<li class='list-group-item'>First Name: " + firstname_val + "</li>" +
-			"<li class='list-group-item'>Last Name: " + lastname_val + "</li>" +
-			"<li class='list-group-item'>Username: " + username_val + "</li>")
+		$('.popup-overlay, .popup-content').css('visibility', 'visible')
+		
 		$('.delete-submit').on('click', function() {
 			$.ajax({
 				url: '/delete_user',
@@ -333,13 +329,30 @@ $(document).ready(function() {
 	// ------------------------------------- DELETE FILE MODAL -------------------------------------
 	$("#user-table").on("click", "td .delete-file", function(event) {
 		event.preventDefault()
-		$('.popup-overlay-delete-file, .popup-content-delete-file').addClass('active')
-			let $file_id = $(this).closest('li').attr('id')
-			let $file_name = $(this).closest('div.files').find('p').text()
-			$('#file-info').text($file_name)
-
-			$('.delete-file-submit').on('click', function() {
-				$.ajax({
+		$('.popup-overlay, .popup-content').css('visibility', 'visible')
+		let $file_id = $(this).closest('li').attr('id')
+		let $file_name = $(this).closest('div.files').find('p').text()
+		$('#file-info').text($file_name)
+		$('.popup-content').html("<div class='modalHeader'>" +
+				"<h2>Delete File?</h2>" +
+				"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
+			"</div>" +
+			"<div class='warning-message'>" +
+				"<p><i class='bi bi-exclamation-triangle'></i>Warning!</p>" +
+				"<p>Are you sure that you want to delete this file?</p>" +
+				"<p>This action cannot be undone!</p>" +
+			"</div>" +
+			"<div class='mt-4'>" +
+				"<p id='delete-file-header'>File to be deleted: </p>" +
+				"<p id='file-info'>"+ $file_name +"</p>" +
+			"</div>" +
+			"<div class='form-buttons mt-4'>" +
+				"<button type='button' class='btn btn-danger delete-file-submit'>Yes, delete this file!</button>" +
+				"<button type='button' class='btn btn-secondary close'>Cancel, do not delete!</button>" +
+		"</div>")
+		// ----- DELETE FILE SUBMIT -----
+		$('.delete-file-submit').on('click', function() {
+			$.ajax({
 				url: '/delete_file',
 				type: 'POST',
 				contentType: 'application/json',
@@ -347,9 +360,8 @@ $(document).ready(function() {
 					file_id: $file_id
 				}),
 				success: function() {
-					$('.popup-overlay, .popup-content').removeClass('active')
+					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$("#"+$file_id).remove()
-					$('#file-info').text('')
 					$('#successText').text('File successfully deleted!')
 					$('#successAlert').css('display', 'flex')
 					$('#failAlert').css('display', 'none')
@@ -358,7 +370,7 @@ $(document).ready(function() {
 					}, 2000);
 				},
 				error: function() {
-					$('.popup-overlay-delete-file, .popup-content-delete-file').removeClass('active')
+					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('#file-info').text('')
 					$('#failedText').text('File deletion failed!')
 					$('#failAlert').css('display', 'flex')
@@ -416,7 +428,7 @@ $(document).ready(function() {
 		}
 	}); // ----- END OF UPLOAD FILE -----
 	
-	// EDIT MODAL CLOSED
+	// ----- MODAL CLOSED -----
 		$('.popup-content').on('click', '.modal-x, .close', function() {
 			$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 			$('.popup-content').html('')
