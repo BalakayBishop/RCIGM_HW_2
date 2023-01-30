@@ -172,25 +172,10 @@ svg {
 
 /* ---------------------------USERNAME VALIDATION CLASSES------------------------------------------- */
 
-#taken {
-    color: var(--fail-color);
+#username-alert {
     display: none;
     position: absolute;
     transform: translateX(13px) translateY(-16px);
-}
-
-#available {
-    color: var(--success-color);
-    display: none;
-    position: absolute;
-    transform: translateX(13px) translateY(-16px);
-}
-
-#submitButton:visited,
-#submitButton:active,
-#submitButton:focus {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
 }
 
 /* ---------------------------USER TABLE------------------------------------------- */

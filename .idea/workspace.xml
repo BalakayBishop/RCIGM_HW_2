@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactored the delete user modal">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactored the username validation alert and fixed the new user response to have the correct classes and attributes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,14 +181,7 @@
       <workItem from="1674492863630" duration="37117000" />
       <workItem from="1674772826202" duration="9388000" />
       <workItem from="1674837055618" duration="19196000" />
-      <workItem from="1675098339367" duration="5999000" />
-    </task>
-    <task id="LOCAL-00046" summary="Local: small fix to the modal edit submit function to fix a new li being made after an edit being made">
-      <created>1673030416127</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1673030416127</updated>
+      <workItem from="1675098339367" duration="6834000" />
     </task>
     <task id="LOCAL-00047" summary="Local: adding new features for uploading files. Added new db.Model class to reflect changes made to database in MySQL, and connected the User class to the new class via db.relationship">
       <created>1673290380237</created>
@@ -526,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675107649172</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Local: refactored the username validation alert and fixed the new user response to have the correct classes and attributes.">
+      <created>1675114400425</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1675114400425</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +545,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: added modal for deleting files" />
     <MESSAGE value="Local: finished delete file functionality! added new route in views.py, added new method to get the newly created file as a dictionary in methods.py" />
     <MESSAGE value="Local: styling changes made to the alerts" />
     <MESSAGE value="Local: making backend changes to the query to get all the users and files" />
@@ -570,11 +569,12 @@
     <MESSAGE value="Local: refactored the modal window for edit to be loaded dynamically when the icon is clicked and the modal windows css to remove redundant and unneeded css" />
     <MESSAGE value="Local: refactored the delete file modal" />
     <MESSAGE value="Local: refactored the delete user modal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored the delete user modal" />
+    <MESSAGE value="Local: refactored the username validation alert and fixed the new user response to have the correct classes and attributes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored the username validation alert and fixed the new user response to have the correct classes and attributes." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675114293868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675115142284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

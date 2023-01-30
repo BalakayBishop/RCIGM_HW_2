@@ -70,22 +70,22 @@ $(document).ready(function() {
 				if (response['class'] === 'success') {
 					$('.username').addClass('success')
 					$('.username').removeClass('fail')
-					$('#submitButton').prop('disabled', false)
-					$('#available').css('display', 'block')
-					$('#taken').css('display', 'none')
+					$('#submitButton').prop({'disabled':false})
+					$('#username-alert').css({'display':'block', 'color':'#0f5132'})
+					$('#username-alert').text("Username is available!")
 				}
 				else if (response['class'] === 'fail') {
 					$('.username').addClass('fail')
 					$('.username').removeClass('success')
-					$('#submitButton').prop('disabled', true)
-					$('#available').css('display', 'none')
-					$('#taken').css('display', 'block')
+					$('#submitButton').prop({'disabled':true})
+					$('#username-alert').css({'display':'block', 'color':'#842029'})
+					$('#username-alert').text("Username is already taken!")
 				}
 				else if (response['class'] === 'none') {
 					$('.username').removeClass('fail success')
 					$('#submitButton').prop('disabled', false)
-					$('#available').css('display', 'none')
-					$('#taken').css('display', 'none')
+					$('#username-alert').css({'display':'none'})
+					$('#username-alert').text("")
 				}
 			}
 		})
