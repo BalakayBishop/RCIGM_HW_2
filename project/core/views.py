@@ -60,7 +60,7 @@ def new_user():
 		
 		return jsonify({
 			'status': 'success',
-			'id': user.user_id,
+			'user_id': user.user_id,
 			'userName': user.username,
 			'firstName': user.first_name,
 			'lastName': user.last_name

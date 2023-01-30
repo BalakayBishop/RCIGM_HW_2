@@ -82,7 +82,7 @@ $(document).ready(function() {
 					$('#taken').css('display', 'block')
 				}
 				else if (response['class'] === 'none') {
-					$('.username').removeClass('fail', 'success')
+					$('.username').removeClass('fail success')
 					$('#submitButton').prop('disabled', false)
 					$('#available').css('display', 'none')
 					$('#taken').css('display', 'none')
@@ -104,15 +104,17 @@ $(document).ready(function() {
 				userName: $('#userName').val()
 			}),
 			success: function(response) {
-					$('tbody').append("<tr>" +
+					$('tbody').append("<tr id='"+ response['user_id'] +"'>" +
 					"<td class='td-action-icons'><div class='action-icons'>" +
-						"<i class='bi bi-pencil-square'></i> <i class='bi bi-trash3'></i>" +
+						"<i class='bi bi-pencil-square edit-user'></i> <i class='bi bi-trash3 delete-user'></i>" +
 					"</div></td>" +
-					"<th scope='row'>" + response['id'] + "</th>" +
+					"<th scope='row'>" + response['user_id'] + "</th>" +
 					"<td class='td-firstname'>" + response['firstName'] + "</td>" +
 					"<td class='td-lastname'>" + response['lastName'] + "</td>" +
 					"<td class='td-username'>" + response['userName'] + "</td>" +
-					"<td class='td-file-list'><ul id='ul-"+ response['user_id'] +"' class='list-group list-group-flush '></ul></td>" +
+					"<td class='td-file-list'><ul id='ul-"+ response['user_id'] +"' class='list-group" +
+						" list-group-flush" +
+						" '></ul></td>" +
 					"<td class='td-upload-file'><div class='input-div'>" +
 						"<label for='file-input' class='form-label'>Upload File</label>" +
 						"<input class='form-control file-input' type='file'>" +
@@ -327,9 +329,9 @@ $(document).ready(function() {
 					user_id: $tr_id
 				}),
 				success: function() {
-					$('.popup-overlay, .popup-content').removeClass('active')
+					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
+					$('.popup-content').html('')
 					$("#"+$tr_id).remove();
-					$('#infoList').html('')
 					$('#successText').text('User successfully deleted!')
 					$('#successAlert').css('display', 'flex')
 					$('#failAlert').css('display', 'none')
@@ -338,8 +340,8 @@ $(document).ready(function() {
 					}, 2000);
 				},
 				error: function() {
-					$('.popup-overlay-delete, .popup-content-delete').removeClass('active')
-					$('#infoList').html('')
+					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
+					$('.popup-content').html('')
 					$('#failedText').text('User deletion failed!')
 					$('#successAlert').css('display', 'none')
 					$('#failAlert').css('display', 'flex')

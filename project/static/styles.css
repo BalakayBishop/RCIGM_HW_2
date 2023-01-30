@@ -126,6 +126,7 @@ svg {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: 2.25rem!important;
 }
 
 .form-control:focus {
@@ -172,21 +173,17 @@ svg {
 /* ---------------------------USERNAME VALIDATION CLASSES------------------------------------------- */
 
 #taken {
-    margin: 0 0 8px;
     color: var(--fail-color);
     display: none;
-    position: relative;
-    bottom: 16px;
-    left: 14px;
+    position: absolute;
+    transform: translateX(13px) translateY(-16px);
 }
 
 #available {
-    margin: 0 0 8px;
     color: var(--success-color);
     display: none;
-    position: relative;
-    bottom: 16px;
-    left: 14px;
+    position: absolute;
+    transform: translateX(13px) translateY(-16px);
 }
 
 #submitButton:visited,
