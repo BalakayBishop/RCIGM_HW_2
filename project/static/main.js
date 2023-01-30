@@ -174,9 +174,10 @@ $(document).ready(function() {
 		})
 		// DISPLAY MODAL WINDOW
 		$('.popup-overlay, .popup-content').css('visibility', 'visible')
-		$('.popup-content').html("<div class='modalHeader'>" +
-			"<h2>Edit User</h2>" +
-			"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
+		$('.popup-content').html(
+			"<div class='modalHeader'>" +
+				"<h2>Edit User</h2>" +
+				"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
 			"</div>" +
 			"<form id='modal-form' method='POST' class='needs-validation'>" +
 				"<div class='form-floating mb-3'>" +
@@ -292,8 +293,32 @@ $(document).ready(function() {
 		let lastname_val = $("#"+$tr_id).find('td:eq(2)').text()
 		let username_val = $("#"+$tr_id).find('td:eq(3)').text()
 		$('.popup-overlay, .popup-content').css('visibility', 'visible')
+		$('.popup-content').html(
+			"<div class='modalHeader'>" +
+				"<h2>Delete User?</h2>" +
+				"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
+			"</div>" +
+			"<div class='warning-message'>" +
+				"<p><i class='bi bi-exclamation-triangle'></i>Warning!</p>" +
+				"<p>Are you sure that you want to delete this user?</p>" +
+				"<p>This action cannot be undone!</p>" +
+			"</div>" +
+			"<div class='userInfo'>" +
+				"<p>User to be deleted: </p>" +
+				"<ul id='infoList' class='list-group list-group-flush'>" +
+					"<li class='list-group-item'>User ID: " + userid_val + " </li>" +
+					"<li class='list-group-item'>First Name: " + firstname_val + "</li>" +
+					"<li class='list-group-item'>Last Name: " + lastname_val + "</li>" +
+					"<li class='list-group-item'>Username: " + username_val + "</li>" +
+				"</ul>" +
+			"</div>" +
+			"<div class='form-buttons mt-4'>" +
+				"<button type='button' class='btn btn-danger delete-user-submit'>Yes, delete this user!</button>" +
+				"<button type='button' class='btn btn-secondary close'>Cancel, do not delete!</button>" +
+			"</div>"
+		)
 		
-		$('.delete-submit').on('click', function() {
+		$('.delete-user-submit').on('click', function() {
 			$.ajax({
 				url: '/delete_user',
 				type: 'POST',
@@ -333,7 +358,8 @@ $(document).ready(function() {
 		let $file_id = $(this).closest('li').attr('id')
 		let $file_name = $(this).closest('div.files').find('p').text()
 		$('#file-info').text($file_name)
-		$('.popup-content').html("<div class='modalHeader'>" +
+		$('.popup-content').html(
+			"<div class='modalHeader'>" +
 				"<h2>Delete File?</h2>" +
 				"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
 			"</div>" +
@@ -349,7 +375,8 @@ $(document).ready(function() {
 			"<div class='form-buttons mt-4'>" +
 				"<button type='button' class='btn btn-danger delete-file-submit'>Yes, delete this file!</button>" +
 				"<button type='button' class='btn btn-secondary close'>Cancel, do not delete!</button>" +
-		"</div>")
+			"</div>"
+		)
 		// ----- DELETE FILE SUBMIT -----
 		$('.delete-file-submit').on('click', function() {
 			$.ajax({
@@ -361,6 +388,7 @@ $(document).ready(function() {
 				}),
 				success: function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
+					$('.popup-content').html('')
 					$("#"+$file_id).remove()
 					$('#successText').text('File successfully deleted!')
 					$('#successAlert').css('display', 'flex')
@@ -371,7 +399,7 @@ $(document).ready(function() {
 				},
 				error: function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
-					$('#file-info').text('')
+					$('.popup-content').html('')
 					$('#failedText').text('File deletion failed!')
 					$('#failAlert').css('display', 'flex')
 					$('#successAlertAlert').css('display', 'none')
