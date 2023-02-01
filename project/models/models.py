@@ -26,11 +26,3 @@ class UserFiles(db.Model):
 	def __init__(self, user_id, file_path):
 		self.user_id = user_id
 		self.file_path = file_path
-		
-	def as_dict(self):
-		file = {
-			'id': self.id,
-			'user_id': self.user_id,
-			'file_path': self.file_path
-		}
-		return file
