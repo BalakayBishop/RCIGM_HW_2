@@ -67,9 +67,11 @@ svg {
 }
 
 /* ---------------------------LOGIN PAGE/FORM------------------------------------------- */
-#landing-redirect {
-    margin-top: 24px;
-    width: 100%;
+#login-form-buttons {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
 }
 
 #landing-body {
@@ -351,21 +353,10 @@ i {
 
 /* ---------------------------MODAL FORM USERNAME VALIDATION------------------------------ */
 
-#modal-available {
-    margin: 0 0 8px;
-    color: var(--success-color);
+#modal-username-alert {
     display: none;
     position: absolute;
-    bottom: 56px;
-    left: 44px;
-}
-
-#modal-taken {
-    margin: 0 0 8px;
-    color: var(--fail-color);
-    display: none;
-    position: absolute;
-    bottom: 56px;
+    bottom: 64px;
     left: 44px;
 }
 

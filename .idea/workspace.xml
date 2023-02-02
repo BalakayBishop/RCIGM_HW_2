@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactored the username validation alert and fixed the new user response to have the correct classes and attributes.">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
+      <change afterPath="$PROJECT_DIR$/project/replica/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/replica/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/static/rady_logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/static/replica.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/static/replica_styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/templates/replica.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,10 +29,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Flask Main" />
-        <option value="JavaScript File" />
-        <option value="CSS File" />
         <option value="Python Script" />
+        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -181,21 +191,11 @@
       <workItem from="1674492863630" duration="37117000" />
       <workItem from="1674772826202" duration="9388000" />
       <workItem from="1674837055618" duration="19196000" />
-      <workItem from="1675098339367" duration="6834000" />
-    </task>
-    <task id="LOCAL-00047" summary="Local: adding new features for uploading files. Added new db.Model class to reflect changes made to database in MySQL, and connected the User class to the new class via db.relationship">
-      <created>1673290380237</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1673290380237</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Local: made major changes to the JS, removed a lot of vanilla JS and replaced it with jQuery (broke my modal for delete)">
-      <created>1673297400718</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1673297400718</updated>
+      <workItem from="1675098339367" duration="9017000" />
+      <workItem from="1675187760743" duration="108000" />
+      <workItem from="1675282475347" duration="6260000" />
+      <workItem from="1675288764684" duration="2612000" />
+      <workItem from="1675297052297" duration="5681000" />
     </task>
     <task id="LOCAL-00049" summary="Local: fixed the modal, class name was wrong for delete button">
       <created>1673297561626</created>
@@ -526,7 +526,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675114400425</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Local: refactored the username validation alert to only be one p tag that is populated/changed dynamically with jQuery">
+      <created>1675115214743</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1675115214743</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Local: removed as_dict function for the class">
+      <created>1675282962383</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1675282962384</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,8 +559,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: finished delete file functionality! added new route in views.py, added new method to get the newly created file as a dictionary in methods.py" />
-    <MESSAGE value="Local: styling changes made to the alerts" />
     <MESSAGE value="Local: making backend changes to the query to get all the users and files" />
     <MESSAGE value="Local: reformatted data structure to be simpler and more efficient" />
     <MESSAGE value="Local: removed all old dynamic ul creation for list of users. Moving towards using table instead of list" />
@@ -570,11 +582,13 @@
     <MESSAGE value="Local: refactored the delete file modal" />
     <MESSAGE value="Local: refactored the delete user modal" />
     <MESSAGE value="Local: refactored the username validation alert and fixed the new user response to have the correct classes and attributes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored the username validation alert and fixed the new user response to have the correct classes and attributes." />
+    <MESSAGE value="Local: refactored the username validation alert to only be one p tag that is populated/changed dynamically with jQuery" />
+    <MESSAGE value="Local: removed as_dict function for the class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: removed as_dict function for the class" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675115142284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675354491830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

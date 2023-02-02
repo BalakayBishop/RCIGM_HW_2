@@ -11,5 +11,6 @@ FLASK_ENV = 'development'
 TESTING = True
 STATIC_FOLDER = '../static'
 TEMPLATES_FOLDER = '../templates'
+FILE_FOLDER = "D:\Projects\Files"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URI)

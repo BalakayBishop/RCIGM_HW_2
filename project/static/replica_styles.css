@@ -1,0 +1,61 @@
+/* ---------------------------CSS RESET------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    color: #333333;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: 'Manrope', sans-serif;
+    border: solid 1px red;
+}
+
+i {
+    cursor: pointer;
+}
+
+/* ---------------------------COLOR VARIABLES------------------------------------------- */
+
+:root {
+    --success-bg: #D1E7DD;
+    --success-border: #badbcc;
+    --success-color: #0f5132;
+    --fail-bg: #f8d7da;
+    --fail-border: #f5c2c7;
+    --fail-color: #842029;
+}
+
+/* ---------------------------HEADER------------------------------------------- */
+.bi-arrow-left-circle-fill {
+    font-size: 32px;
+}
+
+header {
+    padding: 0 16px;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header-logo {
+    height: 150px;
+    width: 350px;
+}
+
+.content-header {
+    width: 88%;
+    background-color: #2C6FA2;
+    border-radius: 8px;
+    padding: .75rem .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 16px;
+}
+
+h2, h4 {
+    color: #eeeeee;
+}

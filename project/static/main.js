@@ -1,10 +1,14 @@
 $(document).ready(function() {
 	// ------------------------------------- PAGE REDIRECT -------------------------------------
-	$('#landing-redirect').on('click', function() {
+	$('#landing-redirect-users').on('click', function() {
 		window.location.href = '/index'
 	});
 	
-	$('#back-home').on('click', function() {
+	$('#landing-redirect-replica').on('click', function() {
+		window.location.href = '/replica'
+	});
+	
+	$('.back-home').on('click', function() {
 		window.location.href = '/'
 	})
 	// ------------------------------------- LIST OF USERS ON PAGE LOAD -------------------------------------
@@ -33,7 +37,7 @@ $(document).ready(function() {
 							"<div class='files'>" +
 								"<p>" + response[i]['files'][j]['file_path'] + "</p>" +
 								"<div class='files-icons'>" +
-									"<i class='bi bi-download'></i>" +
+									"<i class='bi bi-download download-file'></i>" +
 									"<i class='bi bi-x-lg delete-file'></i>" +
 								"</div>" +
 							"</div>" +
@@ -83,7 +87,7 @@ $(document).ready(function() {
 				}
 				else if (response['class'] === 'none') {
 					$('.username').removeClass('fail success')
-					$('#submitButton').prop('disabled', false)
+					$('#submitButton').prop({'disabled':false})
 					$('#username-alert').css({'display':'none'})
 					$('#username-alert').text("")
 				}
@@ -94,63 +98,63 @@ $(document).ready(function() {
 	// ------------------------------------- FORM SUBMISSION -------------------------------------
 	$('#submitButton').on('click', function(event) {
 		event.preventDefault()
-		$.ajax({
-			url: '/new_user',
-			type: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify({
-				firstName: $('#firstName').val(),
-				lastName: $('#lastName').val(),
-				userName: $('#userName').val()
-			}),
-			success: function(response) {
-					$('tbody').append("<tr id='"+ response['user_id'] +"'>" +
-					"<td class='td-action-icons'><div class='action-icons'>" +
-						"<i class='bi bi-pencil-square edit-user'></i> <i class='bi bi-trash3 delete-user'></i>" +
-					"</div></td>" +
-					"<th scope='row'>" + response['user_id'] + "</th>" +
-					"<td class='td-firstname'>" + response['firstName'] + "</td>" +
-					"<td class='td-lastname'>" + response['lastName'] + "</td>" +
-					"<td class='td-username'>" + response['userName'] + "</td>" +
-					"<td class='td-file-list'><ul id='ul-"+ response['user_id'] +"' class='list-group" +
-						" list-group-flush" +
-						" '></ul></td>" +
-					"<td class='td-upload-file'><div class='input-div'>" +
-						"<label for='file-input' class='form-label'>Upload File</label>" +
-						"<input class='form-control file-input' type='file'>" +
-					"</div>" +
-					"<div class='upload-button-div mt-2'>" +
-						"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
-					"</div></td>" +
-				"</tr>")
-				
-				$('#successText').text('User successfully created!')
-				$('#successAlert').css('display', 'flex')
-				setTimeout(function() {
-					$('#successAlert').fadeOut(125)
-				}, 2000);
-				$('#form')[0].reset()
-				$('.username').removeClass('success fail')
-				$('#submitButton').prop('disabled', false)
-				$('#available').css('display', 'none')
-				$('#taken').css('display', 'none')
-			},
-			error: function(jqXHR) {
-				if (jqXHR.status === 400) {
-					$('#form')[0].reset()
-					$('#failedText').text('User creation failed!')
-					$('#failAlert').css('display', 'flex')
-					$('.username').removeClass('success fail')
-					$('#submitButton').prop('disabled', false)
-					$('#available').css('display', 'none')
-					$('#taken').css('display', 'none')
+		if ($('#firstName').val() !== '' && $('#lastName').val() !== '' && $('#userName').val() !== '') {
+			$.ajax({
+				url: '/new_user',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					firstName: $('#firstName').val(),
+					lastName: $('#lastName').val(),
+					userName: $('#userName').val()
+				}),
+				success: function(response) {
+						$('tbody').append("<tr id='"+ response['user_id'] +"'>" +
+						"<td class='td-action-icons'><div class='action-icons'>" +
+							"<i class='bi bi-pencil-square edit-user'></i> <i class='bi bi-trash3 delete-user'></i>" +
+						"</div></td>" +
+						"<th scope='row'>" + response['user_id'] + "</th>" +
+						"<td class='td-firstname'>" + response['firstName'] + "</td>" +
+						"<td class='td-lastname'>" + response['lastName'] + "</td>" +
+						"<td class='td-username'>" + response['userName'] + "</td>" +
+						"<td class='td-file-list'><ul id='ul-"+ response['user_id'] +"' class='list-group" +
+							" list-group-flush" +
+							" '></ul></td>" +
+						"<td class='td-upload-file'><div class='input-div'>" +
+							"<label for='file-input' class='form-label'>Upload File</label>" +
+							"<input class='form-control file-input' type='file'>" +
+						"</div>" +
+						"<div class='upload-button-div mt-2'>" +
+							"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
+						"</div></td>" +
+					"</tr>")
+					
+					$('#successText').text('User successfully created!')
+					$('#successAlert').css({'display':'flex'})
 					setTimeout(function() {
-						$('#failAlert').fadeOut(125)
+						$('#successAlert').fadeOut(125)
 					}, 2000);
+					$('#form')[0].reset()
+					$('.username').removeClass('success fail')
+					$('#submitButton').prop({'disabled':false})
+					$('#username-alert').css({'display':'none'})
+				},
+				error: function(jqXHR) {
+					if (jqXHR.status === 400) {
+						$('#form')[0].reset()
+						$('#failedText').text('User creation failed!')
+						$('#failAlert').css('display', 'flex')
+						$('.username').removeClass('success fail')
+						$('#submitButton').prop({'disabled':false})
+						$('#username-alert').css({'display':'none'})
+						setTimeout(function() {
+							$('#failAlert').fadeOut(125)
+						}, 2000);
+					}
 				}
-			}
-		})
-	});
+			});
+		}
+	}); // ----- END OF NEW USER FORM SUBMIT -----
 	
 	// ------------------------------------- EDIT USER MODAL -------------------------------------
 	$("#user-table").on("click", "td .edit-user", function() {
@@ -175,7 +179,7 @@ $(document).ready(function() {
 			allChanged()
 		})
 		// DISPLAY MODAL WINDOW
-		$('.popup-overlay, .popup-content').css('visibility', 'visible')
+		$('.popup-overlay, .popup-content').css({'visibility':'visible'})
 		$('.popup-content').html(
 			"<div class='modalHeader'>" +
 				"<h2>Edit User</h2>" +
@@ -197,8 +201,7 @@ $(document).ready(function() {
 					" placeholder='john_doe' required>" +
 					"<label for='modal-userName'>Username</label>" +
 				"</div>" +
-				"<p id='modal-taken'>Username is already taken!</p>" +
-				"<p id='modal-available'>Username is available!</p>" +
+				"<p id='modal-username-alert'></p>" +
 				"<div class='form-buttons'>" +
 					"<button type='button' id='modal-submitButton' class='btn btn-primary submit'>Submit</button>" +
 					"<button type='button' class='btn btn-secondary close'>Cancel</button>" +
@@ -207,16 +210,16 @@ $(document).ready(function() {
 		)
 		function allChanged() {
 			if (input_firstname || input_lastname || input_username) {
-				$('#modal-submitButton').prop('disabled', false)
+				$('#modal-submitButton').prop({'disabled': false})
 			}
 			else {
-				$('#modal-submitButton').prop('disabled', true)
+				$('#modal-submitButton').prop({'disabled': true})
 			}
 		}
 		$('#modal-firstName').val(firstname_val)
 		$('#modal-lastName').val(lastname_val)
 		$('#modal-userName').val(username_val)
-		$('#modal-submitButton').prop('disabled', true)
+		$('#modal-submitButton').prop({'disabled': true})
 		// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------
 		$('#modal-userName').on('input', function() {
 			$.ajax({
@@ -230,16 +233,16 @@ $(document).ready(function() {
 					if (response['class'] === 'success') {
 						$('.modal-username').addClass('success')
 						$('.modal-username').removeClass('fail')
-						$('#modal-submitButton').prop('disabled', false)
-						$('#modal-available').css('display', 'block')
-						$('#modal-taken').css('display', 'none')
+						$('#modal-submitButton').prop({'disabled': false})
+						$('#modal-username-alert').css({'display': 'block', 'color': '#0f5132'})
+						$('#modal-username-alert').text("Username is available!")
 					}
 					else if (response['class'] === 'fail') {
 						$('.modal-username').addClass('fail')
 						$('.modal-username').removeClass('success')
 						$('#modal-submitButton').prop('disabled', true)
-						$('#modal-available').css('display', 'none')
-						$('#modal-taken').css('display', 'block')
+						$('#modal-username-alert').css({'display': 'block', 'color': '#842029'})
+						$('#modal-username-alert').text("Username is already taken!")
 					}
 					else if (response['class'] === 'none') {
 						$('.modal-username').removeClass('success fail')
@@ -353,6 +356,12 @@ $(document).ready(function() {
 		});
 	}); // ----- END OF DELETE USER MODAL -----
 	
+	// ------------------------------------- DOWNLOAD FILE MODAL -------------------------------------
+	$("#user-table").on("click", "td .download-file", function(event) {
+		event.preventDefault()
+		
+	}); // ----- END OF DOWNLOAD FILE -----
+	
 	// ------------------------------------- DELETE FILE MODAL -------------------------------------
 	$("#user-table").on("click", "td .delete-file", function(event) {
 		event.preventDefault()
@@ -433,7 +442,7 @@ $(document).ready(function() {
 						"<div class='files'>" +
 						"<p>" + response['path'] + "</p>" +
 						"<div class='files-icons'>" +
-							"<i class='bi bi-download'></i><i class='bi bi-x-lg delete-file'></i>" +
+							"<i class='bi bi-download download-file'></i><i class='bi bi-x-lg delete-file'></i>" +
 						"</div>" +
 						"</div>" +
 						"</li>");

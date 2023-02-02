@@ -10,7 +10,7 @@ session = Session()
 
 core = Blueprint('core', __name__)
 
-# -------------------- ROUTE: INDEX --------------------
+# -------------------- ROUTE: HOME/LOGIN --------------------
 @core.route('/')
 def home():
 	return render_template('home.html')

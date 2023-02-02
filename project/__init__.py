@@ -15,4 +15,6 @@ db = SQLAlchemy(APP)
 
 # ---------------------------Registering the Blueprints for the views-----------------------------
 from project.core.views import core
+from project.replica.views import replica
 APP.register_blueprint(core)
+APP.register_blueprint(replica)
