@@ -123,7 +123,7 @@ $(document).ready(function() {
 						"</div></td>" +
 					"</tr>")
 					
-					successAlert('User created successfully!')
+					alert_func('#successAlert','User created successfully!')
 					$('#form')[0].reset()
 					$('.username').removeClass('success fail')
 					$('#submitButton').prop({'disabled':false})
@@ -131,7 +131,7 @@ $(document).ready(function() {
 				},
 				error: function(jqXHR) {
 					if (jqXHR.status === 400) {
-						failAlert('User creation failed!')
+						alert_func('#failAlert','User creation failed!')
 						$('#form')[0].reset()
 						$('.username').removeClass('success fail')
 						$('#submitButton').prop({'disabled':false})
@@ -250,13 +250,13 @@ $(document).ready(function() {
 					$("#"+$tr_id).find('td:eq(1)').text(response['firstName'])
 					$("#"+$tr_id).find('td:eq(2)').text(response['lastName'])
 					$("#"+$tr_id).find('td:eq(3)').text(response['userName'])
-					successAlert("User successfully updated!")
+					alert_func('#successAlert','User successfully updated!')
 				},
 				error: function(jqXHR) {
 					if (jqXHR.status === 400) {
 						$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 						$('.popup-content').html('')
-						failAlert('User update failed!')
+						alert_func('#failAlert','User update failed!')
 					}
 				}
 			})
@@ -309,12 +309,12 @@ $(document).ready(function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('.popup-content').html('')
 					$("#"+$tr_id).remove();
-					successAlert('User successfully deleted!')
+					alert_func('#successAlert','User successfully deleted!')
 				},
 				error: function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('.popup-content').html('')
-					failAlert('User deletion failed!')
+					alert_func('#failAlert','User deletion failed!')
 				}
 			})
 		});
@@ -365,12 +365,12 @@ $(document).ready(function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('.popup-content').html('')
 					$("#"+$file_id).remove()
-					successAlert('File successfully deleted!')
+					alert_func('#successAlert','File successfully deleted!')
 				},
 				error: function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('.popup-content').html('')
-					failAlert('File deletion failed!')
+					alert_func('#failAlert','File deletion failed!')
 				}
 			});
 		});
@@ -399,21 +399,12 @@ $(document).ready(function() {
 	});
 	
 	//------------------------------------- ALERT FUNCTIONS -------------------------------------
-	function successAlert(text) {
-		$('#successText').text(text)
-		$('#successAlert').css('display', 'flex')
+	function alert_func(alert, text) {
+		$(alert).text(text)
+		$(alert).css('display', 'flex')
 		$('#failAlert').css('display', 'none')
 		setTimeout(function() {
-			$('#successAlert').fadeOut(125)
-		}, 2000);
-	}
-	
-	function failAlert(text) {
-		$('#failedText').text(text)
-		$('#failAlert').css('display', 'flex')
-		$('#successAlertAlert').css('display', 'none')
-		setTimeout(function() {
-			$('#failAlert').fadeOut(125)
+			$(alert).fadeOut(125)
 		}, 2000);
 	}
 	
