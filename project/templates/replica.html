@@ -35,7 +35,7 @@
 			<i class="bi bi-arrow-left-circle-fill back-home"></i>
 		</header>
 
-		<div class="container-fluid">
+		<div class="container-fluid main-container">
 			<div class="content-header">
 				<img id="header-logo" src="../static/rady_logo.jpg" alt="Rady Children's Institute of Genomic Medicine
 				logo">
@@ -43,7 +43,106 @@
 					<h2>Rapid Whole Genome Sequencing (rWGS)</h2>
 					<h4>Precision medicine for neonatal and pediatric intensive care</h4>
 				</div>
+			</div> <!--End of Div Content-Header-->
+
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container-fluid nav-container">
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="#">Research Enrollment</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Clinical Services</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Order Dashboard</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Username</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#">MA Operational Dashboard</a></li>
+									<li><a class="dropdown-item" href="#">Master Admin Panel</a></li>
+									<li><a class="dropdown-item" href="#">Study Admin Panel</a></li>
+									<li><a class="dropdown-item" href="#">Site Admin Panel</a></li>
+									<li><a class="dropdown-item" href="#">Problem Log Dashboard</a></li>
+									<li><a class="dropdown-item" href="#">ET Metrics Reporting</a></li>
+									<li><a class="dropdown-item" href="#">Email ET Metrics Reporting</a></li>
+									<li><a class="dropdown-item" href="#">Manage Account</a></li>
+									<li><a class="dropdown-item" href="#">Log out</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav> <!--End of Navbar-->
+
+			<div class="ma-header">
+				<h5>Welcome to Master Admin Operational Dashboard!</h5>
+				<p>Please select an operational task from left below side panel. Make sure to double check with developers when any of the version below is not up to date with the Portal's current production version.</p>
 			</div>
-		</div> <!--End of Div Container-->
+
+			<div class="main-content">
+					<ul class="list-group list-group-flush content-options">
+						<li id="option-test-status" class="list-group-item option-item"><a>Change Test Status Complete Datetime - v2.10.0</a></li>
+						<li class="list-group-item option-item"><a>Remove Individual - v2.10.0</a></li>
+						<li class="list-group-item option-item"><a>Remove recipient from study admin
+							notifications</a></li>
+						<li class="list-group-item option-item"><a>Create User - v2.10.0</a></li>
+						<li class="list-group-item option-item"><a>Deactivate User - v2.10.0</a></li>
+					</ul>
+				<div class="content-display">
+
+				</div>
+			</div>
+
+			<div class="footer">
+				<div class="contact-us">
+					<h6>Contact Us</h6>
+					<p>Hours: 9am to 5pm PST (Mon-Fri)</p>
+					<p>Email: RCIGM_rWGS@rchsd.org</p>
+					<p>Phone: (858) 966-8127</p>
+					<p id="copyright">&copy;2020 Rady Children's Hospital</p>
+					<p>Research Center - All Rights Reserved</p>
+				</div>
+
+				<div class="site-map">
+					<h6>Site Map</h6>
+					<a href="#">Home</a><br>
+					<a href="#">Research Enrollment</a><br>
+					<a href="#">Contact Us</a><br>
+					<a href="#">Portal Login</a><br>
+				</div>
+
+				<div class="extra-links">
+					<h6>Extra Links</h6>
+					<a href="#">Submit a Problem</a><br>
+					<a href="#">Portal User Guide</a><br>
+					<a href="#">Portal Quick Start Guide</a><br>
+					<a href="#">Comprehensive Reanalysis Form</a><br>
+					<a href="#">Targeted Reanalysis Form</a><br>
+				</div>
+
+				<div class="cap-img">
+					<img src="../static/cap.png">
+					<p>9487427</p>
+				</div>
+			</div>
+
+			<div class="lower-footer">
+				<h5>Portal - v3.7.1</h5>
+			</div>
+
+		</div> <!--End of Div Container-Fluid-->
 	</body>
 </html>
