@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	// ------------------------------------- PAGE REDIRECT -------------------------------------
+	// ----- PAGE REDIRECTS ------
 	$('#landing-redirect-users').on('click', function() {
 		window.location.href = '/index'
 	});
@@ -11,7 +11,7 @@ $(document).ready(function() {
 	$('.back-home').on('click', function() {
 		window.location.href = '/'
 	})
-	// ------------------------------------- LIST OF USERS ON PAGE LOAD -------------------------------------
+	// ----- PAGE LOAD GET ------
 	$.ajax({
 		url: '/users',
 		type:'GET',
@@ -63,33 +63,15 @@ $(document).ready(function() {
 		}
 	});
 	
-	// ------------------------------------- USERNAME VALIDATION -------------------------------------
+	// ----- USERNAME VALIDATION ------
 	$('.username').on('input', function() {
-		$.ajax({
-			url: '/username_validation',
-			type: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify({
-				input: $(this).val()
-			}),
-			success: function(response) {
-				if (response['class'] === 'success') {
-					usernameValidation('.username', 'success', 'fail', '#submitButton',
-						false, '#username-alert','block', '#0f5132', "Username is available!")
-				}
-				else if (response['class'] === 'fail') {
-					usernameValidation('.username', 'fail', 'success', '#submitButton',
-						true, '#username-alert','block', '#842029', "Username is already taken!")
-				}
-				else if (response['class'] === 'none') {
-					usernameValidation('.username', '', 'success fail', '#submitButton',
-						true, '#username-alert','none', '', "")
-				}
-			}
-		})
+		let data = $(this).val()
+		let input = '.username'
+		let alert = '#username-alert'
+		username_ajax(input, data, alert)
 	});
 	
-	// ------------------------------------- FORM SUBMISSION -------------------------------------
+	// ----- CREATE NEW USER ------
 	$('#submitButton').on('click', function(event) {
 		event.preventDefault()
 		if ($('#firstName').val() !== '' && $('#lastName').val() !== '' && $('#userName').val() !== '') {
@@ -139,9 +121,9 @@ $(document).ready(function() {
 				}
 			});
 		}
-	}); // ----- END OF NEW USER FORM SUBMIT -----
+	});
 	
-	// ------------------------------------- EDIT USER MODAL -------------------------------------
+	// ----- EDIT USER ------
 	$("#user-table").on("click", ".edit-user", function() {
 		let $tr_id = $(this).closest('tr').attr('id')
 		let userid_val = $("#"+$tr_id).find('th').text()
@@ -154,18 +136,16 @@ $(document).ready(function() {
 		$('#modal-firstName').on('change', function() {
 			input_firstname = true
 			allChanged()
-		})
+		});
 		$('#modal-lastName').on('change', function() {
 			input_lastname = true
 			allChanged()
-		})
+		});
 		$('#modal-userName').on('change', function() {
 			input_username = true
 			allChanged()
-		})
-		// DISPLAY MODAL WINDOW
-		$('.popup-overlay, .popup-content').css({'visibility':'visible'})
-		$('.popup-content').html(
+		});
+		let content =
 			"<div class='modalHeader'>" +
 				"<h2>Edit User</h2>" +
 				"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
@@ -191,8 +171,8 @@ $(document).ready(function() {
 					"<button type='button' id='modal-submitButton' class='btn btn-primary submit'>Submit</button>" +
 					"<button type='button' class='btn btn-secondary close'>Cancel</button>" +
 				"</div>" +
-			"</form>"
-		)
+			"</form>";
+		modal('visible', content)
 		function allChanged() {
 			if (input_firstname || input_lastname || input_username) {
 				$('#modal-submitButton').prop({'disabled': false})
@@ -205,32 +185,14 @@ $(document).ready(function() {
 		$('#modal-lastName').val(lastname_val)
 		$('#modal-userName').val(username_val)
 		$('#modal-submitButton').prop({'disabled': true})
-		// ------------------------------------- MODAL USERNAME VALIDATION -------------------------------------
+		// ----- EDIT USERNAME VALIDATION ------
 		$('#modal-userName').on('input', function() {
-			$.ajax({
-				url: '/username_validation',
-				type: 'POST',
-				contentType: 'application/json',
-				data: JSON.stringify({
-					input: $(this).val()
-				}),
-				success: function(response) {
-					if (response['class'] === 'success') {
-						usernameValidation('.modal-username', 'success', 'fail', '#modal-submitButton',
-						false, '#modal-username-alert','block', '#0f5132', "Username is available!")
-					}
-					else if (response['class'] === 'fail') {
-						usernameValidation('.modal-username', 'fail', 'success', '#modal-submitButton',
-						true, '#modal-username-alert','block', '#842029', "Username is already taken!")
-					}
-					else if (response['class'] === 'none') {
-						usernameValidation('.modal-username', '', 'success fail', '#modal-submitButton',
-						true, '#modal-username-alert','none', '', "")
-					}
-				}
-			})
+			let data = $(this).val()
+			let input = '#modal-userName'
+			let alert = '#modal-username-alert'
+			username_ajax(input, data, alert)
 		});
-			// --------------------------------- MODAL FORM SUBMISSION ----------------------------------
+		//
 		$('#modal-submitButton').on('click', function(event) {
 			event.preventDefault()
 			$.ajax({
@@ -244,8 +206,7 @@ $(document).ready(function() {
 					current_userid: userid_val
 				}),
 				success: function(response) {
-					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
-					$('.popup-content').html('')
+					modal('hidden', '')
 					$("#"+$tr_id).find('th').text(response['user_id'])
 					$("#"+$tr_id).find('td:eq(1)').text(response['firstName'])
 					$("#"+$tr_id).find('td:eq(2)').text(response['lastName'])
@@ -254,16 +215,15 @@ $(document).ready(function() {
 				},
 				error: function(jqXHR) {
 					if (jqXHR.status === 400) {
-						$('.popup-overlay, .popup-content').css('visibility', 'hidden')
-						$('.popup-content').html('')
+						modal('hidden', '')
 						alert_func('#failAlert','User update failed!')
 					}
 				}
 			})
 		});
-	}); // ----- END OF EDIT USER MODAL -----
+	});
 	
-	// ------------------------------------- DELETE USER MODAL -------------------------------------
+	//
 	$("#user-table").on("click", "td .delete-user", function(event) {
 		event.preventDefault()
 		let $tr_id = $(this).closest('tr').attr('id')
@@ -271,8 +231,7 @@ $(document).ready(function() {
 		let firstname_val = $("#"+$tr_id).find('td:eq(1)').text()
 		let lastname_val = $("#"+$tr_id).find('td:eq(2)').text()
 		let username_val = $("#"+$tr_id).find('td:eq(3)').text()
-		$('.popup-overlay, .popup-content').css('visibility', 'visible')
-		$('.popup-content').html(
+		let content =
 			"<div class='modalHeader'>" +
 				"<h2>Delete User?</h2>" +
 				"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
@@ -294,9 +253,8 @@ $(document).ready(function() {
 			"<div class='form-buttons mt-4'>" +
 				"<button type='button' class='btn btn-danger delete-user-submit'>Yes, delete this user!</button>" +
 				"<button type='button' class='btn btn-secondary close'>Cancel, do not delete!</button>" +
-			"</div>"
-		)
-		
+			"</div>";
+		modal('visible', content)
 		$('.delete-user-submit').on('click', function() {
 			$.ajax({
 				url: '/delete_user',
@@ -306,34 +264,31 @@ $(document).ready(function() {
 					user_id: $tr_id
 				}),
 				success: function() {
-					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
-					$('.popup-content').html('')
+					modal('hidden', '')
 					$("#"+$tr_id).remove();
 					alert_func('#successAlert','User successfully deleted!')
 				},
 				error: function() {
-					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
-					$('.popup-content').html('')
+					modal('hidden', '')
 					alert_func('#failAlert','User deletion failed!')
 				}
 			})
 		});
-	}); // ----- END OF DELETE USER MODAL -----
+	});
 	
-	// ------------------------------------- DOWNLOAD FILE MODAL -------------------------------------
+	//
 	$("#user-table").on("click", "td .download-file", function(event) {
 		event.preventDefault()
 		
-	}); // ----- END OF DOWNLOAD FILE -----
+	}); //
 	
-	// ------------------------------------- DELETE FILE MODAL -------------------------------------
+	//
 	$("#user-table").on("click", "td .delete-file", function(event) {
 		event.preventDefault()
-		$('.popup-overlay, .popup-content').css('visibility', 'visible')
 		let $file_id = $(this).closest('li').attr('id')
 		let $file_name = $(this).closest('div.files').find('p').text()
 		$('#file-info').text($file_name)
-		$('.popup-content').html(
+		let content =
 			"<div class='modalHeader'>" +
 				"<h2>Delete File?</h2>" +
 				"<p><i class='fa-solid fa-xmark modal-x'></i></p>" +
@@ -351,8 +306,8 @@ $(document).ready(function() {
 				"<button type='button' class='btn btn-danger delete-file-submit'>Yes, delete this file!</button>" +
 				"<button type='button' class='btn btn-secondary close'>Cancel, do not delete!</button>" +
 			"</div>"
-		)
-		// ----- DELETE FILE SUBMIT -----
+		modal('visible', content)
+		//
 		$('.delete-file-submit').on('click', function() {
 			$.ajax({
 				url: '/delete_file',
@@ -362,43 +317,39 @@ $(document).ready(function() {
 					file_id: $file_id
 				}),
 				success: function() {
-					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
-					$('.popup-content').html('')
+					modal('hidden', '')
 					$("#"+$file_id).remove()
 					alert_func('#successAlert','File successfully deleted!')
 				},
 				error: function() {
-					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
-					$('.popup-content').html('')
+					modal()
 					alert_func('#failAlert','File deletion failed!')
 				}
 			});
 		});
-	}); // ----- END OF DELETE FILE -----
-	// ------------------------------------- UPLOAD FILE -------------------------------------
+	});
+	
+	//
 	$("#user-table").on("click", "td .upload-button", function(event) {
 		event.preventDefault()
-		let $id = $(this).closest('tr').attr('id')
-		let fileName = $("#file-input-" + $id).val()
 		
-	}); // ----- END OF UPLOAD FILE -----
+	});
 	
-	// ----- MODAL CLOSED -----
-		$('.popup-content').on('click', '.modal-x, .close', function() {
-			$('.popup-overlay, .popup-content').css('visibility', 'hidden')
-			$('.popup-content').html('')
-		});
+	//
+	$('.popup-content').on('click', '.modal-x, .close', function() {
+		modal('hidden', '');
+	});
 	
-	// ------------------------------------- SUCCESS ALERT CLOSE -------------------------------------
+	//
 	$('#successX').on('click', function() {
 		$('#successAlert').css('display', 'none')
 	});
-	//------------------------------------- FAIL ALERT CLOSE -------------------------------------
+	//
 	$('#failX').on('click', function() {
 		$('#failAlert').css('display', 'none')
 	});
 	
-	//------------------------------------- ALERT FUNCTIONS -------------------------------------
+	//
 	function alert_func(alert, text) {
 		$(alert).text(text)
 		$(alert).css('display', 'flex')
@@ -408,12 +359,44 @@ $(document).ready(function() {
 		}, 2000);
 	}
 	
-	//------------------------------------- USERNAME VALIDATION FUNCTIONS -------------------------------------
+	//
+	function username_ajax(input, data, alert) {
+		$.ajax({
+			url: '/username_validation',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				input: data
+			}),
+			success: function(response) {
+				if (response['class'] === 'success') {
+					usernameValidation(input, 'success', 'fail', '#submitButton',
+						false, alert,'block', '#0f5132', "Username is available!")
+				}
+				else if (response['class'] === 'fail') {
+					usernameValidation(input, 'fail', 'success', '#submitButton',
+						true, alert,'block', '#842029', "Username is already taken!")
+				}
+				else if (response['class'] === 'none') {
+					usernameValidation(input, '', 'success fail', '#submitButton',
+						true, alert,'none', '', "")
+				}
+			}
+		})
+	}
+	
+	//
 	function usernameValidation(username, add, remove, button, disabled , alert, display, color='none', text) {
 		$(username).addClass(add)
 		$(username).removeClass(remove)
 		$(button).prop({'disabled':disabled})
 		$(alert).css({'display':display, 'color':color})
 		$(alert).text(text)
+	}
+	
+	//
+	function modal(visibility, content) {
+		$('.popup-overlay, .popup-content').css('visibility', visibility)
+		$('.popup-content').html(content)
 	}
 });

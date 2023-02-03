@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactored the username validation for both the original form and modal form to use a function instead of repetitive code">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: refactored the alert function to better abstract and use 1 function instead of 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
     </list>
@@ -185,14 +185,7 @@
       <workItem from="1675288764684" duration="2612000" />
       <workItem from="1675297052297" duration="5744000" />
       <workItem from="1675362558785" duration="16922000" />
-      <workItem from="1675443353551" duration="9294000" />
-    </task>
-    <task id="LOCAL-00053" summary="Local: added new landing page with styles and added jQuery listener for button click to redirect to index">
-      <created>1673379173882</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1673379173882</updated>
+      <workItem from="1675443353551" duration="11372000" />
     </task>
     <task id="LOCAL-00054" summary="Local: workspace">
       <created>1673379186259</created>
@@ -530,7 +523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675452460557</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Local: refactored the alert function to better abstract and use 1 function instead of 2">
+      <created>1675452824565</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1675452824565</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,7 +549,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: major changes made to the structure of the page, changes to views.py getting rid of poor code, changes to main.js for ajax requests" />
     <MESSAGE value="Local: improved and fixed the file upload method and ajax request and flask endpoint" />
     <MESSAGE value="Local: add form data validation for editing user" />
     <MESSAGE value="Local: updated and fixed the update_user endpoint" />
@@ -574,11 +573,12 @@
     <MESSAGE value="Local: lots of changes and progress made to the Ops Dashboard layout and styling" />
     <MESSAGE value="Local: small refactor of the file upload input to have a unique id and for the file upload function to dynamically select the file input id instead of the long jQuery selector functions" />
     <MESSAGE value="Local: refactored the username validation for both the original form and modal form to use a function instead of repetitive code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored the username validation for both the original form and modal form to use a function instead of repetitive code" />
+    <MESSAGE value="Local: refactored the alert function to better abstract and use 1 function instead of 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored the alert function to better abstract and use 1 function instead of 2" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675452401906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675454842274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
