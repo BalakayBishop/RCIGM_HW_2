@@ -62,6 +62,7 @@ $(document).ready(function() {
 			}
 		}
 	});
+	
 	// ------------------------------------- USERNAME VALIDATION -------------------------------------
 	$('.username').on('input', function() {
 		$.ajax({
@@ -73,24 +74,16 @@ $(document).ready(function() {
 			}),
 			success: function(response) {
 				if (response['class'] === 'success') {
-					$('.username').addClass('success')
-					$('.username').removeClass('fail')
-					$('#submitButton').prop({'disabled':false})
-					$('#username-alert').css({'display':'block', 'color':'#0f5132'})
-					$('#username-alert').text("Username is available!")
+					usernameValidation('.username', 'success', 'fail', '#submitButton',
+						false, '#username-alert','block', '#0f5132', "Username is available!")
 				}
 				else if (response['class'] === 'fail') {
-					$('.username').addClass('fail')
-					$('.username').removeClass('success')
-					$('#submitButton').prop({'disabled':true})
-					$('#username-alert').css({'display':'block', 'color':'#842029'})
-					$('#username-alert').text("Username is already taken!")
+					usernameValidation('.username', 'fail', 'success', '#submitButton',
+						true, '#username-alert','block', '#842029', "Username is already taken!")
 				}
 				else if (response['class'] === 'none') {
-					$('.username').removeClass('fail success')
-					$('#submitButton').prop({'disabled':false})
-					$('#username-alert').css({'display':'none'})
-					$('#username-alert').text("")
+					usernameValidation('.username', '', 'success fail', '#submitButton',
+						true, '#username-alert','none', '', "")
 				}
 			}
 		})
@@ -130,11 +123,7 @@ $(document).ready(function() {
 						"</div></td>" +
 					"</tr>")
 					
-					$('#successText').text('User successfully created!')
-					$('#successAlert').css({'display':'flex'})
-					setTimeout(function() {
-						$('#successAlert').fadeOut(125)
-					}, 2000);
+					successAlert('User created successfully!')
 					$('#form')[0].reset()
 					$('.username').removeClass('success fail')
 					$('#submitButton').prop({'disabled':false})
@@ -142,15 +131,10 @@ $(document).ready(function() {
 				},
 				error: function(jqXHR) {
 					if (jqXHR.status === 400) {
+						failAlert('User creation failed!')
 						$('#form')[0].reset()
-						$('#failedText').text('User creation failed!')
-						$('#failAlert').css('display', 'flex')
 						$('.username').removeClass('success fail')
 						$('#submitButton').prop({'disabled':false})
-						$('#username-alert').css({'display':'none'})
-						setTimeout(function() {
-							$('#failAlert').fadeOut(125)
-						}, 2000);
 					}
 				}
 			});
@@ -232,24 +216,16 @@ $(document).ready(function() {
 				}),
 				success: function(response) {
 					if (response['class'] === 'success') {
-						$('.modal-username').addClass('success')
-						$('.modal-username').removeClass('fail')
-						$('#modal-submitButton').prop({'disabled': false})
-						$('#modal-username-alert').css({'display': 'block', 'color': '#0f5132'})
-						$('#modal-username-alert').text("Username is available!")
+						usernameValidation('.modal-username', 'success', 'fail', '#modal-submitButton',
+						false, '#modal-username-alert','block', '#0f5132', "Username is available!")
 					}
 					else if (response['class'] === 'fail') {
-						$('.modal-username').addClass('fail')
-						$('.modal-username').removeClass('success')
-						$('#modal-submitButton').prop('disabled', true)
-						$('#modal-username-alert').css({'display': 'block', 'color': '#842029'})
-						$('#modal-username-alert').text("Username is already taken!")
+						usernameValidation('.modal-username', 'fail', 'success', '#modal-submitButton',
+						true, '#modal-username-alert','block', '#842029', "Username is already taken!")
 					}
 					else if (response['class'] === 'none') {
-						$('.modal-username').removeClass('success fail')
-						$('#modal-submitButton').prop('disabled', true)
-						$('#modal-available').css('display', 'none')
-						$('#modal-taken').css('display', 'none')
+						usernameValidation('.modal-username', '', 'success fail', '#modal-submitButton',
+						true, '#modal-username-alert','none', '', "")
 					}
 				}
 			})
@@ -274,16 +250,13 @@ $(document).ready(function() {
 					$("#"+$tr_id).find('td:eq(1)').text(response['firstName'])
 					$("#"+$tr_id).find('td:eq(2)').text(response['lastName'])
 					$("#"+$tr_id).find('td:eq(3)').text(response['userName'])
-					$('#successText').val("User successfully updated!")
-					$('#successAlert').css('display', 'flex')
-					setTimeout(function() {
-						$('#successAlert').fadeOut(125)
-					}, 2000);
+					successAlert("User successfully updated!")
 				},
 				error: function(jqXHR) {
 					if (jqXHR.status === 400) {
 						$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 						$('.popup-content').html('')
+						failAlert('User update failed!')
 					}
 				}
 			})
@@ -336,22 +309,12 @@ $(document).ready(function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('.popup-content').html('')
 					$("#"+$tr_id).remove();
-					$('#successText').text('User successfully deleted!')
-					$('#successAlert').css('display', 'flex')
-					$('#failAlert').css('display', 'none')
-					setTimeout(function() {
-						$('#successAlert').fadeOut(125)
-					}, 2000);
+					successAlert('User successfully deleted!')
 				},
 				error: function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('.popup-content').html('')
-					$('#failedText').text('User deletion failed!')
-					$('#successAlert').css('display', 'none')
-					$('#failAlert').css('display', 'flex')
-					setTimeout(function() {
-						$('#failAlert').fadeOut(125)
-					}, 2000);
+					failAlert('User deletion failed!')
 				}
 			})
 		});
@@ -402,22 +365,12 @@ $(document).ready(function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('.popup-content').html('')
 					$("#"+$file_id).remove()
-					$('#successText').text('File successfully deleted!')
-					$('#successAlert').css('display', 'flex')
-					$('#failAlert').css('display', 'none')
-					setTimeout(function() {
-						$('#successAlert').fadeOut(125)
-					}, 2000);
+					successAlert('File successfully deleted!')
 				},
 				error: function() {
 					$('.popup-overlay, .popup-content').css('visibility', 'hidden')
 					$('.popup-content').html('')
-					$('#failedText').text('File deletion failed!')
-					$('#failAlert').css('display', 'flex')
-					$('#successAlertAlert').css('display', 'none')
-					setTimeout(function() {
-						$('#failAlert').fadeOut(125)
-					}, 2000);
+					failAlert('File deletion failed!')
 				}
 			});
 		});
@@ -427,45 +380,7 @@ $(document).ready(function() {
 		event.preventDefault()
 		let $id = $(this).closest('tr').attr('id')
 		let fileName = $("#file-input-" + $id).val()
-		fileName = fileName.replace("C:\\fakepath\\", "")
-		console.log(fileName)
-		if(fileName !== '') {
-			$.ajax({
-				url: '/upload',
-				type: 'POST',
-				contentType: 'application/json',
-				data: JSON.stringify({
-					user_id: $id,
-					fileName: fileName
-				}),
-				success: function(response) {
-					let new_li = $("<li class='list-group-item' id='"+ response['file_id']+"'>" +
-						"<div class='files'>" +
-						"<p>" + response['path'] + "</p>" +
-						"<div class='files-icons'>" +
-							"<i class='bi bi-download download-file'></i><i class='bi bi-x-lg delete-file'></i>" +
-						"</div>" +
-						"</div>" +
-						"</li>");
-					let $list = $("#ul-"+$id);
-					$list.append(new_li);
-					$("#"+$id).find('td:eq(5) input').val('')
-					$('#successText').text('File successfully uploaded!')
-					$('#successAlert').css('display', 'flex')
-					$('#failAlert').css('display', 'none')
-					setTimeout(function() {
-						$('#successAlert').fadeOut(125)
-					}, 2000);
-				},
-				error: function() {
-					$('#failedText').text('File upload failed!')
-					$('#failAlert').css('display', 'flex')
-					setTimeout(function() {
-						$('#failAlert').fadeOut(125)
-					}, 2000);
-				}
-			})
-		}
+		
 	}); // ----- END OF UPLOAD FILE -----
 	
 	// ----- MODAL CLOSED -----
@@ -482,4 +397,32 @@ $(document).ready(function() {
 	$('#failX').on('click', function() {
 		$('#failAlert').css('display', 'none')
 	});
+	
+	//------------------------------------- ALERT FUNCTIONS -------------------------------------
+	function successAlert(text) {
+		$('#successText').text(text)
+		$('#successAlert').css('display', 'flex')
+		$('#failAlert').css('display', 'none')
+		setTimeout(function() {
+			$('#successAlert').fadeOut(125)
+		}, 2000);
+	}
+	
+	function failAlert(text) {
+		$('#failedText').text(text)
+		$('#failAlert').css('display', 'flex')
+		$('#successAlertAlert').css('display', 'none')
+		setTimeout(function() {
+			$('#failAlert').fadeOut(125)
+		}, 2000);
+	}
+	
+	//------------------------------------- USERNAME VALIDATION FUNCTIONS -------------------------------------
+	function usernameValidation(username, add, remove, button, disabled , alert, display, color='none', text) {
+		$(username).addClass(add)
+		$(username).removeClass(remove)
+		$(button).prop({'disabled':disabled})
+		$(alert).css({'display':display, 'color':color})
+		$(alert).text(text)
+	}
 });

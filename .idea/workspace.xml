@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: small refactor of the file upload input to have a unique id and for the file upload function to dynamically select the file input id instead of the long jQuery selector functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/static/replica_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/replica_styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/replica.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/replica.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,14 +186,7 @@
       <workItem from="1675288764684" duration="2612000" />
       <workItem from="1675297052297" duration="5744000" />
       <workItem from="1675362558785" duration="16922000" />
-      <workItem from="1675443353551" duration="6065000" />
-    </task>
-    <task id="LOCAL-00051" summary="Local: new styles to better suite new jQuery code for lists and alerts">
-      <created>1673306921612</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1673306921612</updated>
+      <workItem from="1675443353551" duration="8903000" />
     </task>
     <task id="LOCAL-00052" summary="Local: small change to UserFiles class to remove a db.relationship statement">
       <created>1673306961150</created>
@@ -533,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675382718556</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Local: small refactor of the file upload input to have a unique id and for the file upload function to dynamically select the file input id instead of the long jQuery selector functions">
+      <created>1675449628423</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1675449628423</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +550,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: removed all old dynamic ul creation for list of users. Moving towards using table instead of list" />
     <MESSAGE value="Local: changed user list to table and completed the JS AJAX GET to format the table upon page load" />
     <MESSAGE value="Local: major changes made to the structure of the page, changes to views.py getting rid of poor code, changes to main.js for ajax requests" />
     <MESSAGE value="Local: improved and fixed the file upload method and ajax request and flask endpoint" />
@@ -577,11 +574,12 @@
     <MESSAGE value="Local: removed as_dict function for the class" />
     <MESSAGE value="Local: initial commit -&gt; setting up views, templates, styling, jQuery, and Blueprints" />
     <MESSAGE value="Local: lots of changes and progress made to the Ops Dashboard layout and styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: lots of changes and progress made to the Ops Dashboard layout and styling" />
+    <MESSAGE value="Local: small refactor of the file upload input to have a unique id and for the file upload function to dynamically select the file input id instead of the long jQuery selector functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: small refactor of the file upload input to have a unique id and for the file upload function to dynamically select the file input id instead of the long jQuery selector functions" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675449531759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675452282540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

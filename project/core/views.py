@@ -137,8 +137,8 @@ def upload():
 			user_id=user.user_id,
 			file_path=file_path
 		)
-		session.add(newFile)
-		session.commit()
+		# session.add(newFile)
+		# session.commit()
 		
 		return jsonify({
 			'status': 'success',
@@ -155,8 +155,8 @@ def delete_file():
 	file_id = data['file_id']
 	file = session.query(UserFiles).filter(UserFiles.file_id==file_id).one_or_none()
 	if file is not None:
-		session.delete(file)
-		session.commit()
+		# session.delete(file)
+		# session.commit()
 		return jsonify({'status': 'success'}), 200
 	
 	return jsonify({'status': 'fail'}), 400
