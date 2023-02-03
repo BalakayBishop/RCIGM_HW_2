@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
-      <change afterPath="$PROJECT_DIR$/project/static/cap.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/static/replica.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/replica.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/replica_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/replica_styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/replica.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/replica.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,14 +187,8 @@
       <workItem from="1675282475347" duration="6260000" />
       <workItem from="1675288764684" duration="2612000" />
       <workItem from="1675297052297" duration="5744000" />
-      <workItem from="1675362558785" duration="16090000" />
-    </task>
-    <task id="LOCAL-00050" summary="Local: changes made to remove vanilla JS and replace it with jQuery and to reduce file size">
-      <created>1673306894578</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1673306894578</updated>
+      <workItem from="1675362558785" duration="16922000" />
+      <workItem from="1675443353551" duration="6065000" />
     </task>
     <task id="LOCAL-00051" summary="Local: new styles to better suite new jQuery code for lists and alerts">
       <created>1673306921612</created>
@@ -532,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675354915489</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Local: lots of changes and progress made to the Ops Dashboard layout and styling">
+      <created>1675382718556</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1675382718556</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,7 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: reformatted data structure to be simpler and more efficient" />
     <MESSAGE value="Local: removed all old dynamic ul creation for list of users. Moving towards using table instead of list" />
     <MESSAGE value="Local: changed user list to table and completed the JS AJAX GET to format the table upon page load" />
     <MESSAGE value="Local: major changes made to the structure of the page, changes to views.py getting rid of poor code, changes to main.js for ajax requests" />
@@ -576,11 +576,12 @@
     <MESSAGE value="Local: refactored the username validation alert to only be one p tag that is populated/changed dynamically with jQuery" />
     <MESSAGE value="Local: removed as_dict function for the class" />
     <MESSAGE value="Local: initial commit -&gt; setting up views, templates, styling, jQuery, and Blueprints" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: initial commit -&gt; setting up views, templates, styling, jQuery, and Blueprints" />
+    <MESSAGE value="Local: lots of changes and progress made to the Ops Dashboard layout and styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: lots of changes and progress made to the Ops Dashboard layout and styling" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675382614829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675449531759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

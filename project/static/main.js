@@ -47,7 +47,8 @@ $(document).ready(function() {
 				main.append("<td>" +
 					"<div class='input-div'>" +
 						"<label for='file-input' class='form-label'>Upload File</label>" +
-						"<input class='form-control file-input' type='file'>" +
+						"<input id='file-input-" + response[i]['user_id'] + "' class='form-control file-input'" +
+					" type='file'>" +
 					"</div>" +
 					"<div class='upload-button-div mt-2'>" +
 						"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
@@ -122,7 +123,7 @@ $(document).ready(function() {
 							" '></ul></td>" +
 						"<td class='td-upload-file'><div class='input-div'>" +
 							"<label for='file-input' class='form-label'>Upload File</label>" +
-							"<input class='form-control file-input' type='file'>" +
+							"<input id='file-input-" + response['user_id'] + "' class='form-control file-input' type='file'>" +
 						"</div>" +
 						"<div class='upload-button-div mt-2'>" +
 							"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
@@ -157,7 +158,7 @@ $(document).ready(function() {
 	}); // ----- END OF NEW USER FORM SUBMIT -----
 	
 	// ------------------------------------- EDIT USER MODAL -------------------------------------
-	$("#user-table").on("click", "td .edit-user", function() {
+	$("#user-table").on("click", ".edit-user", function() {
 		let $tr_id = $(this).closest('tr').attr('id')
 		let userid_val = $("#"+$tr_id).find('th').text()
 		let firstname_val = $("#"+$tr_id).find('td:eq(1)').text()
@@ -425,16 +426,16 @@ $(document).ready(function() {
 	$("#user-table").on("click", "td .upload-button", function(event) {
 		event.preventDefault()
 		let $id = $(this).closest('tr').attr('id')
-		let fileName = $(this).closest('tr').find('td:eq(5) input').val()
+		let fileName = $("#file-input-" + $id).val()
 		fileName = fileName.replace("C:\\fakepath\\", "")
+		console.log(fileName)
 		if(fileName !== '') {
-			let user_id = $(this).closest('tr').find('th').text()
 			$.ajax({
 				url: '/upload',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify({
-					user_id: user_id,
+					user_id: $id,
 					fileName: fileName
 				}),
 				success: function(response) {
