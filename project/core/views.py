@@ -70,7 +70,7 @@ def new_user():
 
 
 # -------------------- ROUTE: UPDATE USER --------------------
-@core.route('/update_user', methods=['POST'])
+@core.route('/update_user', methods=['PUT'])
 def update_user():
 	form_data = request.get_json()
 	first_name = form_data['firstName'],
@@ -99,7 +99,7 @@ def update_user():
 
 
 # -------------------- ROUTE: DELETE USER --------------------
-@core.route('/delete_user', methods=['POST'])
+@core.route('/delete_user', methods=['DELETE'])
 def delete_user():
 	data = request.get_json()
 	user_id = data['user_id']
@@ -149,7 +149,7 @@ def upload():
 	return jsonify({'status': 'fail'}), 400
 
 # -------------------- ROUTE: DELETE FILE --------------------
-@core.route('/delete_file', methods=['POST'])
+@core.route('/delete_file', methods=['DELETE'])
 def delete_file():
 	data = request.get_json()
 	file_id = data['file_id']
