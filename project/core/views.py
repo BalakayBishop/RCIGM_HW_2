@@ -24,23 +24,12 @@ def index():
 @core.route('/username_validation', methods=['GET', 'POST'])
 def username_validation():
 	data = request.get_json()
-	passedUsername = data['input']
-	if request.is_json:
-		if request.method == 'POST':
-			existingUser = is_valid(passedUsername)
-			if len(passedUsername) != 0:
-				if existingUser:
-					return jsonify({
-						'class': 'success'
-					})
-				else:
-					return jsonify({
-						'class': 'fail'
-					})
-			else:
-				return jsonify({
-					'class': 'none'
-				})
+	passedUsername = data['username']
+	query = session.query(User).filter(User.username==passedUsername).one_or_none()
+	if passedUsername != '':
+		pass
+	
+	
 
 # -------------------- ROUTE: NEW USER --------------------
 @core.route('/new_user', methods=['POST'])

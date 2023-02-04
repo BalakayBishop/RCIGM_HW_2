@@ -1,4 +1,4 @@
-from project.models.models import User, UserFiles
+from project.models.models import User
 
 def is_valid(username_check):
 	usernameExist = User.query.filter_by(username=username_check).one_or_none()

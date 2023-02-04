@@ -76,7 +76,7 @@ $(document).ready(function() {
 	$('#submitButton').on('click', function(event) {
 		event.preventDefault()
 		if ($('#firstName').val() !== '' && $('#lastName').val() !== '' && $('#userName').val() !== '') {
-			ajax_post('/new_user', 'POST',
+			ajax('/new_user', 'POST',
 				JSON.stringify({firstName: $('#firstName').val(), lastName: $('#lastName').val(), userName: $('#userName').val()}),
 				function(response){
 					$('tbody').append(
@@ -190,7 +190,7 @@ $(document).ready(function() {
 		// ----- EDIT USER SUBMIT ------
 		$('#modal-submitButton').on('click', function(event) {
 			event.preventDefault()
-			ajax_post('/update_user', 'PUT',
+			ajax('/update_user', 'PUT',
 				JSON.stringify({firstName: $('#modal-firstName').val(), lastName: $('#modal-lastName').val(), userName: $('#modal-userName').val(), current_userid: userid_val}),
 			function(response){
 					modal()
@@ -243,7 +243,7 @@ $(document).ready(function() {
 			"</div>";
 		modal('visible', content)
 		$('.delete-user-submit').on('click', function() {
-			ajax_post('/delete_user', 'DELETE',
+			ajax('/delete_user', 'DELETE',
 				JSON.stringify({user_id: $tr_id}),
 				function() {
 					modal()
@@ -291,7 +291,7 @@ $(document).ready(function() {
 		modal('visible', content)
 		// ----- DELETE FILE SUBMIT ------
 		$('.delete-file-submit').on('click', function() {
-			ajax_post('/delete_file', 'DELETE',
+			ajax('/delete_file', 'DELETE',
 				JSON.stringify({file_id: $file_id}),
 				function() {
 					modal()
@@ -343,7 +343,7 @@ $(document).ready(function() {
 			type: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({
-				input: data
+				username: data
 			}),
 			success: function(response) {
 				if (response['class'] === 'success') {
@@ -377,8 +377,8 @@ $(document).ready(function() {
 		$('.popup-content').html(content)
 	}
 	
-	// ----- AJAX POST FUNCTION -----
-	function ajax_post(url, type, data, success, fail) {
+	// ----- AJAX FUNCTION -----
+	function ajax(url, type, data, success, fail) {
 		$.ajax({
 			url: url,
 			type: type,
