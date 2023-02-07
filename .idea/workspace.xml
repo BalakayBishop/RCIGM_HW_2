@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/86cbc0e2-81e6-4eb5-8e12-1d7f57d9d78f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/86cbc0e2-81e6-4eb5-8e12-1d7f57d9d78f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/core/methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/methods.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/models/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,14 +190,11 @@
       <workItem from="1675362558785" duration="16922000" />
       <workItem from="1675443353551" duration="17392000" />
       <workItem from="1675549928569" duration="1000" />
-      <workItem from="1675552561208" duration="31000" />
-    </task>
-    <task id="LOCAL-00056" summary="Local: workspace">
-      <created>1673380370633</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1673380370634</updated>
+      <workItem from="1675552561208" duration="101000" />
+      <workItem from="1675726769691" duration="1473000" />
+      <workItem from="1675729375204" duration="3122000" />
+      <workItem from="1675793112398" duration="1490000" />
+      <workItem from="1675796386830" duration="2114000" />
     </task>
     <task id="LOCAL-00057" summary="Local: small changes, added functionality to the back button for /index header button">
       <created>1673380519800</created>
@@ -534,7 +532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675473786741</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Local: refactored ajax_post to ajax, and changed my views' HTTP methods to match what process they are performing">
+      <created>1675552650730</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1675552650730</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +558,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: updated and fixed the update_user endpoint" />
     <MESSAGE value="Local: refactored and fixed the upload success function for the ajax request" />
     <MESSAGE value="Local: removed the db import and replaced it with sessionmaker and engine" />
     <MESSAGE value="Local: updated and completed the user deletion" />
@@ -578,11 +582,12 @@
     <MESSAGE value="Local: refactored the alert function to better abstract and use 1 function instead of 2" />
     <MESSAGE value="Local: refactored username validation further to take out redundant ajax call." />
     <MESSAGE value="Local: updated to the correct HTTP methods for my ajax calls" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: updated to the correct HTTP methods for my ajax calls" />
+    <MESSAGE value="Local: refactored ajax_post to ajax, and changed my views' HTTP methods to match what process they are performing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored ajax_post to ajax, and changed my views' HTTP methods to match what process they are performing" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675473486830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675798404431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

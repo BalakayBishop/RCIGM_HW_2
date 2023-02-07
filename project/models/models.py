@@ -22,7 +22,9 @@ class UserFiles(db.Model):
 	file_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.user_id', ondelete='CASCADE'))
 	file_path = db.Column(db.String(255))
+	file_name = db.Column(db.String(255))
 	
-	def __init__(self, user_id, file_path):
+	def __init__(self, user_id, file_path, file_name):
 		self.user_id = user_id
 		self.file_path = file_path
+		self.file_name = file_name

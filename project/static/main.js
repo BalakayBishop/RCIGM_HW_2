@@ -66,10 +66,26 @@ $(document).ready(function() {
 	
 	// ----- USERNAME VALIDATION ------
 	$('.username').on('input', function() {
-		let data = $(this).val()
-		let input = '.username'
+		let username = $(this).val()
+		let input = '#userName'
 		let alert = '#username-alert'
-		username_ajax(input, data, alert)
+		ajax_get('/username_validation?username='+username,
+			function(response) {
+				if (response['status'] === 'not found') {
+					usernameValidation(input, 'success', 'fail', '#submitButton',
+						false, alert,'block', '#0f5132', "Username is available!")
+				}
+				else if (response['status'] === 'found') {
+					usernameValidation(input, 'fail', 'success', '#submitButton',
+						true, alert,'block', '#842029', "Username is already taken!")
+				}
+				else if (response['status'] === 'none') {
+					usernameValidation(input, '', 'success fail', '#submitButton',
+						true, alert,'none', '', "")
+				}
+			},
+			function() {}
+		)
 	});
 	
 	// ----- CREATE NEW USER ------
@@ -182,10 +198,26 @@ $(document).ready(function() {
 		$('#modal-submitButton').prop({'disabled': true})
 		// ----- EDIT USERNAME VALIDATION ------
 		$('#modal-userName').on('input', function() {
-			let data = $(this).val()
+			let username = $(this).val()
 			let input = '#modal-userName'
 			let alert = '#modal-username-alert'
-			username_ajax(input, data, alert)
+			ajax_get('/username_validation?username='+username,
+				function(response) {
+					if (response['status'] === 'not found') {
+					usernameValidation(input, 'success', 'fail', '#modal-submitButton',
+						false, alert,'block', '#0f5132', "Username is available!")
+					}
+					else if (response['status'] === 'found') {
+						usernameValidation(input, 'fail', 'success', '#modal-submitButton',
+							true, alert,'block', '#842029', "Username is already taken!")
+					}
+					else if (response['status'] === 'none') {
+						usernameValidation(input, '', 'success fail', '#modal-submitButton',
+							true, alert,'none', '', "")
+					}
+				},
+				function() {}
+			)
 		});
 		// ----- EDIT USER SUBMIT ------
 		$('#modal-submitButton').on('click', function(event) {
@@ -309,6 +341,30 @@ $(document).ready(function() {
 	// ----- UPLOAD FILE ------
 	$("#user-table").on("click", "td .upload-button", function(event) {
 		event.preventDefault()
+		let $user_id = $(this).closest('tr').attr('id')
+		let $input = $('#file-input-'+$user_id)
+		
+		if ($input.val() !== '') {
+			let $file = $('#file-input-'+$user_id)[0].files[0]
+			let form_data = new FormData()
+			form_data.append('file', $file)
+			form_data.append('user_id', $user_id)
+			$.ajax({
+				url: "/upload",
+				type: "POST",
+				contentType: false,
+				processData: false,
+				data: form_data,
+				success: function(response){
+				
+				},
+				error:  function(jqXHR){
+					if (jqXHR === 400 || jqXHR === 500) {
+						alert_func('#failAlert', 'File upload failed!')
+					}
+				}
+			});
+		}
 		
 	});
 	
@@ -330,36 +386,9 @@ $(document).ready(function() {
 	function alert_func(alert, text) {
 		$(alert).text(text)
 		$(alert).css('display', 'flex')
-		$('#failAlert').css('display', 'none')
 		setTimeout(function() {
 			$(alert).fadeOut(125)
 		}, 2000);
-	}
-	
-	// ----- USERNAME AJAX FUNCTION ------
-	function username_ajax(input, data, alert) {
-		$.ajax({
-			url: '/username_validation',
-			type: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify({
-				username: data
-			}),
-			success: function(response) {
-				if (response['class'] === 'success') {
-					usernameValidation(input, 'success', 'fail', '#submitButton',
-						false, alert,'block', '#0f5132', "Username is available!")
-				}
-				else if (response['class'] === 'fail') {
-					usernameValidation(input, 'fail', 'success', '#submitButton',
-						true, alert,'block', '#842029', "Username is already taken!")
-				}
-				else if (response['class'] === 'none') {
-					usernameValidation(input, '', 'success fail', '#submitButton',
-						true, alert,'none', '', "")
-				}
-			}
-		})
 	}
 	
 	// ----- USERNAME AVAILABLE/TAKEN ------
@@ -390,4 +419,12 @@ $(document).ready(function() {
 	}
 	
 	// ----- AJAX GET FUNCTION -----
+	function ajax_get(url, success, fail) {
+		$.ajax({
+			url: url,
+			type: 'GET',
+			success: success,
+			error: fail
+		});
+	}
 });

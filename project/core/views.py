@@ -1,9 +1,10 @@
 # project/core/views.py
 from flask import render_template, Blueprint, request, jsonify
 from project.models.models import User, UserFiles
-from project.core.methods import is_valid, convert_join
+from project.core.methods import convert_join
 from sqlalchemy.orm import sessionmaker
 from project.config import engine
+import os
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -21,13 +22,17 @@ def index():
 	return render_template('index.html')
 	
 # -------------------- ROUTE: USERNAME VALIDATION --------------------
-@core.route('/username_validation', methods=['GET', 'POST'])
+@core.route('/username_validation', methods=['GET'])
 def username_validation():
-	data = request.get_json()
-	passedUsername = data['username']
-	query = session.query(User).filter(User.username==passedUsername).one_or_none()
+	passedUsername = request.args.get('username')
 	if passedUsername != '':
-		pass
+		query = session.query(User).filter(User.username == passedUsername).one_or_none()
+		if query is not None:
+			return jsonify({'status': 'found'}), 200
+		else:
+			return jsonify({'status': 'not found'}), 200
+	
+	return jsonify({'status': 'none'}), 200
 	
 	
 
@@ -116,24 +121,27 @@ def users():
 # -------------------- ROUTE: UPLOAD FILE --------------------
 @core.route('/upload', methods=['POST'])
 def upload():
-	data = request.get_json()
-	user_id = data['user_id']
-	fileName = data['fileName']
-	file_path = 'D:\Projects\Files\\' + fileName
-	user = session.query(User).filter(User.user_id==user_id).one_or_none()
-	if user is not None:
-		newFile = UserFiles (
-			user_id=user.user_id,
-			file_path=file_path
-		)
-		# session.add(newFile)
-		# session.commit()
-		
-		return jsonify({
-			'status': 'success',
-			'path': newFile.file_path,
-			'file_id': newFile.file_id
-		}), 200
+	file = request.files['file']
+	user_id = request.form['user_id']
+	if file:
+		file_name = file.filename
+		file_path = 'D:\\Projects\\Files\\Uploads'
+		file.save(os.path.join(file_path, file_name))
+		user = session.query(User).filter(User.user_id==user_id).one_or_none()
+		if user is not None:
+			new_file = UserFiles (
+				user_id=user.user_id,
+				file_path=file_path,
+				file_name=file_name
+			)
+			# session.add(new_file)
+			# session.commit()
+			
+			return jsonify({
+				'status': 'success',
+				'file_name': new_file.file_name,
+				'file_id': new_file.file_id
+			}), 200
 	
 	return jsonify({'status': 'fail'}), 400
 
@@ -149,3 +157,9 @@ def delete_file():
 		return jsonify({'status': 'success'}), 200
 	
 	return jsonify({'status': 'fail'}), 400
+
+
+# -------------------- ROUTE: DOWNLOAD FILE --------------------
+@core.route('/download_file', methods=['GET, POST'])
+def download_file():
+	return 200

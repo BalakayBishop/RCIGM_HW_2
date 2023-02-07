@@ -1080,7 +1080,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="304" parent="302" name="file_id">
-      <AutoIncrement>23</AutoIncrement>
+      <AutoIncrement>53</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1093,63 +1093,67 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <foreign-key id="307" parent="302" name="user_filesFK">
+    <column id="307" parent="302" name="file_name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="308" parent="302" name="user_filesFK">
       <ColNames>user_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>user_id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <index id="308" parent="302" name="PRIMARY">
+    <index id="309" parent="302" name="PRIMARY">
       <ColNames>file_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="309" parent="302" name="user_filesFK_idx">
+    <index id="310" parent="302" name="user_filesFK_idx">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="310" parent="302" name="PRIMARY">
+    <key id="311" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="311" parent="303" name="user_id">
-      <AutoIncrement>68</AutoIncrement>
+    <column id="312" parent="303" name="user_id">
+      <AutoIncrement>76</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="312" parent="303" name="first_name">
+    <column id="313" parent="303" name="first_name">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="313" parent="303" name="last_name">
+    <column id="314" parent="303" name="last_name">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="314" parent="303" name="username">
+    <column id="315" parent="303" name="username">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="315" parent="303" name="PRIMARY">
+    <index id="316" parent="303" name="PRIMARY">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="316" parent="303" name="username_UNIQUE">
+    <index id="317" parent="303" name="username_UNIQUE">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="317" parent="303" name="PRIMARY">
+    <key id="318" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="318" parent="303" name="username_UNIQUE">
+    <key id="319" parent="303" name="username_UNIQUE">
       <UnderlyingIndexName>username_UNIQUE</UnderlyingIndexName>
     </key>
   </database-model>
