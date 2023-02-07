@@ -16,10 +16,23 @@ core = Blueprint('core', __name__)
 def home():
 	return render_template('home.html')
 	
+
 # -------------------- ROUTE: INDEX --------------------
 @core.route('/index', methods=['GET', 'POST'])
 def index():
 	return render_template('index.html')
+
+
+# -------------------- ROUTE: GET ALL USERS IN DICT --------------------
+@core.route('/users', methods=['GET'])
+def users():
+	session.flush()
+	query = session.query(User).outerjoin(UserFiles).all()
+	result = convert_join(query)
+	if result is not None:
+		return jsonify(result), 200
+	return jsonify({"status": "fail"}), 400
+
 	
 # -------------------- ROUTE: USERNAME VALIDATION --------------------
 @core.route('/username_validation', methods=['GET'])
@@ -33,7 +46,6 @@ def username_validation():
 			return jsonify({'status': 'not found'}), 200
 	
 	return jsonify({'status': 'none'}), 200
-	
 	
 
 # -------------------- ROUTE: NEW USER --------------------
@@ -107,16 +119,6 @@ def delete_user():
 		
 	return jsonify({'status': 'fail'}), 400
 
-
-# -------------------- ROUTE: GET ALL USERS IN DICT --------------------
-@core.route('/users', methods=['GET'])
-def users():
-	session.flush()
-	query = session.query(User).outerjoin(UserFiles).all()
-	result = convert_join(query)
-	if result is not None:
-		return jsonify(result), 200
-	return jsonify({"status": "fail"}), 400
 	
 # -------------------- ROUTE: UPLOAD FILE --------------------
 @core.route('/upload', methods=['POST'])
@@ -145,6 +147,13 @@ def upload():
 	
 	return jsonify({'status': 'fail'}), 400
 
+
+# -------------------- ROUTE: DOWNLOAD FILE --------------------
+@core.route('/download_file', methods=['GET, POST'])
+def download_file():
+	return 200
+
+
 # -------------------- ROUTE: DELETE FILE --------------------
 @core.route('/delete_file', methods=['DELETE'])
 def delete_file():
@@ -157,9 +166,3 @@ def delete_file():
 		return jsonify({'status': 'success'}), 200
 	
 	return jsonify({'status': 'fail'}), 400
-
-
-# -------------------- ROUTE: DOWNLOAD FILE --------------------
-@core.route('/download_file', methods=['GET, POST'])
-def download_file():
-	return 200
