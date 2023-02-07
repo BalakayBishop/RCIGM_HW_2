@@ -14,7 +14,7 @@ def convert_join(query):
 		for obj in query:
 			lst.append({"user_id": obj.user_id,"user_firstName": obj.first_name,"user_lastName": obj.last_name,"user_userName": obj.username,"files": []})
 			for file in obj.files:
-				lst[i]['files'].append({"file_id": file.file_id, "file_path": file.file_path})
+				lst[i]['files'].append({"file_id": file.file_id, "file_name": file.file_name})
 			i += 1
 		# for i in lst:
 		# 	print(i)

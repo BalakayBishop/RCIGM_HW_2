@@ -36,7 +36,7 @@ $(document).ready(function() {
 					for (let j = 0; j < response[i]['files'].length; j++) {
 						let li = $("<li class='list-group-item' id='"+response[i]['files'][j]['file_id']+"'>"+
 							"<div class='files'>" +
-								"<p>" + response[i]['files'][j]['file_path'] + "</p>" +
+								"<p>" + response[i]['files'][j]['file_name'] + "</p>" +
 								"<div class='files-icons'>" +
 									"<i class='bi bi-download download-file'></i>" +
 									"<i class='bi bi-x-lg delete-file'></i>" +
@@ -59,7 +59,7 @@ $(document).ready(function() {
 		},
 		error: function(jqXHR) {
 			if (jqXHR.status === 400) {
-			
+				alert_func('#failAlert','#failedText','Failed to load users');
 			}
 		}
 	});
@@ -116,7 +116,7 @@ $(document).ready(function() {
 							"</div></td>" +
 						"</tr>")
 					
-					alert_func('#successAlert','User created successfully!')
+					alert_func('#successAlert','#successText','User created successfully!')
 					$('#form')[0].reset()
 					$('.username').removeClass('success fail')
 					$('#submitButton').prop({'disabled':false})
@@ -124,7 +124,7 @@ $(document).ready(function() {
 				},
 				function(jqXHR){
 					if (jqXHR.status === 400) {
-						alert_func('#failAlert','User creation failed!')
+						alert_func('#failAlert','#failedText','User creation failed!')
 						$('#form')[0].reset()
 						$('.username').removeClass('success fail')
 						$('#submitButton').prop({'disabled':false})
@@ -230,12 +230,12 @@ $(document).ready(function() {
 					$("#"+$tr_id).find('td:eq(1)').text(response['firstName'])
 					$("#"+$tr_id).find('td:eq(2)').text(response['lastName'])
 					$("#"+$tr_id).find('td:eq(3)').text(response['userName'])
-					alert_func('#successAlert','User successfully updated!')
+					alert_func('#successAlert','#successText','User successfully updated!')
 				},
 			function(jqXHR){
 					if (jqXHR.status === 400) {
 						modal()
-						alert_func('#failAlert','User update failed!')
+						alert_func('#failAlert','#failedText','User update failed!')
 					}
 				}
 			);
@@ -280,11 +280,11 @@ $(document).ready(function() {
 				function() {
 					modal()
 					$("#"+$tr_id).remove();
-					alert_func('#successAlert','User successfully deleted!')
+					alert_func('#successAlert','#successText','User successfully deleted!')
 				},
 				function() {
 					modal()
-					alert_func('#failAlert','User deletion failed!')
+					alert_func('#failAlert','#failedText','User deletion failed!')
 				}
 			)
 		});
@@ -328,11 +328,11 @@ $(document).ready(function() {
 				function() {
 					modal()
 					$("#"+$file_id).remove()
-					alert_func('#successAlert','File successfully deleted!')
+					alert_func('#successAlert','#successText','File successfully deleted!')
 				},
 				function() {
 					modal()
-					alert_func('#failAlert','File deletion failed!')
+					alert_func('#failAlert','#failedText','File deletion failed!')
 				}
 			)
 		});
@@ -355,12 +355,23 @@ $(document).ready(function() {
 				contentType: false,
 				processData: false,
 				data: form_data,
-				success: function(response){
-				
+				success: function(response) {
+					$("#ul-"+$user_id).append("<li class='list-group-item' id='"+response['file_id']+"'>"+
+							"<div class='files'>" +
+								"<p>" + response['file_name'] + "</p>" +
+								"<div class='files-icons'>" +
+									"<i id='download-"+response['file_id']+"' class='bi bi-download" +
+						" download-file'></i>" +
+									"<i id='delete-"+response['file_id']+"' class='bi bi-x-lg delete-file'></i>" +
+								"</div>" +
+							"</div>" +
+						"</li>")
+					$input.val('')
+					alert_func('#successAlert','#successText', 'File successfully uploaded!')
 				},
 				error:  function(jqXHR){
 					if (jqXHR === 400 || jqXHR === 500) {
-						alert_func('#failAlert', 'File upload failed!')
+						alert_func('#failAlert','#failedText', 'File upload failed!')
 					}
 				}
 			});
@@ -383,7 +394,7 @@ $(document).ready(function() {
 	});
 	
 	// ----- ALERT FUNCTION ------
-	function alert_func(alert, text) {
+	function alert_func(alert, alert_text, text) {
 		$(alert).text(text)
 		$(alert).css('display', 'flex')
 		setTimeout(function() {
