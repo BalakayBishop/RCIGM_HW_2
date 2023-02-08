@@ -1,5 +1,5 @@
 # project/core/views.py
-from flask import render_template, Blueprint, request, jsonify
+from flask import render_template, Blueprint, request, jsonify, send_file
 from project.models.models import User, UserFiles
 from project.core.methods import convert_join
 from sqlalchemy.orm import sessionmaker
@@ -127,7 +127,7 @@ def upload():
 	user_id = request.form['user_id']
 	if file:
 		file_name = file.filename
-		file_path = 'D:\\Projects\\Files\\Uploads'
+		file_path = 'D:\\Projects\\Files\\Uploads\\'
 		file.save(os.path.join(file_path, file_name))
 		user = session.query(User).filter(User.user_id==user_id).one_or_none()
 		if user is not None:
@@ -149,9 +149,17 @@ def upload():
 
 
 # -------------------- ROUTE: DOWNLOAD FILE --------------------
-@core.route('/download_file', methods=['GET, POST'])
+@core.route('/download_file', methods=['GET'])
 def download_file():
-	return 200
+	file_id = request.args.get('file_id')
+	file = session.query(UserFiles).filter(UserFiles.file_id == file_id).one_or_none()
+	if file is not None:
+		file_name = file.file_name
+		file_path = file.file_path
+		
+		return send_file(file_path+file_name, as_attachment=True)
+	
+	return jsonify({'status': 'fail'}), 400
 
 
 # -------------------- ROUTE: DELETE FILE --------------------

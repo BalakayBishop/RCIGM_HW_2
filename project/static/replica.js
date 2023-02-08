@@ -9,7 +9,7 @@ $(document).ready(function() {
 		$(this).addClass('option-active')
 	})
 	
-	// ---------- TEST STATUS DATETIME ---------
+	// ----- TEST STATUS DATETIME -----
 	$(".content-options").on('click', '#option-test-status', function() {
 		$('.content-display').html(
 			"<div class='content-display-inner'>" +
@@ -111,9 +111,36 @@ $(document).ready(function() {
 				"</div>" +
 			"</div>"
 		)
-		
-	})
+	});
 	
+	// ----- REMOVE INDIVIDUAL -----
+	$('.content-options').on('click', '#remove-individual', function() {
+		$('.content-display').html(
+			"<div class='content-display-inner'>" +
+				"<div class='content-display-header'>" +
+					"<h5>Remove Individual</h5>" +
+					"<i class='bi bi-x-lg close-content-display'></i>" +
+				"</div>" +
+				"<div class='help-block'>" +
+					"<p>" +
+						"An example JIRA ticket is <strong>PSD-1559</strong>. The ticket should contain Ind ID.<br>" +
+						"1) This feature will remove an individual and all its children including the metadata bound to all children.<br>" +
+						"2) Thus, it will dynamically check and delete all bindings whether an individual contains true or TBD sample.<br>" +
+						"3) The system will block an individual from being deleted if at least one of the test bound to this individual is accessioned." +
+					"</p>" +
+				"</div>" +
+				"<div id='remove-display-form' class='content-display-form'>" +
+					"<div id='remove-input-group' class='input-group'>" +
+						"<span class='input-group-text' id='indID-input'>Ind ID</span>" +
+						"<input type='text' class='form-control' aria-describedby='indID-input'>" +
+					"</div>" +
+					"<i class='bi bi-arrow-right-circle-fill test-status-arrow'></i>" +
+				"</div> " +
+			"</div>"
+		)
+	});
+	
+	// ----- CLOSING/REMOVING DISPLAYED CONTENT -----
 	$('.content-display').on('click','.close-content-display', function() {
 		$('.content-display').html('')
 		$(".option-item").removeClass('option-active')
