@@ -107,7 +107,9 @@ $(document).ready(function() {
 							"<option value='XENO'>XENO</option>" +
 						"</select>" +
 					"</div>" +
-					"<i class='bi bi-arrow-right-circle-fill test-status-arrow'></i>" +
+				"</div>" +
+				"<div class='arrow-icon-div'>" +
+					"<i class='bi bi-arrow-right-circle-fill arrow-icon'></i>" +
 				"</div>" +
 			"</div>"
 		)
@@ -129,16 +131,117 @@ $(document).ready(function() {
 						"3) The system will block an individual from being deleted if at least one of the test bound to this individual is accessioned." +
 					"</p>" +
 				"</div>" +
-				"<div id='remove-display-form' class='content-display-form'>" +
-					"<div id='remove-input-group' class='input-group'>" +
+				"<div id='removeIND-display-form' class='content-display-form sm-row-form'>" +
+					"<div id='removeIND-input-group' class='input-group w400'>" +
 						"<span class='input-group-text' id='indID-input'>Ind ID</span>" +
 						"<input type='text' class='form-control' aria-describedby='indID-input'>" +
 					"</div>" +
-					"<i class='bi bi-arrow-right-circle-fill test-status-arrow'></i>" +
 				"</div> " +
+				"<div class='arrow-icon-div w400'><i class='bi bi-arrow-right-circle-fill arrow-icon'></i></div>" +
 			"</div>"
 		)
 	});
+	
+	// ----- REMOVE RECIPIENT -----
+	$('.content-options').on('click', '#remove-recipient', function() {
+		$('.content-display').html(
+			"<div class='content-display-inner'>" +
+				"<div class='content-display-header'>" +
+					"<h5>Remove Email Notification Recipient</h5>" +
+					"<i class='bi bi-x-lg close-content-display'></i>" +
+				"</div>" +
+				"<div class='help-block'>" +
+					"<p>" +
+						"This feature will delete all the entries found within the Email Notification table for the email recipient provided." +
+					"</p>" +
+				"</div>" +
+				"<div id='remove-EmailNot-display-form' class='content-display-form sm-row-form'>" +
+					"<div id='remove-EmailNot-input-group' class='input-group w400'>" +
+						"<span class='input-group-text' id='notification-email-input'>Email</span>" +
+						"<input type='text' class='form-control' aria-describedby='notification-email-input'>" +
+					"</div>" +
+				"</div> " +
+				"<div class='arrow-icon-div w400'><i class='bi bi-arrow-right-circle-fill arrow-icon'></i></div>" +
+			"</div>"
+		);
+	});
+	
+	// ----- CREATE USER -----
+	$('.content-options').on('click', '#create-user', function() {
+		$('.content-display').html(
+			"<div class='content-display-inner'>" +
+				"<div class='content-display-header'>" +
+					"<h5>Create User</h5>" +
+					"<i class='bi bi-x-lg close-content-display'></i>" +
+				"</div>" +
+				"<div class='help-block'>" +
+					"<p>" +
+						"An example JIRA ticket is GP-1791. The ticket contains the user, role, site, and study information.<br>" +
+						"1) Enter user information including e-mail, first, and last name.<br>" +
+						"2) Specify a site that user belongs to and assign allowed studies. Note that OPS roles won't have allowed studies.<br>" +
+						"3) Specify whether you want to send a password reset instruction e-mail." +
+					"</p>" +
+				"</div>" +
+				"<div id='create-user-display-form' class='content-display-form'>" +
+					"<div id='create-user-1' class='create-user-row'>" +
+						"<div id='' class='input-group'>" +
+							"<span class='input-group-text wide-label' id='create-email-input'>Email</span>" +
+							"<input type='text' class='form-control' aria-describedby='create-email-input'>" +
+						"</div>" +
+						"<div id='' class='input-group'>" +
+							"<span class='input-group-text wide-label' id='create-fname-input'>First Name</span>" +
+							"<input type='text' class='form-control' aria-describedby='create-fname-input'>" +
+						"</div>" +
+						"<div id='' class='input-group'>" +
+							"<span class='input-group-text wide-label' id='create-lname-input'>Last Name</span>" +
+							"<input type='text' class='form-control' aria-describedby='create-lname-input'>" +
+						"</div>" +
+					"</div>" +
+					"<div id='create-user-2' class='create-user-row'>" +
+						"<div id='' class='input-group'>" +
+							"<span class='input-group-text wide-label' id='create-roles-input'>Roles</span>" +
+							"<input type='text' class='form-control' aria-describedby='create-roles-input'>" +
+						"</div>" +
+						"<div id='' class='input-group'>" +
+							"<span class='input-group-text wide-label' id='create-site-input'>Site</span>" +
+							"<input type='text' class='form-control' aria-describedby='create-site-input'>" +
+						"</div>" +
+						"<div id='' class='input-group'>" +
+							"<span class='input-group-text wide-label' id='create-studies-input'>Allowed Studies</span>" +
+							"<input type='text' class='form-control' aria-describedby='create-studies-input'>" +
+						"</div>" +
+					"</div>" +
+					"<div class='arrow-icon-div'><i class='bi bi-arrow-right-circle-fill arrow-icon'></i></div>" +
+				"</div>" +
+			"</div>"
+		)
+	})
+	
+	// ----- DEACTIVATE USER -----
+	$('.content-options').on('click', '#deactivate-user', function() {
+		$('.content-display').html(
+			"<div class='content-display-inner'>" +
+				"<div class='content-display-header'>" +
+					"<h5>Deactivate User</h5>" +
+					"<i class='bi bi-x-lg close-content-display'></i>" +
+				"</div>" +
+				"<div class='help-block'>" +
+					"<p>" +
+						"This feature will deactivate/activate a user from the users table.<br>" +
+						"Once a user is being deactivated it will be flagged and transferred into the users_deactivated table.<br>" +
+						"If the user is submitted once again it will be removed from the user_deactivated table, and they will be active again." +
+					"</p>" +
+				"</div>" +
+				"<div id='deactivate-user-display-form' class='content-display-form sm-row-form'>" +
+					"<div id='deactive-user-input-group' class='input-group w400'>" +
+						"<span class='input-group-text' id='deactivate-email-input'>Email</span>" +
+						"<input type='text' class='form-control' aria-describedby='deactivate-email-input'>" +
+					"</div>" +
+				"</div> " +
+				"<div class='arrow-icon-div w400'><i class='bi bi-arrow-right-circle-fill arrow-icon'></i></div>" +
+			"</div>"
+		);
+	})
 	
 	// ----- CLOSING/REMOVING DISPLAYED CONTENT -----
 	$('.content-display').on('click','.close-content-display', function() {

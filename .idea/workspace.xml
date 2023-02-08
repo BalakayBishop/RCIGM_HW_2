@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: added remove individual to the replica">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/replica.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/replica.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/replica_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/replica_styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/replica.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/replica.html" afterDir="false" />
@@ -196,14 +194,7 @@
       <workItem from="1675729375204" duration="3122000" />
       <workItem from="1675793112398" duration="1490000" />
       <workItem from="1675796386830" duration="10621000" />
-      <workItem from="1675883212745" duration="3032000" />
-    </task>
-    <task id="LOCAL-00060" summary="Local: workspace.xml">
-      <created>1673393804483</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1673393804483</updated>
+      <workItem from="1675883212745" duration="9534000" />
     </task>
     <task id="LOCAL-00061" summary="Local: changes made to models.py to reflect ON DELETE CASCADE in MySQL for deleting a user will delete all files associated in the files table">
       <created>1673395279722</created>
@@ -541,7 +532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675806022373</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Local: added remove individual to the replica">
+      <created>1675886405935</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1675886405936</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -560,7 +558,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: updated the user update function to replace vanilla JS with jQuery" />
     <MESSAGE value="Local: refactored main.js to remove a lot of vanilla JS selectors for e.target, and finished the delete file function and endpoint" />
     <MESSAGE value="Local: adding requirements.txt" />
     <MESSAGE value="Local: adding runtime.txt" />
@@ -585,11 +582,12 @@
     <MESSAGE value="Local: refactored the username validation to use ajax_get function. Also refactored the upload method to now save the file's contents and make a copy 'on the server'." />
     <MESSAGE value="Local: refactored views.py structure to better follow the flow of the routes" />
     <MESSAGE value="Local: refactored the alert_func, methods.py, and uncommented the commit for uploading and deleting files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: refactored the alert_func, methods.py, and uncommented the commit for uploading and deleting files" />
+    <MESSAGE value="Local: added remove individual to the replica" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: added remove individual to the replica" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675886017366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675897690819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

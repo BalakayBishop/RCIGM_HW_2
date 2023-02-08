@@ -206,6 +206,7 @@ h2, h4 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: .5rem;
 }
 
 .content-display-header > h5 {
@@ -237,10 +238,6 @@ h2, h4 {
     width: 100px;
 }
 
-#remove-input-group {
-    width: 400px;
-}
-
 @media (max-width: 1200px) {
     .content-display-form {
         flex-direction: column;
@@ -248,16 +245,53 @@ h2, h4 {
         gap: 8px;
     }
     
-    #remove-display-form {
+    .sm-row-form {
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: flex-start;
         gap: 8px;
     }
 }
 
-.test-status-arrow {
+/* ---------------------------CREATE USER----------------------------- */
+#create-user-display-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.create-user-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+}
+
+.arrow-icon {
     font-size: 24px;
     color: rgb(51, 122, 183)
+}
+
+.arrow-icon-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+@media (width <= 1200px) {
+    .create-user-row{
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+.wide-label {
+    width: 144px;
+}
+
+.w400 {
+    width: 400px;
 }
 
 /* ---------------------------FOOTER------------------------------------------- */
