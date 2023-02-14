@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: completed download function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,13 +196,7 @@
       <workItem from="1675883212745" duration="10167000" />
       <workItem from="1675961700094" duration="3000" />
       <workItem from="1676310392521" duration="4539000" />
-    </task>
-    <task id="LOCAL-00062" summary="Local: new changes to the upload feature for data validation">
-      <created>1673476510011</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1673476510011</updated>
+      <workItem from="1676394137700" duration="1171000" />
     </task>
     <task id="LOCAL-00063" summary="Local: more additions to the upload feature that now includes having a hidden ul under the file selector and if the ajax for upload is successful it displays a ul li for the file uploaded">
       <created>1673479013411</created>
@@ -542,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675899498411</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Local: completed download function">
+      <created>1676394162648</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1676394162649</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,7 +560,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: adding requirements.txt" />
     <MESSAGE value="Local: adding runtime.txt" />
     <MESSAGE value="Local: updated the edit user and delete user functions by replacing the e.target JS" />
     <MESSAGE value="Local: refactored the delete file function to remove e.target" />
@@ -586,19 +584,8 @@
     <MESSAGE value="Local: refactored the alert_func, methods.py, and uncommented the commit for uploading and deleting files" />
     <MESSAGE value="Local: added remove individual to the replica" />
     <MESSAGE value="Local: created and styled the rest of the options for the rework of the Ops Dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: created and styled the rest of the options for the rework of the Ops Dashboard" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/project/static/main.js</url>
-          <line>40</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Local: completed download function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: completed download function" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

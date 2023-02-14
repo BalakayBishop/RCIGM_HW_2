@@ -13,26 +13,23 @@ $(document).ready(function() {
 	})
 	
 	// ----- PAGE LOAD GET ------
-	$.ajax({
-		url: '/users',
-		type:'GET',
-		success: function(response) {
-			for(let i = 0; i < response.length; i++) {
-				let main = $("<tr id='"+ response[i]['user_id'] +"'>" +
-					"<td><div class='action-icons'>" +
-						"<i class='bi bi-pencil-square edit-user'></i> <i class='bi bi-trash3 delete-user'></i>" +
-					"</div></td>" +
-					"<th scope='row'>" + response[i]['user_id'] + "</th>" +
-					"<td>" + response[i]['user_firstName'] + "</td>" +
-					"<td>" + response[i]['user_lastName'] + "</td>" +
-					"<td>" + response[i]['user_userName'] + "</td>" +
-				"</tr>")
-				
-				let td = $("<td></td>")
-				let ul = $("<ul id='ul-"+ response[i]['user_id'] +"' class='list-group list-group-flush'></ul>")
-				td.append(ul)
-				main.append(td)
-				$('tbody').append(main)
+	ajax_get("/users",
+			function(response) {
+				for(let i = 0; i < response.length; i++) {
+					let main = $("<tr id='"+ response[i]['user_id'] +"'>" +
+						"<td><div class='action-icons'>" +
+							"<i class='bi bi-pencil-square edit-user'></i> <i class='bi bi-trash3 delete-user'></i>" +
+						"</div></td>" +
+						"<th scope='row'>" + response[i]['user_id'] + "</th>" +
+						"<td>" + response[i]['user_firstName'] + "</td>" +
+						"<td>" + response[i]['user_lastName'] + "</td>" +
+						"<td>" + response[i]['user_userName'] + "</td>" +
+					"</tr>")
+					let td = $("<td></td>")
+					let ul = $("<ul id='ul-"+ response[i]['user_id'] +"' class='list-group list-group-flush'></ul>")
+					td.append(ul)
+					main.append(td)
+					$('tbody').append(main)
 					for (let j = 0; j < response[i]['files'].length; j++) {
 						let li = $("<li class='list-group-item' id='"+response[i]['files'][j]['file_id']+"'>"+
 							"<div class='files'>" +
@@ -45,24 +42,24 @@ $(document).ready(function() {
 						"</li>")
 						ul.append(li)
 					}
-				main.append("<td>" +
-					"<div class='input-div'>" +
-						"<label for='file-input' class='form-label'>Upload File</label>" +
-						"<input id='file-input-" + response[i]['user_id'] + "' class='form-control file-input'" +
-					" type='file'>" +
-					"</div>" +
-					"<div class='upload-button-div mt-2'>" +
-						"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
-					"</div>" +
-				"</td>")
-			}
-		},
-		error: function(jqXHR) {
+					main.append("<td>" +
+						"<div class='input-div'>" +
+							"<label for='file-input' class='form-label'>Upload File</label>" +
+							"<input id='file-input-" + response[i]['user_id'] + "' class='form-control file-input'" +
+						" type='file'>" +
+						"</div>" +
+						"<div class='upload-button-div mt-2'>" +
+							"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
+						"</div>" +
+					"</td>")
+				}
+			},
+		function(jqXHR) {
 			if (jqXHR.status === 400) {
 				alert_func('#failAlert','#failedText','Failed to load users');
 			}
 		}
-	});
+	)
 	
 	// ----- USERNAME VALIDATION ------
 	$('.username').on('input', function() {
@@ -115,7 +112,6 @@ $(document).ready(function() {
 								"<button type='button' class='btn btn-primary upload-button'>Upload</button>" +
 							"</div></td>" +
 						"</tr>")
-					
 					alert_func('#successAlert','#successText','User created successfully!')
 					$('#form')[0].reset()
 					$('.username').removeClass('success fail')
