@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local: added remove individual to the replica">
+    <list default="true" id="5890f42c-f35e-42f3-8eae-fe53b5610faa" name="Changes" comment="Local:">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/static/replica.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/replica.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/static/replica_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/replica_styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/replica.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/replica.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,14 +195,9 @@
       <workItem from="1675729375204" duration="3122000" />
       <workItem from="1675793112398" duration="1490000" />
       <workItem from="1675796386830" duration="10621000" />
-      <workItem from="1675883212745" duration="9534000" />
-    </task>
-    <task id="LOCAL-00061" summary="Local: changes made to models.py to reflect ON DELETE CASCADE in MySQL for deleting a user will delete all files associated in the files table">
-      <created>1673395279722</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1673395279722</updated>
+      <workItem from="1675883212745" duration="10167000" />
+      <workItem from="1675961700094" duration="3000" />
+      <workItem from="1676310392521" duration="4539000" />
     </task>
     <task id="LOCAL-00062" summary="Local: new changes to the upload feature for data validation">
       <created>1673476510011</created>
@@ -539,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675886405936</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Local: created and styled the rest of the options for the rework of the Ops Dashboard">
+      <created>1675899498411</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1675899498411</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +561,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Local: refactored main.js to remove a lot of vanilla JS selectors for e.target, and finished the delete file function and endpoint" />
     <MESSAGE value="Local: adding requirements.txt" />
     <MESSAGE value="Local: adding runtime.txt" />
     <MESSAGE value="Local: updated the edit user and delete user functions by replacing the e.target JS" />
@@ -583,11 +585,24 @@
     <MESSAGE value="Local: refactored views.py structure to better follow the flow of the routes" />
     <MESSAGE value="Local: refactored the alert_func, methods.py, and uncommented the commit for uploading and deleting files" />
     <MESSAGE value="Local: added remove individual to the replica" />
-    <option name="LAST_COMMIT_MESSAGE" value="Local: added remove individual to the replica" />
+    <MESSAGE value="Local: created and styled the rest of the options for the rework of the Ops Dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local: created and styled the rest of the options for the rework of the Ops Dashboard" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/project/static/main.js</url>
+          <line>40</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1670613127723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RCIGM_HW_2$RCIGM_HW_2.coverage" NAME="RCIGM_HW_2 Coverage Results" MODIFIED="1670609845707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1675897690819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RCIGM_HW_2$app.coverage" NAME="app Coverage Results" MODIFIED="1676314553248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

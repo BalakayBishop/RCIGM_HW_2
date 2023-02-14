@@ -38,7 +38,7 @@ $(document).ready(function() {
 							"<div class='files'>" +
 								"<p>" + response[i]['files'][j]['file_name'] + "</p>" +
 								"<div class='files-icons'>" +
-									"<i class='bi bi-download download-file'></i></a>" +
+									"<i class='bi bi-download download-file'></i>" +
 									"<i class='bi bi-x-lg delete-file'></i>" +
 								"</div>" +
 							"</div>" +
@@ -294,16 +294,7 @@ $(document).ready(function() {
 	$("#user-table").on("click", "td .download-file", function(event) {
 		event.preventDefault()
 		let file_id = $(this).closest('li').attr('id')
-		ajax_get('/download_file?file_id='+file_id,
-			function() {
-			
-			},
-			function(jqXHR) {
-				if (jqXHR === 400 || jqXHR === 500) {
-						alert_func('#failAlert','#failedText', 'File upload failed!')
-					}
-			}
-		)
+		window.location.href = "/download_file?file_id=" + file_id
 	});
 	
 	// ----- DELETE FILE CLICK ------
